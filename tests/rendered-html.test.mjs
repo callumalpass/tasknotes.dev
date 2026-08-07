@@ -1,21 +1,20 @@
 import assert from "node:assert/strict";
+import { readFile } from "node:fs/promises";
+import { join } from "node:path";
+import { fileURLToPath } from "node:url";
 import test from "node:test";
 
+const clientDirectory = fileURLToPath(
+  new URL("../dist/client/", import.meta.url),
+);
+
 async function render(pathname) {
-  const workerUrl = new URL("../dist/server/index.js", import.meta.url);
-  workerUrl.searchParams.set("test", `${process.pid}-${Date.now()}-${pathname}`);
-  const { default: worker } = await import(workerUrl.href);
-  return worker.fetch(
-    new Request(`http://localhost${pathname}`, {
-      headers: { accept: "text/html" },
-    }),
-    {
-      ASSETS: {
-        fetch: async () => new Response("Not found", { status: 404 }),
-      },
-    },
-    { waitUntil() {}, passThroughOnException() {} },
-  );
+  const segments = pathname.split("/").filter(Boolean);
+  const filename = join(clientDirectory, ...segments, "index.html");
+  return new Response(await readFile(filename), {
+    status: 200,
+    headers: { "content-type": "text/html" },
+  });
 }
 
 test("renders the product-family documentation home", async () => {
@@ -47,18 +46,18 @@ test("renders app and Obsidian pages with explicit scope", async () => {
   assert.match(pluginHtml, /Core Concepts/);
 });
 
-test("redirects legacy plugin and specification routes", async () => {
+test("renders legacy routes with canonical destinations", async () => {
   const plugin = await render("/features/");
-  assert.ok([301, 302, 307, 308].includes(plugin.status));
-  assert.equal(
-    new URL(plugin.headers.get("location"), "http://localhost").pathname,
-    "/obsidian/features/",
+  assert.equal(plugin.status, 200);
+  assert.match(
+    await plugin.text(),
+    /<link rel="canonical" href="https:\/\/tasknotes\.dev\/obsidian\/features\/"/,
   );
 
   const specification = await render("/spec/");
-  assert.ok([301, 302, 307, 308].includes(specification.status));
-  assert.equal(
-    new URL(specification.headers.get("location"), "http://localhost").pathname,
-    "/developers/specification/",
+  assert.equal(specification.status, 200);
+  assert.match(
+    await specification.text(),
+    /<link rel="canonical" href="https:\/\/tasknotes\.dev\/developers\/specification\/"/,
   );
 });

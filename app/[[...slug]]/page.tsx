@@ -8,6 +8,17 @@ interface RouteProps {
   params: Promise<{ slug?: string[] }>;
 }
 
+export function generateStaticParams(): Array<{ slug: string[] }> {
+  const routes = new Set([
+    ...documentation.pages.map((page) => page.route),
+    ...Object.keys(documentation.redirects),
+  ]);
+
+  return [...routes].map((route) => ({
+    slug: route.split("/").filter(Boolean),
+  }));
+}
+
 export async function generateMetadata({ params }: RouteProps): Promise<Metadata> {
   const route = normalizeRoute((await params).slug);
   const destination = documentation.redirects[route];
