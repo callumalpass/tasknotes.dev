@@ -46,14 +46,16 @@ test("renders app and Obsidian pages with explicit scope", async () => {
   assert.match(pluginHtml, /Core Concepts/);
 });
 
-test("renders the interactive app demo as an opt-in experience", async () => {
+test("renders the interactive app demo immediately with minimal chrome", async () => {
   const response = await render("/app/demo/");
   assert.equal(response.status, 200);
   const html = await response.text();
-  assert.match(html, /Load the interactive demo/);
+  assert.match(html, /Try TaskNotes/);
   assert.match(html, /24 sample tasks/);
   assert.match(html, /Open in a new tab/);
-  assert.doesNotMatch(html, /<iframe/);
+  assert.match(html, /<iframe/);
+  assert.doesNotMatch(html, /Load the interactive demo/);
+  assert.doesNotMatch(html, /aria-label="Documentation"/);
 });
 
 test("renders legacy routes with canonical destinations", async () => {

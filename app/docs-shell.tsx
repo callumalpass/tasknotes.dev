@@ -1,6 +1,5 @@
 "use client";
 
-import Image from "next/image";
 import Link from "next/link";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 
@@ -101,13 +100,14 @@ export function DocsShell({
 
   const results = useMemo(() => search(searchPages, query), [query, searchPages]);
   const editUrl = sourceEditUrl(page);
+  const isDemo = page.route === "/app/demo/";
 
   return (
     <>
       <a className="skip-link" href="#main">
         Skip to content
       </a>
-      <header className="site-header">
+      <header className={`site-header${isDemo ? " site-header--demo" : ""}`}>
         <Link className="brand" href="/" aria-label="TaskNotes documentation home">
           <TaskNotesMark />
           <span className="brand__copy">
@@ -116,50 +116,59 @@ export function DocsShell({
           </span>
         </Link>
         <div className="site-header__actions">
-          <button
-            className="search-trigger"
-            type="button"
-            aria-haspopup="dialog"
-            onClick={openSearch}
-          >
-            <SearchMark />
-            <span>Search</span>
-            <kbd>⌘ K</kbd>
-          </button>
-          <label className="theme-control">
-            <span className="sr-only">Colour theme</span>
-            <select
-              aria-label="Colour theme"
-              value={theme}
-              onChange={(event) => setTheme(event.target.value as Theme)}
-            >
-              <option value="system">System</option>
-              <option value="light">Light</option>
-              <option value="dark">Dark</option>
-            </select>
-          </label>
+          {isDemo ? (
+            <Link className="demo-docs-link" href="/app/">
+              App docs
+            </Link>
+          ) : (
+            <>
+              <button
+                className="search-trigger"
+                type="button"
+                aria-haspopup="dialog"
+                onClick={openSearch}
+              >
+                <SearchMark />
+                <span>Search</span>
+                <kbd>⌘ K</kbd>
+              </button>
+              <label className="theme-control">
+                <span className="sr-only">Colour theme</span>
+                <select
+                  aria-label="Colour theme"
+                  value={theme}
+                  onChange={(event) => setTheme(event.target.value as Theme)}
+                >
+                  <option value="system">System</option>
+                  <option value="light">Light</option>
+                  <option value="dark">Dark</option>
+                </select>
+              </label>
+            </>
+          )}
           <a className="app-link" href="https://app.tasknotes.dev/">
             Open app
           </a>
-          <button
-            className="menu-trigger"
-            type="button"
-            aria-label="Open documentation navigation"
-            aria-expanded={menuOpen}
-            onClick={() => setMenuOpen(true)}
-          >
-            <MenuMark />
-          </button>
+          {!isDemo ? (
+            <button
+              className="menu-trigger"
+              type="button"
+              aria-label="Open documentation navigation"
+              aria-expanded={menuOpen}
+              onClick={() => setMenuOpen(true)}
+            >
+              <MenuMark />
+            </button>
+          ) : null}
         </div>
       </header>
 
-      <div
-        className={`site-shell${page.route === "/app/demo/" ? " site-shell--demo" : ""}`}
-      >
-        <aside
-          className={`sidebar${menuOpen ? " is-open" : ""}`}
-          aria-label="Documentation"
-        >
+      <div className={`site-shell${isDemo ? " site-shell--demo" : ""}`}>
+        {!isDemo ? (
+          <aside
+            className={`sidebar${menuOpen ? " is-open" : ""}`}
+            aria-label="Documentation"
+          >
           <div className="sidebar__mobile-header">
             <span>Documentation</span>
             <button type="button" onClick={() => setMenuOpen(false)}>
@@ -195,19 +204,34 @@ export function DocsShell({
             <span>Plugin {versions.obsidian}</span>
             <a href="https://github.com/callumalpass">GitHub</a>
           </footer>
-        </aside>
+          </aside>
+        ) : null}
 
-        <button
-          className={`sidebar-overlay${menuOpen ? " is-visible" : ""}`}
-          type="button"
-          aria-label="Close documentation navigation"
-          onClick={() => setMenuOpen(false)}
-        />
+        {!isDemo ? (
+          <button
+            className={`sidebar-overlay${menuOpen ? " is-visible" : ""}`}
+            type="button"
+            aria-label="Close documentation navigation"
+            onClick={() => setMenuOpen(false)}
+          />
+        ) : null}
 
-        <main
-          className={`prose${page.route === "/app/demo/" ? " prose--demo" : ""}`}
-          id="main"
-        >
+        {isDemo ? (
+          <main className="demo-page" id="main">
+            <header className="demo-page__intro">
+              <div>
+                <p className="demo-page__eyebrow">Interactive demo</p>
+                <h1>Try TaskNotes</h1>
+              </div>
+              <p>
+                Explore with 24 sample tasks. Changes stay in this browser
+                session and never touch a collection.
+              </p>
+            </header>
+            <InteractiveDemo />
+          </main>
+        ) : (
+          <main className="prose" id="main">
           {page.route !== "/" ? (
             <nav className="breadcrumbs" aria-label="Breadcrumb">
               <ol>
@@ -233,29 +257,34 @@ export function DocsShell({
             <p className="page-description">{page.description}</p>
           </header>
           <div dangerouslySetInnerHTML={{ __html: page.html }} />
-          {page.route === "/app/demo/" ? <InteractiveDemo /> : null}
           {editUrl ? (
             <footer className="page-source">
               <span>Source: {page.source}</span>
               <a href={editUrl}>View source</a>
             </footer>
           ) : null}
-        </main>
+          </main>
+        )}
 
-        <aside className="toc-column" aria-label="Page outline">
-          {!page.hideToc && page.toc.length > 1 ? (
-            <nav className="toc" aria-label="On this page">
-              <p className="toc__heading">On this page</p>
-              <ul>
-                {page.toc.map((item) => (
-                  <li className={item.level === 3 ? "toc__sub" : undefined} key={item.id}>
-                    <a href={`#${item.id}`}>{item.text}</a>
-                  </li>
-                ))}
-              </ul>
-            </nav>
-          ) : null}
-        </aside>
+        {!isDemo ? (
+          <aside className="toc-column" aria-label="Page outline">
+            {!page.hideToc && page.toc.length > 1 ? (
+              <nav className="toc" aria-label="On this page">
+                <p className="toc__heading">On this page</p>
+                <ul>
+                  {page.toc.map((item) => (
+                    <li
+                      className={item.level === 3 ? "toc__sub" : undefined}
+                      key={item.id}
+                    >
+                      <a href={`#${item.id}`}>{item.text}</a>
+                    </li>
+                  ))}
+                </ul>
+              </nav>
+            ) : null}
+          </aside>
+        ) : null}
       </div>
 
       {searchOpen ? (
@@ -314,86 +343,37 @@ const EMBEDDED_DEMO_URL = `${TASKNOTES_APP_ORIGIN}/embed/?demo=24`;
 const FULL_DEMO_URL = `${TASKNOTES_APP_ORIGIN}/?demo=24`;
 
 function InteractiveDemo() {
-  const [loaded, setLoaded] = useState(false);
   const [instance, setInstance] = useState(0);
 
   return (
     <section className="demo-player" aria-labelledby="interactive-demo-heading">
-      <div className="demo-player__heading">
+      <header className="demo-player__toolbar">
         <div>
-          <p className="demo-player__eyebrow">Disposable sample collection</p>
-          <h2 id="interactive-demo-heading">A working TaskNotes session</h2>
-          <p>
-            The controls are real; the records are temporary. Nothing here is
-            written to a hosted collection or a computer.
-          </p>
-        </div>
-        <dl className="demo-player__facts">
-          <div>
-            <dt>Records</dt>
-            <dd>24 sample tasks</dd>
-          </div>
-          <div>
-            <dt>Account</dt>
-            <dd>Not required</dd>
-          </div>
-          <div>
-            <dt>Persistence</dt>
-            <dd>This session only</dd>
-          </div>
-        </dl>
-      </div>
-
-      {loaded ? (
-        <div className="demo-player__frame">
-          <iframe
-            key={instance}
-            src={EMBEDDED_DEMO_URL}
-            title="Interactive TaskNotes demo"
-            referrerPolicy="no-referrer"
-            sandbox="allow-forms allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts"
-          />
-        </div>
-      ) : (
-        <button
-          className="demo-player__preview"
-          type="button"
-          onClick={() => setLoaded(true)}
-        >
-          <Image
-            src="/assets/app/today-workspace.webp"
-            alt=""
-            width={1440}
-            height={900}
-            loading="lazy"
-            unoptimized
-          />
-          <span className="demo-player__preview-action">
-            <span>Load the interactive demo</span>
-            <small>Opens here with disposable sample data</small>
-          </span>
-        </button>
-      )}
-
-      <footer className="demo-player__footer">
-        <div>
-          <p className="demo-player__eyebrow">Try these</p>
-          <p>Complete a task · open Scratchpad · switch saved views</p>
+          <h2 id="interactive-demo-heading">Live demo</h2>
+          <p>Disposable data · resets when you reload</p>
         </div>
         <div className="demo-player__actions">
-          {loaded ? (
-            <button
-              type="button"
-              onClick={() => setInstance((current) => current + 1)}
-            >
-              Reset demo
-            </button>
-          ) : null}
+          <button
+            type="button"
+            onClick={() => setInstance((current) => current + 1)}
+          >
+            Reset demo
+          </button>
           <a href={FULL_DEMO_URL} target="_blank" rel="noreferrer">
             Open in a new tab ↗
           </a>
         </div>
-      </footer>
+      </header>
+      <div className="demo-player__frame">
+        <iframe
+          key={instance}
+          src={EMBEDDED_DEMO_URL}
+          title="Interactive TaskNotes demo"
+          loading="eager"
+          referrerPolicy="no-referrer"
+          sandbox="allow-forms allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts"
+        />
+      </div>
     </section>
   );
 }
