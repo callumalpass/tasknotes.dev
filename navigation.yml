@@ -1,0 +1,71 @@
+navigation:
+  - label: Start here
+    items:
+      - title: TaskNotes documentation
+        route: /
+      - title: TaskNotes app
+        route: /app/
+      - title: Obsidian plugin
+        route: /obsidian/
+      - title: Shared concepts
+        route: /concepts/task-records/
+
+  - label: TaskNotes app
+    items:
+      - title: Get started
+        route: /app/getting-started/
+      - title: Choose a collection
+        route: /app/collections/
+      - title: What is mdbase?
+        route: /app/mdbase/
+      - title: Tasks
+        route: /app/tasks/
+      - title: Views and navigation
+        route: /app/views/
+      - title: Connection and availability
+        route: /app/connection/
+      - title: Reminders
+        route: /app/reminders/
+      - title: Troubleshooting
+        route: /app/troubleshooting/
+
+  - label: Obsidian plugin
+    items:
+      - title: Get started
+        route: /obsidian/
+      - title: Core concepts
+        route: /obsidian/core-concepts/
+      - title: Task management
+        route: /obsidian/features/task-management/
+      - title: Recurring tasks
+        route: /obsidian/features/recurring-tasks/
+      - title: Views
+        route: /obsidian/views/
+      - title: Settings
+        route: /obsidian/settings/
+      - title: APIs and automation
+        route: /obsidian/HTTP_API/
+      - title: Companion plugins
+        route: /obsidian/companion-plugins/
+      - title: Release notes
+        route: /obsidian/releases/
+      - title: Troubleshooting
+        route: /obsidian/troubleshooting/
+
+  - label: Developers
+    items:
+      - title: TaskNotes specification
+        route: /developers/specification/
+      - title: App integration manifest
+        route: /app/reference/manifest/
+      - title: Command reference
+        route: /obsidian/reference/commands/
+      - title: Settings source
+        route: /obsidian/reference/settings-source/
+      - title: HTTP route index
+        route: /obsidian/reference/http-routes/
+
+  - label: Policies
+    items:
+      - title: Privacy
+        route: /privacy/

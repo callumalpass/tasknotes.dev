@@ -1,0 +1,33 @@
+sources:
+  tasknotes.dev:
+    owns:
+      - content/**/*.md
+      - public/assets/**
+      - navigation.yml
+      - redirects.yml
+    scope: public-authored
+
+  tasknotes:
+    repository: callumalpass/tasknotes
+    default_local_path: ../tasknotes
+    imports:
+      releases: docs/releases
+      generated_references: docs-builder/src/generated-pages.js
+      manifest: manifest.json
+    scope: obsidian-source
+
+  tasknotes-app:
+    repository: callumalpass/tasknotes-app
+    default_local_path: ../tasknotes-app
+    imports:
+      version: package.json
+      generated_metadata: src/generated/mdbase-app.json
+      releases: docs/releases
+    scope: app-source
+
+  tasknotes-spec:
+    repository: callumalpass/tasknotes-spec
+    default_local_path: ../tasknotes-spec
+    imports:
+      specification: .
+    scope: normative-source

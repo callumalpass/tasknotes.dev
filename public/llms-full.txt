@@ -1,0 +1,3192 @@
+# TaskNotes documentation
+
+> Documentation for the TaskNotes app, Obsidian plugin, and portable task format.
+
+---
+
+# TaskNotes documentation
+
+Source: https://tasknotes.dev/
+
+# TaskNotes documentation
+
+TaskNotes keeps structured task information in portable Markdown records. Use
+the dedicated app on the web, Android, or iOS, or work inside Obsidian with the
+TaskNotes plugin.
+
+<div class="product-grid">
+  <a class="product-card product-card--app" href="/app/">
+    <span class="product-card__eyebrow">Beta · Web · Android · iOS</span>
+    <strong>TaskNotes app</strong>
+    <span>Manage portable TaskNotes v5 collections on the web, Android, and iOS through mdbase.</span>
+    <span class="product-card__action">Open the app guide →</span>
+  </a>
+  <a class="product-card" href="/obsidian/">
+    <span class="product-card__eyebrow">Obsidian</span>
+    <strong>TaskNotes plugin</strong>
+    <span>Task and note management inside an Obsidian vault using Bases and Markdown.</span>
+    <span class="product-card__action">Open the plugin guide →</span>
+  </a>
+</div>
+
+## One portable task model
+
+Both clients understand the same TaskNotes concepts: status, priority, dates,
+projects, contexts, recurrence, reminders, relationships, and custom fields.
+The interface and available integrations differ, but your task records are not
+locked to one screen or application.
+
+- Start with [portable task records](/concepts/task-records/) if you want to
+  understand what the products share.
+- Read the [formal specification](/developers/specification/) when implementing
+  or integrating with TaskNotes.
+- Review the [privacy overview](/privacy/) before choosing a hosted or
+  computer-connected collection.
+
+---
+
+# TaskNotes app
+
+Source: https://tasknotes.dev/app/
+
+# TaskNotes app
+
+The TaskNotes app is currently in beta. It is a web-first client packaged for
+Android and iOS, designed for quick capture, daily review, editing, and
+completion while keeping task records portable.
+
+The app is compatible with **TaskNotes v5 collections**, which use the
+**mdbase 0.3.0 specification**. The same collection can be used by other
+compatible TaskNotes and mdbase tools.
+
+Every TaskNotes session opens an mdbase collection. You can use a collection
+hosted online or connect to a Markdown collection on your computer through the
+encrypted mdbase relay. TaskNotes reads and writes that collection directly, so
+changes require a connection.
+
+<figure class="app-screenshot">
+  <img src="/assets/app/today-workspace.webp" alt="TaskNotes Today workspace with desktop navigation, quick capture, and grouped task rows">
+  <figcaption>The Today workspace in the desktop layout.</figcaption>
+</figure>
+
+## Begin here
+
+1. [Open or install TaskNotes](/app/getting-started/).
+2. [Learn how mdbase supports TaskNotes](/app/mdbase/).
+3. [Choose where your collection lives](/app/collections/).
+4. Create a task and open **Today**.
+5. Turn on reminders only if the collection and platform support delivery.
+
+## What the app includes
+
+- Today, Upcoming, Projects, lists, boards, and calendars
+- Capture, editing, completion, archive, and search
+- Projects, contexts, tags, priorities, relationships, and custom fields
+- Recurrence, materialized occurrence notes, reminders, and time tracking
+- Hosted mdbase and end-to-end encrypted relay connections
+- Browser, Android, and iOS packaging from the same application
+
+Plugin-only functionality such as inline Obsidian widgets, the command palette,
+external calendar integrations, HTTP APIs, and companion plugins is documented
+under the [Obsidian plugin](/obsidian/).
+
+---
+
+# Choose a collection
+
+Source: https://tasknotes.dev/app/collections/
+
+# Choose a collection
+
+TaskNotes opens every collection through mdbase. The choice is where the main
+copy of your Markdown lives: hosted online or on your own computer.
+
+If mdbase is new to you, start with [mdbase and TaskNotes](/app/mdbase/) for a
+plain-language explanation of the format, Connect desktop app, and hosting
+choices.
+
+## Hosted mdbase
+
+Hosted mdbase is the recommended choice for convenient access across the web,
+Android, and iOS. The provider keeps the main collection online, so it is
+available from any TaskNotes device with a network connection and can deliver
+reminders while TaskNotes is closed.
+
+TaskNotes reads and writes the hosted collection directly. It does not keep a
+separate offline copy, so you need a network connection to open the collection
+or make changes.
+
+## Connect to a computer
+
+mdbase Connect can make a Markdown collection on your computer available to
+TaskNotes. Requests and responses travel through an end-to-end encrypted relay;
+the relay cannot read your task contents and you do not need to open a port on
+your router.
+
+The computer holds the main copy, so it must be awake, online, and running the
+mdbase Connect background service whenever you use TaskNotes. See how to
+[install mdbase Connect and use a computer collection](/app/mdbase/#use-a-collection-on-your-computer).
+
+## Change collections later
+
+Open **More** and choose **Change collection**. Opening another collection does
+not copy or move records from the collection you were using.
+
+---
+
+# Connection and availability
+
+Source: https://tasknotes.dev/app/connection/
+
+# Connection and availability
+
+TaskNotes reads and writes the selected mdbase collection directly. It does not
+keep a separate offline collection or a queue of changes waiting to sync.
+
+## What each status means
+
+| Status | Meaning |
+| --- | --- |
+| Connected | TaskNotes can read and change the selected collection |
+| Connecting | TaskNotes is checking the collection connection |
+| Collection unavailable | The hosted service or connected computer cannot be reached |
+
+Open **More** to see the current status and use **Refresh now** to read the
+latest collection state.
+
+## Hosted collections
+
+A hosted collection needs a network connection and an available hosted mdbase
+service. If either is unavailable, TaskNotes cannot open the collection or save
+changes. Reconnect the collection if its authorization has expired.
+
+## Collections on your computer
+
+A computer collection also needs the computer holding the Markdown to be
+awake, online, and running the mdbase Connect background service. TaskNotes
+reaches it through the end-to-end encrypted relay. If the computer becomes
+unavailable, access returns when the computer and connector return.
+
+## During a connection problem
+
+Tasks already visible in the current session may remain on screen during a
+short interruption, but TaskNotes cannot safely save new changes until mdbase
+is reachable. A failed action is not silently queued for later.
+
+If the problem continues, open **More** and choose **Change collection** to use
+another mdbase collection.
+
+---
+
+# Get started with the TaskNotes app
+
+Source: https://tasknotes.dev/app/getting-started/
+
+# Get started with the TaskNotes app
+
+TaskNotes app is currently in beta. Features, availability, and setup steps may
+change before the stable release.
+
+The app supports TaskNotes v5 collections based on the mdbase 0.3.0
+specification.
+
+## 1. Open TaskNotes
+
+Use [app.tasknotes.dev](https://app.tasknotes.dev/) in a supported browser or
+install the Android or iOS application when it is available through its store.
+The web and native applications use the same task interface.
+
+## 2. Choose a collection
+
+TaskNotes opens every collection through mdbase. Choose **Hosted mdbase** for a
+collection available anywhere with a network connection, or **Connect to a
+computer** to use a Markdown collection kept on your own computer through the
+encrypted relay. Read [What is mdbase?](/app/mdbase/) if this is new to you,
+then [Choose a collection](/app/collections/) to compare the two options.
+
+## 3. Create a task
+
+Use **Add task**, enter a title, and save. Capture understands the collection's
+configured status, priority, project, context, and tag values.
+
+## 4. Review the starter views
+
+Open **Today** for current work, **Upcoming** for scheduled tasks, and **Views**
+for the complete collection of lists, boards, calendars, and project views.
+Navigation belongs to the current collection and can be reordered from Views.
+
+## 5. Check collection status
+
+Open **More** to see the collection location, connection state, last refresh,
+notification access, task model settings, and appearance preference.
+
+---
+
+# mdbase and TaskNotes
+
+Source: https://tasknotes.dev/app/mdbase/
+
+# mdbase and TaskNotes
+
+mdbase lets TaskNotes work with a portable Markdown collection instead of
+hiding your tasks in a TaskNotes-only database. Every TaskNotes session opens
+one mdbase collection: either a collection hosted online or one kept on your
+computer and reached through the encrypted relay.
+
+## What is mdbase?
+
+Two related names appear in TaskNotes:
+
+- **mdbase** is the open collection format and specification. A collection is
+  a folder of Markdown files plus a small description of what those files mean.
+- **mdbase Connect** is the access service TaskNotes uses to ask for permission
+  and connect to a hosted collection or a collection on your computer.
+
+Read the [mdbase introduction](https://mdbase.dev/) for a visual explanation of
+the wider ecosystem.
+
+## What it gives TaskNotes
+
+TaskNotes understands what a task looks like inside an mdbase collection. That
+compatibility is defined by the TaskNotes v5 collection format and its mdbase
+0.3.0 binding. That means TaskNotes can:
+
+- use the same task fields, projects, tags, saved views, and settings on the
+  web, Android, and iOS;
+- ask for access to one collection without seeing your other folders; and
+- keep reminders running while TaskNotes is closed when your collection
+  supports them.
+
+Behind the scenes, mdbase checks that each change is valid and writes it to the
+main collection. You still own readable Markdown files rather than a database
+that only TaskNotes can open.
+
+## How the connection works
+
+The mdbase collection is the source of truth. TaskNotes reads and writes it
+directly and does not keep a separate offline collection, so opening tasks and
+saving changes require a connection.
+
+| Choice | Where the Markdown lives | What must be available |
+| --- | --- | --- |
+| Hosted mdbase | With the hosted provider | Your device must have a network connection |
+| Connect to your computer | In a folder on your computer | Both devices must be online, and your computer must be running mdbase Connect |
+
+[Choose a collection](/app/collections/) compares the TaskNotes behavior of
+these options in more detail.
+
+## Use a collection on your computer
+
+Install the Electron-based mdbase Connect desktop app to make a folder on your
+computer available to TaskNotes. It runs a small background service that keeps
+TaskNotes connected to the Markdown folder. The download also includes command
+line tools. The mdbase editor is online and is not part of the desktop app.
+
+1. Open the [mdbase Connect download page](https://mdbase.dev/downloads/) and
+   choose the package for macOS, Windows, or Linux.
+2. Install and open mdbase Connect. Follow any platform-specific beta
+   installation notes shown on the download page.
+3. Add an existing mdbase folder on the computer, or create a collection.
+4. In TaskNotes, choose **Connect to a computer** and select that collection.
+5. Review the requested actions and approve the connection.
+
+TaskNotes requests and responses travel through an end-to-end encrypted relay.
+The relay passes the encrypted data along but cannot read your task contents.
+You do not need to open an inbound port on your router.
+
+The background service on your computer checks that TaskNotes has permission,
+then reads or changes the Markdown files. It does not create another hosted or
+offline copy of the collection.
+
+## Do I need to leave my computer on?
+
+Yes. Your computer holds the main copy, so it is part of the connection:
+
+- It must be awake, connected to the internet, and running the mdbase Connect
+  background service whenever TaskNotes needs remote access.
+- Sleep, shutdown, a network outage, or a stopped connector makes the
+  collection unavailable until the computer returns.
+- Reminder delivery also depends on the computer remaining available.
+- You are responsible for the computer's security, disk health, and backups.
+
+This works well for an always-on desktop or home server. It is less convenient
+for a laptop that sleeps or travels regularly. Hosted mdbase removes the
+always-on-computer requirement, but it moves the main copy to a provider you
+must trust. Both choices require a network connection while you use TaskNotes.
+
+For more detail about how Connect protects and routes your data, read
+[How mdbase Connect works](https://mdbase.dev/connect/).
+
+## A practical recommendation
+
+Choose **Hosted mdbase** if dependable access across several devices and
+reminder delivery matter most. Choose **Connect to a computer** if keeping the
+main Markdown folder on your own machine matters more and that machine can
+remain available.
+
+---
+
+# App integration manifest
+
+Source: https://tasknotes.dev/app/reference/manifest/
+
+# App integration manifest
+
+This page is generated from the integration manifest shipped by TaskNotes app 0.1.0.
+
+| Field | Value |
+| --- | --- |
+| Application ID | `dev.tasknotes.app` |
+| Manifest version | `1` |
+| Homepage | [https://app.tasknotes.dev/](https://app.tasknotes.dev/) |
+| Collection access | `full_collection` |
+
+## Required contracts
+
+- `tasknotes.task` version `0.3.0-rc.3`
+
+## File capabilities
+
+- `list`
+- `read`
+- `add`
+- `replace`
+- `move`
+- `delete`
+
+## Notification criteria
+
+- `task.reminder` listens for `mdbase.runtime.timer.fired` version `1.0.0`.
+
+---
+
+# Reminders in the TaskNotes app
+
+Source: https://tasknotes.dev/app/reminders/
+
+# Reminders in the TaskNotes app
+
+Task records can contain relative reminders anchored to scheduled or due dates,
+or absolute reminders fixed to a particular time. Saving reminder data does not
+by itself guarantee notification delivery.
+
+## Delivery by collection
+
+| Collection | Reminder data | Notification delivery |
+| --- | --- | --- |
+| Hosted mdbase | Saved in the collection | Available after opt-in |
+| Computer through the relay | Saved in the collection | Available while the computer and connector remain available |
+
+For mdbase collections, the authority schedules reminder events so delivery
+does not depend on one TaskNotes screen remaining open. Notification payloads
+are content-free; selecting one refreshes authorized collection state in the
+app.
+
+## Turn on reminders
+
+Open **More**, select **Turn on reminders**, and approve the browser or operating
+system permission. Some existing mdbase grants require **Review notification
+access** before the channel can be enabled.
+
+An unsupported or insecure browser reports that notification delivery is not
+available. The reminder definitions remain in the task record.
+
+---
+
+# Work with tasks
+
+Source: https://tasknotes.dev/app/tasks/
+
+# Work with tasks
+
+<figure class="app-screenshot">
+  <img src="/assets/app/task-detail.webp" alt="TaskNotes Today workspace with the task detail inspector open beside the task list">
+  <figcaption>A task opens beside its source view on wider screens.</figcaption>
+</figure>
+
+## Capture
+
+Use **Add task** from navigation or from a saved view. When a view has safe
+creation defaults, TaskNotes applies them automatically so the new task remains
+in that view.
+
+## Edit
+
+A task can contain:
+
+- Status and priority
+- Scheduled and due dates
+- Markdown notes
+- Projects, contexts, and tags
+- Dependencies and subtasks
+- Collection-defined custom properties
+- Time estimates and tracked sessions
+- Recurrence and occurrence-note policies
+- Relative and absolute reminder definitions
+
+Background saves remain ordered if you navigate away while a write is still in
+progress.
+
+## Complete, archive, and delete
+
+Complete a task from its row or detail screen. Archive retains the record and
+may move its Markdown file according to collection settings. Delete offers a
+short undo period before committing the removal.
+
+## Search
+
+Search runs across the current collection and matches titles, notes, projects,
+contexts, and tags. Use **Refresh now** under **More** if a change made by
+another tool does not appear yet.
+
+---
+
+# Troubleshoot the TaskNotes app
+
+Source: https://tasknotes.dev/app/troubleshooting/
+
+# Troubleshoot the TaskNotes app
+
+Start by recording the app version, platform, collection type, collection
+status shown under **More**, and the smallest sequence that reproduces the
+problem.
+
+## The collection is unavailable
+
+For a hosted collection, confirm that the device is online and try **Reconnect
+this collection**. For a computer collection, also confirm that the computer
+holding the Markdown is awake, online, and running mdbase Connect.
+
+## An authorization error appears
+
+Use the reconnect action for the current collection and review the access that
+mdbase requests. If you no longer want to use that collection, open **More** and
+choose **Change collection**.
+
+## A change did not save
+
+TaskNotes writes directly to mdbase and does not queue failed changes for later.
+Restore the connection, then retry the action. Capture and editing screens keep
+recoverable input visible when they can do so safely.
+
+## A change from another tool is missing
+
+Open **More** and choose **Refresh now**. If the record still does not appear,
+confirm that the other tool wrote to the same mdbase collection and that the
+record uses a compatible TaskNotes task definition.
+
+## Notifications do not arrive
+
+Confirm that the current collection is an mdbase collection, reminders are
+enabled in **More**, the browser or operating system permission is granted, and
+the task contains a valid future reminder. For a computer collection, the
+computer and mdbase Connect must remain available.
+
+---
+
+# Views and navigation
+
+Source: https://tasknotes.dev/app/views/
+
+# Views and navigation
+
+Views are saved ways of selecting, sorting, grouping, and presenting records in
+a collection. They travel with the collection; the set pinned to navigation is
+a preference on each device.
+
+<figure class="app-screenshot">
+  <img src="/assets/app/views.webp" alt="TaskNotes Views manager showing navigation order and saved collection views">
+  <figcaption>The Views manager controls navigation order and saved view definitions.</figcaption>
+</figure>
+
+## Starter views
+
+TaskNotes creates managed starter views such as Today, Upcoming, Calendar, and
+Projects. They use the same saved-view catalog as user-created views while
+providing focused presentations for common work.
+
+## Presentations
+
+- **Task list** supports grouping, visible properties, section moves, and manual ordering.
+- **Kanban** groups tasks into columns and can update the grouped property when a task moves.
+- **Calendar** shows task dates in month, week, day, and list layouts.
+- **Mini calendar** combines a month picker with tasks for the selected day.
+- **Projects** finds project records referenced by active tasks.
+
+## Navigation
+
+Open **Views** to add or remove a view from navigation and to change its order.
+The first navigation item is the collection's home. Mobile displays the first
+three views directly and keeps the rest in the Views destination.
+
+## Create and edit views
+
+The view editor controls the name, presentation, query, grouping, sort order,
+visible properties, and safe defaults for tasks created from the view. View
+documents remain ordinary collection resources rather than being stored only
+inside the TaskNotes app.
+
+---
+
+# Portable task records
+
+Source: https://tasknotes.dev/concepts/task-records/
+
+# Portable task records
+
+A TaskNotes task is an ordinary Markdown record with structured properties.
+Those properties describe the task; the Markdown body remains available for
+notes, checklists, links, and supporting detail.
+
+## Collections
+
+A collection is a group of records plus the configuration that explains how to
+interpret them. The configuration defines field names, statuses, priorities,
+custom properties, record locations, and saved views.
+
+The TaskNotes app uses **collection** throughout. The Obsidian plugin usually
+describes the containing folder as a **vault** and presents saved views through
+Obsidian Bases.
+
+## Source of truth
+
+Where the authoritative copy lives depends on the client and connection:
+
+| Client and collection | Source of truth | Availability |
+| --- | --- | --- |
+| TaskNotes app · hosted mdbase | Hosted collection | Requires a network connection |
+| TaskNotes app · computer through relay | Collection on that computer | Requires the network, computer, and connector |
+| Obsidian vault | Markdown files in the vault | Controlled by Obsidian and your sync choice |
+
+## Portability and compatibility
+
+Portable does not mean every client exposes every feature. Inline task widgets,
+Obsidian commands, external calendar integrations, and companion plugins belong
+to the Obsidian client. mdbase collection access and background reminder
+delivery belong to the TaskNotes app.
+
+Use the client-specific guide for interface instructions and the
+[specification](/developers/specification/) for normative data semantics.
+
+---
+
+# 0. Overview
+
+Source: https://tasknotes.dev/developers/specification/
+
+## 0.0 About tasknotes
+
+**TaskNotes** is an [Obsidian](https://obsidian.md) plugin that stores tasks as individual markdown files with YAML frontmatter in a user's vault. Each task is a first-class file: readable and editable with any text editor, version-controllable, and searchable without special tooling.
+
+A minimal task file looks like this:
+
+```markdown
+---
+title: Buy groceries
+status: open
+priority: normal
+due: 2026-02-21
+tags: [task]
+dateCreated: 2026-02-20T11:15:00Z
+dateModified: 2026-02-20T11:15:00Z
+---
+
+Buy fruit and cleaning supplies.
+```
+
+Tasks are identified within the vault by a configurable detection method — by default, by the presence of a specific tag (e.g. `#task` in body or frontmatter). The plugin stores its configuration in `.obsidian/plugins/tasknotes/data.json` within the vault root.
+
+**This specification** was derived from the behavior of the tasknotes plugin and is intended to serve as a stable, testable contract for:
+
+- CLI tools and scripts that process task files outside Obsidian,
+- any application that wants to interoperate with a tasknotes vault.
+
+The spec is deliberately language-agnostic. It does not require any particular runtime, and the executable conformance suite (in `conformance/`) can be driven by an adapter written in any language.
+
+The tasknotes plugin is the primary reference for how this spec was derived, but **the specification is normative** — where the spec and the plugin behavior differ, the spec defines the intended behavior. Known deviations are disclosed via conformance claims (§7.5).
+
+## 0.1 Status and authority
+
+This document is part of `tasknotes-spec` version `0.3.0-rc.1`.
+
+This specification is normative for implementations that claim conformance.
+No single implementation is normative; implementations are expected to conform to the specification.
+
+## 0.2 Motivation
+
+TaskNotes-style systems store tasks as markdown files with YAML frontmatter. This model has practical advantages:
+
+- Task records are plain files that can be inspected and edited without proprietary tooling.
+- Data remains portable across environments.
+- Files are suitable for version control and collaboration workflows.
+
+As soon as more than one tool reads and writes the same task files, implicit assumptions become an interoperability risk. In practice, these risks appear in three areas:
+
+1. Field semantics and naming drift.
+2. Date and timezone interpretation differences.
+3. Recurring-task state transitions that are handled differently by different clients.
+
+When these rules are not explicit, users can get inconsistent results from equivalent operations. A shared specification reduces that risk by making behavior testable and versioned.
+
+## 0.3 Objectives
+
+This specification defines a stable contract for:
+
+- Representing task records in markdown frontmatter.
+- Mapping storage keys to canonical semantic roles.
+- Defining effective collection configuration via provider model (for example `tasknotes.yaml` and/or TaskNotes `data.json`).
+- Interpreting date and datetime values consistently.
+- Applying recurrence, per-instance completion/skip behavior, and optional materialized occurrence notes.
+- Managing time tracking sessions and `time_entries` lifecycle behavior.
+- Parsing and resolving links consistently across task fields.
+- Defining dependency and reminder behavior.
+- Optionally applying deterministic create-time templating behavior.
+- Executing write operations with predictable side-effects.
+- Validating task records and reporting issues.
+
+## 0.4 Non-objectives
+
+This specification does not standardize:
+
+- UI layout, styling, command palettes, or interaction design.
+- Internal caching architecture or rendering pipelines.
+- Transport protocols (HTTP, IPC, etc.) except where they affect persisted task semantics.
+- Rich template-language features beyond the portable create-time templating contract in §5/§7/§9.
+
+## 0.5 Scope
+
+This specification is standalone. It does not require conformance to any other specification.
+
+Implementations MAY internally reuse other libraries or specifications, but conformance claims under `tasknotes-spec` are evaluated only against this document.
+Templating is optional and profile-gated; implementations that do not claim the templating profile remain conformant without template support.
+References to TaskNotes plugin behavior, Obsidian behavior, or external specifications are informative context only unless this specification explicitly marks a requirement as normative.
+
+## 0.6 Design principles
+
+### 0.6.1 File-first persistence
+
+Task state is represented in user-visible files. Derived indexes and caches are non-canonical.
+
+### 0.6.2 Deterministic semantics
+
+Equivalent inputs MUST produce equivalent persisted outputs under the same configuration and active runtime timezone.
+
+### 0.6.3 Explicit mapping
+
+Semantic roles are canonical. Storage key names are configurable and therefore must be mapped explicitly.
+
+### 0.6.4 Backward evolution
+
+The specification supports migration from legacy keys and historical behaviors through explicit compatibility rules.
+
+## 0.7 Conformance
+
+Conformance is profile-based (see §7). A minimal implementation can conform to a narrow profile while remaining interoperable for core operations.
+
+## 0.8 Normative language
+
+The key words **MUST**, **MUST NOT**, **SHOULD**, **SHOULD NOT**, and **MAY** are to be interpreted as described in RFC 2119.
+
+## 0.9 Example collection
+
+A default tasknotes vault looks like this:
+
+```text
+MyVault/
+├── TaskNotes/
+│   ├── Tasks/
+│   │   ├── buy-groceries.md    ← task file (title-derived filename by default)
+│   │   └── weekly-review.md
+│   └── Archive/                ← archive folder (if moveArchivedTasks=true)
+├── .obsidian/
+│   └── plugins/
+│       └── tasknotes/
+│           └── data.json       ← plugin settings (primary config provider)
+└── tasknotes.yaml              ← optional spec-level config (secondary provider)
+```
+
+Task files are identified by the `#task` tag by default (configurable). The full default collection state is described in §9.21.
+
+Configuration provider semantics and effective configuration rules are defined in §9. An implementation MAY use either provider, both, or additional providers, based on its documented precedence policy.
+
+A task file example (using default field mapping):
+
+```markdown
+---
+title: Buy groceries
+status: open
+priority: normal
+due: 2026-02-21
+tags: [task, errands]
+contexts: ["town"]
+dateCreated: 2026-02-20T11:15:00Z
+dateModified: 2026-02-20T11:15:00Z
+---
+
+Buy fruit and cleaning supplies.
+```
+
+## 0.10 Versioning policy
+
+This specification uses semantic versioning.
+
+- A **major** version introduces breaking semantic changes.
+- A **minor** version introduces additive behavior or optional features.
+- A **patch** version clarifies wording or fixes non-breaking defects.
+
+Implementations MUST reject unsupported major versions when strict mode is enabled.
+
+## 0.11 Change governance
+
+Specification changes SHOULD be accompanied by:
+
+- a motivation statement,
+- precise normative edits,
+- migration notes when behavior changes,
+- updated examples.
+
+---
+
+# TaskNotes for Obsidian
+
+Source: https://tasknotes.dev/obsidian/
+
+# TaskNotes for Obsidian
+
+This guide covers the TaskNotes plugin for Obsidian. It follows the "one note per task" principle: each task is a Markdown file with structured metadata in YAML frontmatter.
+
+![Task List view](assets/views-tasks-list.png)
+
+## Requirements
+
+TaskNotes 4.11.1 requires **Obsidian 1.12.2** or later and depends on the **Bases** core plugin. Before you begin, open Obsidian Settings and confirm Bases is enabled under Core Plugins.
+
+## Getting Started
+
+### 1. Install and Enable
+
+Install TaskNotes from Community Plugins in Obsidian settings, then enable it. If Bases is still disabled, enable it right away so TaskNotes views can open correctly.
+
+### 2. Create Your First Task
+
+Press <kbd>Ctrl+P</kbd> (or <kbd>Cmd+P</kbd> on macOS), run **TaskNotes: Create new task**, fill in the modal, and save. If you prefer inline workflows, start with a checkbox like `- [ ] Buy groceries` and convert it using the inline task command.
+
+![Create task modal](assets/modal-task-create.png)
+
+### 3. Open the Task List
+
+Open your first view from the TaskNotes ribbon icon or by running **TaskNotes: Open tasks view** from the command palette. This opens the default Task List `.base` file inside `TaskNotes/Views`.
+
+### 4. Explore
+
+Use [Core Concepts](core-concepts.md) to understand the data model, [Features](features.md) for workflow capabilities, [Views](views.md) for interface behaviour, and [Settings](settings.md) to tune TaskNotes for your vault. If you already have task-like notes, start with [Adopt TaskNotes in an existing vault](getting-started/existing-vault.md).
+
+## Quick Links
+
+<div class="card-grid">
+  <a class="card" href="https://github.com/callumalpass/tasknotes" target="_blank" rel="noopener noreferrer">
+    <span class="card__title">GitHub Repository</span>
+    <span class="card__desc">Source code, issues, releases, and contribution discussions</span>
+  </a>
+  <a class="card" href="/features/task-management/">
+    <span class="card__title">Task Management</span>
+    <span class="card__desc">Status, priority, dates, reminders, and recurring tasks</span>
+  </a>
+  <a class="card" href="/features/inline-tasks/">
+    <span class="card__title">Inline Tasks</span>
+    <span class="card__desc">Widgets, natural language parsing, and checkbox conversion</span>
+  </a>
+  <a class="card" href="/features/calendar-integration/">
+    <span class="card__title">Calendar Integration</span>
+    <span class="card__desc">Google Calendar, Outlook, and ICS subscriptions</span>
+  </a>
+  <a class="card" href="/HTTP_API/">
+    <span class="card__title">HTTP API</span>
+    <span class="card__desc">REST API for automation and external integrations</span>
+  </a>
+  <a class="card" href="/javascript-api/">
+    <span class="card__title">JavaScript API</span>
+    <span class="card__desc">In-process API for companion plugins and in-vault scripts</span>
+  </a>
+  <a class="card" href="/companion-plugins/">
+    <span class="card__title">Companion Plugins</span>
+    <span class="card__desc">Optional plugins such as Canvas Bases and TaskNotes Workflows that build on TaskNotes</span>
+  </a>
+  <a class="card" href="/migration-v3-to-v4/">
+    <span class="card__title">Migration Guide</span>
+    <span class="card__desc">Upgrading from TaskNotes v3 to v4</span>
+  </a>
+  <a class="card" href="/troubleshooting/">
+    <span class="card__title">Troubleshooting</span>
+    <span class="card__desc">Common issues and how to resolve them</span>
+  </a>
+  <a class="card" href="/reference/commands/">
+    <span class="card__title">Command Reference</span>
+    <span class="card__desc">Every registered command, generated from the plugin source</span>
+  </a>
+  <a class="card" href="/guides/backup-recovery/">
+    <span class="card__title">Backup & Recovery</span>
+    <span class="card__desc">Protect task notes, Base files, settings, and integration data</span>
+  </a>
+  <a class="card" href="/spec/">
+    <span class="card__title">Specification</span>
+    <span class="card__desc">The formal spec behind TaskNotes: data model, operations, recurrence, and conformance</span>
+  </a>
+</div>
+
+---
+
+# Companion Plugins
+
+Source: https://tasknotes.dev/obsidian/companion-plugins/
+
+Companion plugins are optional Obsidian plugins that build on TaskNotes without adding every workflow to the core plugin. They run inside the same Obsidian app, use TaskNotes' runtime API for live task reads and writes, and keep task data in ordinary Markdown files.
+
+Use companion plugins when you want a deeper product surface than a script or webhook, but you still want TaskNotes itself to stay focused on task storage, editing, views, time tracking, and calendar behavior.
+
+## Available Companion Plugins
+
+| Plugin | Purpose | Documentation |
+| --- | --- | --- |
+| Canvas Bases | TaskNotes canvas companion for Obsidian Bases views, with canvas-style boards, JSON Canvas snapshots, optional TaskNotes badges, actions, and relationship edges. | [Canvas Bases](companion-plugins/canvas-bases.md) |
+| TaskNotes Workflows | Markdown-defined automation for TaskNotes tasks, schedules, events, and manual command-palette workflows. | [TaskNotes Workflows](companion-plugins/tasknotes-workflows.md) |
+
+More companion plugins may be documented here over time.
+
+## How Companion Plugins Relate to TaskNotes
+
+TaskNotes remains the source of truth for task behavior. Companion plugins should use the [TaskNotes JavaScript Runtime API](javascript-api.md) for live vault operations instead of rewriting TaskNotes frontmatter directly. This keeps task updates consistent with TaskNotes settings, task cache, events, calendar behavior, time tracking, and future data-model changes.
+
+Companion plugins can also publish their own runtime surface through `api.extensions`. Other plugins and scripts can discover those extension APIs from TaskNotes:
+
+```js
+const tasknotes = app.plugins.getPlugin("tasknotes");
+const workflows = tasknotes?.api?.extensions.get("tasknotes-workflows");
+```
+
+The extension registry is useful when companion plugins need to expose commands, validation helpers, catalogs, or run APIs to other in-vault tools.
+
+## Choosing an Integration Surface
+
+| Use case | Prefer |
+| --- | --- |
+| A user-facing Obsidian UI that works with TaskNotes tasks | Companion plugin |
+| In-vault scripting with Templater, QuickAdd, MetaBind, or another plugin | [JavaScript Runtime API](javascript-api.md) |
+| Local tools outside Obsidian | [HTTP API](HTTP_API.md) or [TaskNotes Obsidian CLI](obsidian-cli.md) |
+| Notifications to external services when tasks change | [Webhooks](webhooks.md) |
+| Direct file analysis without Obsidian running | [mdbase-tasknotes CLI](mdbase-tasknotes-cli.md) |
+
+## Compatibility Expectations
+
+Companion plugins should:
+
+- Check `api.apiVersion` and `api.hasCapability(...)` before using runtime features.
+- Use `api.catalog` and canonical runtime query DTOs from `api.query` instead of reaching into TaskNotes filter/view internals.
+- Include a `source` value when mutating tasks so TaskNotes events are debuggable.
+- Avoid reacting to their own mutations unless the behavior is explicit.
+- Keep user data in the vault where possible, using readable Markdown or JSON files.
+- Treat TaskNotes task notes and Bases files as user-owned documents.
+
+TaskNotes does not need every companion plugin installed. If a companion plugin is disabled, TaskNotes task notes remain normal Markdown files and TaskNotes core views continue to work.
+
+---
+
+# Core Concepts
+
+Source: https://tasknotes.dev/obsidian/core-concepts/
+
+TaskNotes follows the "one note per task" principle, where each task lives as a separate Markdown note with structured metadata in YAML frontmatter.
+
+## The Note-Per-Task Approach
+
+Individual Markdown notes replace centralized databases or proprietary formats. Each task file can be read, edited, and backed up with any text editor or automation tool.
+
+### Task Structure
+
+A TaskNotes task is a standard Markdown file with YAML frontmatter:
+
+```markdown
+---
+tags:
+  - task
+title: Review quarterly report
+status: in-progress
+priority: high
+due: 2025-01-15
+scheduled: 2025-01-14
+contexts:
+  - office
+projects:
+  - "[[Q1 Planning]]"
+---
+
+## Notes
+
+Key points to review:
+- Revenue projections
+- Budget allocations
+
+## Meeting Notes
+
+Discussion with finance team on 2025-01-10...
+```
+
+The frontmatter contains structured, queryable properties. The note body holds freeform content—research findings, meeting notes, checklists, or links to related documents.
+
+### Obsidian Integration
+
+Since tasks are proper notes, they work with Obsidian's core features:
+
+- **Backlinks**: See which notes reference a task
+- **Graph View**: Visualize task relationships and project connections
+- **Tags**: Use Obsidian's tag system for additional categorization
+- **Search**: Find tasks using Obsidian's search
+- **Links**: Reference tasks from daily notes, meeting notes, or project documents
+
+This approach creates many small files. TaskNotes stores tasks in a configurable folder (default: `TaskNotes/Tasks/`) to keep them organized.
+In practice, this lets TaskNotes fit into existing vault habits instead of replacing them. You keep using normal note workflows, and TaskNotes adds structure, filtering, and commands on top.
+
+## YAML Frontmatter
+
+Task properties are stored in YAML frontmatter, a standard format with broad tool support.
+Treat frontmatter as the machine-readable layer and the note body as the human-readable layer. TaskNotes automations and Bases filters rely on frontmatter; your project notes and context stay in the body.
+
+### Property Types
+
+TaskNotes uses several property types:
+
+| Type | Example | Description |
+|------|---------|-------------|
+| Text | `title: Buy groceries` | Single text value |
+| List | `tags: [work, urgent]` | Multiple values |
+| Date | `due: 2025-01-15` | ISO 8601 date format |
+| DateTime | `scheduled: 2025-01-15T09:00` | Date with time |
+| Link | `projects: ["[[Project A]]"]` | Obsidian wikilinks |
+| Number | `timeEstimate: 60` | Numeric values (minutes) |
+
+### Field Mapping
+
+Property keys are configurable. If your vault uses `deadline` instead of `due`, you can map TaskNotes to use your existing field names without modifying your files.
+
+The exact rules for how fields map to semantic roles, how dates are interpreted, and how operations like completion and recurrence behave are defined in the [TaskNotes Specification](spec.md). The spec is the shared contract between the Obsidian plugin, the terminal UI, and any other tool that reads or writes TaskNotes data.
+
+### Custom Fields
+
+Add any frontmatter property to your tasks. User-defined fields work in filtering, sorting, and templates. Define custom fields in `Settings -> TaskNotes -> Task Properties` to include them in task modals and views.
+
+## Bases Integration
+
+TaskNotes v4 uses Obsidian's Bases core plugin for its main views. Bases provides:
+
+- **Filtering**: Query tasks using AND/OR conditions
+- **Sorting**: Order tasks by any property
+- **Grouping**: Organize tasks by status, priority, project, or custom fields
+- **Views**: Task List, Kanban, Calendar, and Agenda are all Bases views
+
+Views are stored as `.base` files in `TaskNotes/Views/`. These files contain YAML configuration that defines the view's query and display settings. You can duplicate, modify, or create new views by editing these files.
+This makes view behavior inspectable and predictable. If a task appears in the wrong place, you can open the `.base` file and see exactly which filter or grouping rule produced that result.
+
+### Enabling Bases
+
+Bases is a core plugin included with Obsidian 1.10.1+:
+
+1. Open `Settings -> Core Plugins`
+2. Enable "Bases"
+3. TaskNotes views will now function
+
+---
+
+# Recurring Tasks
+
+Source: https://tasknotes.dev/obsidian/features/recurring-tasks/
+
+TaskNotes recurring tasks use RFC 5545 RRule strings with `DTSTART` support and dynamic next-occurrence scheduling. The model separates recurrence patterns from the next planned instance, and can also create normal task notes for individual occurrences when an instance needs its own content.
+
+If you are new to recurring tasks in TaskNotes, think of the recurrence rule as the long-term plan and the `scheduled` field as the next concrete commitment. Most day-to-day editing affects `scheduled`, while recurrence editing changes the plan itself.
+
+## Core Concepts
+
+Recurring tasks operate on two independent levels:
+
+1. **Recurring Pattern**: Defines when pattern instances appear (controlled by `DTSTART` in the recurrence rule)
+2. **Next Occurrence**: The specific date/time when you plan to work on the next instance (controlled by the `scheduled` field)
+3. **Materialized Occurrence Notes**: Optional child task notes for specific occurrence dates, used when an occurrence needs its own checklist, status, time tracking, or body content
+
+This separation lets you reschedule the next occurrence without changing the pattern.
+
+## Setting Up Recurring Tasks
+
+In practice, setup is usually a two-step flow: choose a pattern, then check whether the next scheduled occurrence matches how you actually want to execute the next instance.
+
+### Creating Recurrence Patterns
+
+You can create recurring tasks through:
+
+1. **Recurrence Context Menu** in task modals for presets or custom options
+2. **Preset Options** such as daily, weekly, or monthly
+3. **Custom Recurrence Modal** with date/time pickers and RRule configuration
+
+### Required Components
+
+Recurring tasks require:
+
+- **Recurrence Rule**: RRule string with `DTSTART`
+- **Scheduled Date**: Next occurrence date (independent from the pattern)
+
+Materialized occurrence notes add two system fields to the occurrence note:
+
+- `recurrence_parent`: link/path back to the recurring parent task
+- `occurrence_date`: the occurrence date represented by the note
+
+### DTSTART Integration
+
+`DTSTART` is the anchor for pattern generation. It controls where the rule begins and, when time is included, the default time for future pattern instances.
+
+- **Date-only**: `DTSTART:20250804;FREQ=DAILY`
+- **Date and time**: `DTSTART:20250804T090000Z;FREQ=DAILY`
+
+## Recurring Task Due Date
+
+When a recurring task is completed, `scheduled` advances to the next occurrence. By default, `due` does not change.
+
+Enable `Maintain due date offset in recurring tasks` in **Settings → TaskNotes → Features → Recurring Tasks** to preserve due/scheduled spacing.
+
+Example:
+
+- Scheduled: `2025-01-01`
+- Due: `2025-01-03`
+- Recurrence: weekly
+
+If the task advances to `scheduled: 2025-01-08`, the due date becomes `2025-01-10` when this setting is enabled.
+
+This setting is most useful when due dates represent a fixed lead/lag relative to scheduled work (for example, "due two days after execution"). If due dates are independent deadlines, leaving the setting off is usually clearer.
+
+## Recurrence Pattern Examples
+
+```text
+DTSTART:20250804T090000Z;FREQ=DAILY
+→ Daily at 9:00 AM, starting August 4, 2025
+
+DTSTART:20250804T140000Z;FREQ=WEEKLY;BYDAY=MO,WE,FR
+→ Monday, Wednesday, Friday at 2:00 PM, starting August 4, 2025
+
+DTSTART:20250815;FREQ=MONTHLY;BYMONTHDAY=15
+→ 15th of each month (all-day), starting August 15, 2025
+
+DTSTART:20250831;FREQ=MONTHLY;BYMONTHDAY=-1
+→ Last day of each month (all-day), starting August 31, 2025
+
+DTSTART:20250801T100000Z;FREQ=MONTHLY;BYDAY=-1FR
+→ Last Friday of each month at 10:00 AM, starting August 1, 2025
+```
+
+## Dynamic Scheduled Dates
+
+The `scheduled` field automatically tracks the next uncompleted occurrence:
+
+1. Initially set to the `DTSTART` date
+2. Advances when occurrences are completed
+3. Recalculates when the rule changes
+4. Can be manually rescheduled independently
+
+This behavior keeps recurring tasks practical in real planning: you can preserve a stable weekly/monthly pattern while still adapting the immediate next occurrence to calendar realities.
+
+## Materialized Occurrence Notes
+
+Most recurring tasks can remain virtual: the parent task stores `complete_instances` and `skipped_instances`, and TaskNotes renders each calendar/list instance from that parent. Materialized occurrence notes are for heavier instances where the date-specific work needs its own note.
+
+Good uses include:
+
+- A weekly review where each week needs a separate agenda and notes
+- A maintenance task where each visit needs photos, links, or a checklist
+- A recurring meeting where every occurrence should have its own time entries and completion state
+
+To create one manually, right-click a recurring task card or calendar occurrence and choose **Open or create occurrence note**. The Task Action Palette also exposes **Open or create occurrence note** for recurring tasks. If a matching note already exists for the same parent and date, TaskNotes opens it instead of creating a duplicate.
+
+An occurrence note is an ordinary TaskNotes task. It appears in views, can be edited like any other task, and shows an occurrence pill that links back to the recurring parent. On the calendar, a materialized occurrence replaces the matching virtual parent occurrence for the same parent/date pair, so you do not see both the generated instance and the note-backed instance at the same time.
+
+Its frontmatter includes:
+
+```yaml
+recurrence_parent: "[[Tasks/Weekly review]]"
+occurrence_date: "2026-06-01"
+scheduled: "2026-06-01T09:30"
+timeEstimate: 45
+```
+
+When TaskNotes creates an occurrence note, it copies the parent fields that describe how that instance should be planned: title, priority, scheduled time, due offset, contexts, projects, tags, reminders, dependencies, details, custom properties, and time estimate. Date-like fields are rebased onto the occurrence date, so a parent scheduled at `09:30` creates an occurrence scheduled at `09:30` on the selected date, and a due date one day after the parent scheduled date stays one day after the occurrence scheduled date.
+
+Occurrence notes can use a separate template from regular new tasks. Set `occurrence_template` on the recurring parent to point at a template note, or configure **Settings → Features → Body template → Occurrence note template file** as a global fallback. Parent-level `occurrence_template` wins over the global fallback. If neither occurrence-specific template is configured, occurrence note creation keeps the normal body template behavior.
+
+The parent task remains the source of the recurrence rule and series history. Occurrence notes do not copy the parent's `recurrence`, `complete_instances`, `skipped_instances`, `completedDate`, calendar provider IDs, or `timeEntries`. New time entries belong to the occurrence note once you track time there.
+
+### Occurrence Filenames
+
+By default, materialized occurrence notes use the existing filename behavior: the parent title followed by a numeric suffix. To opt in to custom filenames, set **Occurrence filename template** under **Settings → Task Properties → Title**. For example, `{{title}} — {{occurrenceDate}}` produces `Weekly review — 2026-08-01.md`.
+
+Occurrence filename templates support all regular filename variables plus these occurrence-specific variables:
+
+- `{{occurrenceDate}}` - occurrence date, such as `2026-08-01`
+- `{{occurrenceWeek}}` - ISO week, such as `2026-W31`
+- `{{occurrenceMonth}}` - month, such as `2026-08`
+- `{{occurrenceYear}}` - year, such as `2026`
+- `{{occurrenceMonthName}}` - full month name, such as `August`
+
+Choose the date granularity explicitly in the template; TaskNotes does not infer it from the recurrence rule. A recurring parent can override the global template with the frontmatter property configured by **Occurrence template override property** (by default, `occurrenceFilenameTemplate`):
+
+```yaml
+occurrenceFilenameTemplate: "{{title}} ({{occurrenceWeek}})"
+```
+
+Leaving the global template empty preserves the existing filename behavior. TaskNotes never renames existing occurrence notes, and filename collisions continue to receive a numeric suffix.
+
+### Occurrence Note Policies
+
+Each recurring parent has an **Occurrence notes** submenu under its recurrence menu:
+
+- **Create manually**: occurrence notes are only created by explicit action.
+- **Create next after completion**: after you complete a materialized occurrence note, TaskNotes creates the next occurrence note.
+- **Rolling window**: defined by the TaskNotes spec, but not automated in the plugin yet.
+
+When **Create next after completion** is enabled, creating the first occurrence is still a deliberate action. After that, completing the occurrence note advances the parent recurrence state and materializes the next scheduled occurrence.
+
+HTTP API and MCP clients can create occurrence notes without using the desktop context menu. Use `POST /api/tasks/:id/materialize-occurrence` or the MCP `tasknotes_materialize_occurrence` tool with a parent task path and occurrence date. Completing a recurring instance through the API or MCP also respects existing occurrence notes and the **Create next after completion** policy.
+
+The same submenu also controls the next-note trigger:
+
+- **Completion only**: create the next occurrence note only when the current occurrence is completed.
+- **Completion or skip**: create the next occurrence note when the current occurrence is completed or skipped.
+
+Skip/unskip controls appear on materialized occurrence notes when a skipped status is configured. Skipping an occurrence preserves the note, updates its status, and reconciles the parent `skipped_instances` list.
+
+### Completion Reconciliation
+
+When a materialized occurrence note is completed, TaskNotes updates both sides of the relationship:
+
+- The occurrence note is completed like a normal task.
+- The parent adds the occurrence date to `complete_instances`.
+- The parent removes that date from `skipped_instances` if needed.
+- The parent recalculates `scheduled` to the next uncompleted occurrence.
+- If the parent policy is **Create next after completion**, TaskNotes creates the next occurrence note idempotently.
+
+Uncompleting an occurrence note removes the date from the parent's `complete_instances` list, but it does not delete later occurrence notes that were already created.
+
+### Example Behavior
+
+```yaml
+# Initial state
+recurrence: "DTSTART:20250804T090000Z;FREQ=DAILY"
+scheduled: "2025-08-04T09:00"
+complete_instances: []
+
+# After completing Aug 4
+recurrence: "DTSTART:20250804T090000Z;FREQ=DAILY"
+scheduled: "2025-08-05T09:00"
+complete_instances: ["2025-08-04"]
+
+# After manually rescheduling next occurrence
+recurrence: "DTSTART:20250804T090000Z;FREQ=DAILY"
+scheduled: "2025-08-05T14:30"
+complete_instances: ["2025-08-04"]
+```
+
+## Calendar Drag and Drop
+
+Calendar interactions follow the same model distinction: drag the concrete next item to reschedule execution, or drag a pattern instance to redefine the recurrence anchor.
+
+Recurring tasks can show:
+
+- **Next occurrence** (solid border): dragging updates only `scheduled`
+- **Pattern instances** (dashed border): dragging updates `DTSTART` and future pattern instances
+- **Materialized occurrence notes**: dragging updates the occurrence note's own `scheduled` or `due` date like a normal task, without changing the parent's recurrence rule
+
+![Recurring tasks in calendar week view](../assets/views-calendar-week.png)
+
+Materialized occurrence notes keep `occurrence_date` as their identity. If you drag the note for the June 1 occurrence to June 2, it is still the June 1 recurrence instance, now scheduled for June 2. TaskNotes suppresses the June 1 virtual parent event and leaves the June 2 virtual occurrence alone unless that date also has its own materialized note.
+
+## Completion Tracking
+
+Each occurrence can be completed or skipped independently (task cards, calendar menus, task edit modal completion calendar).
+
+Completed instances are stored in:
+
+```yaml
+complete_instances: ["2025-08-04", "2025-08-06", "2025-08-08"]
+```
+
+Skipped instances are stored in:
+
+```yaml
+skipped_instances: ["2025-08-05"]
+```
+
+When completion changes, `scheduled` updates to the next uncompleted instance. If a materialized occurrence note exists for a date, that note's own status takes precedence for that occurrence, and TaskNotes reconciles the parent compatibility lists during completion, uncompletion, skip, and unskip actions.
+
+This means completion history and next-action planning stay synchronized automatically, without manually advancing recurring tasks.
+
+## Flexible Scheduling
+
+TaskNotes intentionally allows off-pattern scheduling so recurring tasks can absorb real-world disruptions without rewriting the entire recurrence rule.
+
+The next occurrence can be:
+
+- Before `DTSTART`
+- Outside the pattern day
+- At a different time than pattern instances
+- Far ahead while pattern continues unchanged
+
+### Examples
+
+```yaml
+# Early start before DTSTART
+recurrence: "DTSTART:20250810T090000Z;FREQ=WEEKLY;BYDAY=MO"
+scheduled: "2025-08-07T14:00"
+```
+
+```yaml
+# Off-pattern next occurrence
+recurrence: "DTSTART:20250804T090000Z;FREQ=WEEKLY;BYDAY=MO"
+scheduled: "2025-08-06T15:30"
+```
+
+## Timezone Handling
+
+Recurring task logic uses a UTC anchor approach:
+
+- Pattern generation uses UTC dates
+- `DTSTART` dates are interpreted as UTC anchors
+- Display adapts to local timezone
+- Prevents common off-by-one date issues
+
+In other words, calculations stay stable internally while display remains local, which avoids drift when traveling or sharing vaults across timezones.
+
+## Backward Compatibility
+
+Recurring behavior remains compatible with older task data, so upgrades do not require manual note rewrites.
+
+- Legacy RRule strings without `DTSTART` continue to work using `scheduled` as anchor
+- Legacy recurrence objects are converted to RRule format
+- Existing tasks continue to function without migration steps
+- Mixed formats are handled transparently
+
+---
+
+# Task Management
+
+Source: https://tasknotes.dev/obsidian/features/task-management/
+
+This page covers task creation, properties, projects, dependencies, recurring tasks, and reminders. For the underlying architecture, see [Core Concepts](../core-concepts.md).
+
+Use this page as the operational overview: how tasks are captured, how they are structured, and how relationships/automation behave. Detailed reference content for recurrence and reminders is split into dedicated pages linked near the end.
+
+## Creating and Editing Tasks
+
+You can create and edit tasks in a variety of ways. The primary method is through the **Task Creation Modal**, which can be accessed via the "Create new task" command or by clicking on dates or time slots in the calendar views. This modal provides an interface for setting all available task properties, including title, status, priority, and due dates.
+
+![Task creation modal](../assets/feature-task-modal-filled.png)
+
+TaskNotes keeps a storage title and a filename-safe title separate. When **Store title in filename** is enabled, forbidden filename characters are removed from the filename while the task title is preserved whenever it cannot be represented exactly by that filename. With another filename format, such as timestamp or UUID, the full title is stored in frontmatter.
+
+For existing tasks, the **Quick actions for current task** command opens a keyboard-searchable action palette. It includes status, priority, time-tracking, archive, edit, and date actions, including built-in due and scheduled date presets such as today, tomorrow, this weekend, next week, and next month.
+
+TaskNotes also supports **Natural Language Creation**, which allows you to create tasks by typing descriptions in plain English. The built-in parser can extract structured data from phrases like "Buy groceries tomorrow at 3pm @home #errands high priority."
+
+In most workflows, users combine both approaches: fast capture with natural language, then occasional structured edits in the modal when more precision is needed.
+
+### Auto-Suggestions in Natural Language Input
+
+The natural language input field includes auto-suggestion functionality that activates when typing specific trigger characters:
+
+- **@** - Shows available contexts from existing tasks
+- **#** - Shows available tags from existing tasks
+- **+** - Shows files from your vault as project suggestions
+- **\*** - Shows available status options (configurable trigger in Settings → Features)
+
+In task creation and edit fields, focusing the tags or contexts input also opens the available suggestions immediately, so you can pick from the current vocabulary without typing a first character.
+
+#### Project Suggestions
+
+When typing `+` in the natural language input, you'll see up to 20 suggestions from your vault's markdown files. The suggestions display additional information to help identify files:
+
+```
+project-alpha [title: Alpha Project Development | aliases: alpha, proj-alpha]
+meeting-notes [title: Weekly Team Meeting Notes]
+simple-project
+work-file [aliases: work, office-tasks]
+```
+
+Project suggestions search across:
+- File names (basename without extension)
+- Frontmatter titles (using your configured field mapping)
+- Frontmatter aliases
+- Optional filtering by required tags, folders, and a specific frontmatter property/value defined in Settings → Appearance & UI → Project Autosuggest
+
+Selecting a project suggestion inserts it as `+[[filename]]`, creating a wikilink to the file while maintaining the `+` project marker that the natural language parser recognizes.
+
+
+#### Enhanced Project Auto‑suggester (configurable cards)
+
+Project suggestions can display configurable multi‑row cards and support smarter search. Configure up to 3 rows using a simple token syntax in Settings → Appearance & UI → Project Autosuggest.
+
+- Properties: file.basename, file.name, file.path, file.parent, title, aliases, and any frontmatter key
+- Flags:
+  - n or n(Label) → show the field name/label before the value
+  - s → include this field in + search (in addition to defaults)
+- Literals: you can mix in fixed text or emojis between tokens
+
+Examples
+
+- "{title|n(Title)}" → Title: Alpha Project
+- "🔖 {aliases|n(Aliases)}" → 🔖 Aliases: alpha, proj-alpha
+- "{file.path|n(Path)|s}" → include path in + search as well as display it
+
+Search behavior
+
+- Defaults: + search always includes file basename, title (via your field mapping), and aliases
+- |s flag: add more searchable fields on top of the defaults (e.g., file.path or a custom frontmatter key like customer)
+- Fuzzy: optional fuzzy matching can be enabled in settings for broader, multi‑word matches
+
+Performance tips
+
+- Keep rows to three or fewer for clarity and performance (the UI supports up to 3)
+- Prefer specific searchable fields with |s on large vaults
+
+Demo
+
+![Autosuggest projects with spaces](../assets/autosuggest_project_names_with_space.gif)
+
+![Enhanced project autosuggester](../assets/enhanced-project-auto-suggester.gif)
+
+
+#### Status Suggestions
+
+When typing the status trigger character (default `*`) in the natural language input, you'll see suggestions for all configured status options:
+
+![Status Auto-Suggestion](../assets/auto-suggest-status.gif)
+
+Status suggestions allow quick selection of statuses when creating tasks. For example, typing `*in` shows "In Progress" as a suggestion if that's one of your configured statuses.
+
+Clicking a task card's status indicator cycles through statuses in the order configured under **Settings → Task Properties → Status**. A status can optionally define a specific **Next status** for forward cycling; otherwise TaskNotes uses the configured order. Statuses marked **Skip when cycling** are left out of the ordered click cycle, but remain available through menus, suggestions, direct edits, and explicit next-status jumps.
+
+Additionally, you can convert any line type in your notes to TaskNotes using the **Instant Conversion** feature. This works with checkboxes, bullet points, numbered lists, blockquotes, headers, and plain text lines.
+
+## Task Properties
+
+Tasks store their data in YAML frontmatter with properties for status, priority, dates, contexts, projects, tags, time estimates, recurrence, and reminders. Custom fields can extend this structure.
+
+This frontmatter-first design keeps task data editable and portable while supporting consistent behavior across views and widgets.
+
+For property types and examples, see [Core Concepts](../core-concepts.md#yaml-frontmatter). For configuration options, see [Task Properties Settings](../settings/task-properties.md).
+
+## Projects
+
+TaskNotes supports organizing tasks into projects using note-based linking. Projects are represented as links to actual notes in your vault, allowing you to leverage Obsidian's linking and backlinking features for project management.
+
+This model avoids creating a separate project database. Any note can become a project anchor, and task/project relationships remain visible through normal Obsidian link tooling.
+
+### Project Assignment
+
+Tasks can be assigned to one or more projects through the task creation or editing interface. When creating or editing a task, click the "Add Project" button to open the project selection modal. This modal provides fuzzy search functionality to quickly find and select project notes from your vault.
+
+### Project Links
+
+Projects are stored as wikilinks in the task's frontmatter (e.g., `projects: ["[[Project A]]", "[[Project B]]"]`). These links are clickable in the task interface and will navigate directly to the project notes when clicked. Any note in your vault can serve as a project note simply by being linked from a task's projects field.
+
+### Organization and Filtering
+
+Tasks can be filtered and grouped by their associated projects in all Bases-driven task views. Use the Bases filter editor to add `note.projects` conditions, and configure the grouping menu to organize Task List or Kanban boards by project. Tasks assigned to multiple projects will appear in each relevant project group, providing flexibility in project-based organization.
+
+### Project Indicators
+
+TaskCards display visual indicators when tasks are used as projects. These indicators help identify which tasks have other tasks linked to them as subtasks, making project hierarchy visible at a glance.
+
+### Subtask Creation
+
+Tasks can have subtasks created directly from their context menu. When viewing a task that serves as a project, you can select "Create subtask" to create a new task automatically linked to the current project.
+
+## Dependencies
+
+Task dependencies capture prerequisite work using RFC&nbsp;9253 terminology. Dependencies are stored in frontmatter as structured objects:
+
+```yaml
+blockedBy:
+  - uid: "[[Operations/Order hardware]]"
+    reltype: FINISHTOSTART
+    gap: P1D
+```
+
+- `uid` references the blocking task, typically through an Obsidian wikilink.
+- `reltype` is stored with each dependency and defaults to `FINISHTOSTART` for dependencies created in the UI.
+- `gap` is optional and uses ISO&nbsp;8601 duration syntax (for example `PT4H` or `P2D`).
+
+Whenever a dependency is added, TaskNotes updates the upstream note’s `blocking` list so the reverse relationship stays synchronized. Removing a dependency automatically clears both sides.
+
+### Selecting dependencies in the UI
+
+- The task creation and edit modals expose “Blocked by” and “Blocking” buttons that launch a fuzzy task selector. The picker only offers valid tasks, excludes the current note, and prevents duplicate entries.
+- The task context menu provides the same selector, enabling dependency management directly from the Task List, Kanban, and calendar views.
+- Task cards show a fork icon whenever a task blocks other work. Clicking it expands an inline list of downstream tasks without triggering the parent card’s modal, so you can inspect dependents in place.
+
+These controls currently create and manage finish-to-start style blockers. Advanced `reltype` values and `gap` data are preserved in frontmatter, but blocking evaluation is currently based on whether unresolved dependencies exist rather than relationship-type-specific scheduling rules.
+
+![Task context menu](../assets/feature-task-context-menu.png)
+
+## Automation
+
+### Auto-Archiving
+
+TaskNotes can automatically archive tasks when they transition into a status that has auto-archiving enabled. This keeps completed work out of your active lists without requiring manual cleanup.
+
+Configure auto-archiving per status from **Settings → Task Properties → Task Statuses**. Each status card includes an **Auto-archive** toggle and a **Delay (minutes)** input (1–1440). When you turn the toggle on for a status, any task moved into that status is queued for archiving once the delay elapses. Moving the task to a different status before the timer expires cancels the pending archive automatically.
+
+The auto-archive queue runs in the background and persists across plugin restarts. If TaskNotes was closed while an archive was pending, the task will be archived shortly after the plugin loads again as long as it still matches the configured status.
+
+This automation is intended to keep active views focused without manual cleanup, while still preserving archived task history in your vault.
+
+## File Management and Templates
+
+TaskNotes supports configurable task folder locations, filename generation patterns, archive behavior, and body templates for newly created tasks.
+
+These settings let you align task files with existing vault conventions (for example, date-based folders, project-based routing, or template-driven task note scaffolds).
+
+For configuration details, see [Task Defaults](../settings/task-defaults.md).  
+For template variables, see [Template Variables Reference](template-variables.md).
+
+## Recurring Tasks
+
+TaskNotes recurring tasks use RFC 5545 RRule syntax with `DTSTART`, separate pattern definition from next occurrence scheduling, and support independent instance completion. When an individual recurrence needs its own checklist, time entries, or notes, you can create a materialized occurrence note from the task or calendar context menu.
+
+For full behavior, examples, and edge cases, see [Recurring Tasks](recurring-tasks.md).
+
+## Task Reminders
+
+Task reminders support relative offsets from due/scheduled dates and absolute date-time reminders. You can add reminders from task modals, task cards, and context menus.
+
+For full setup, data format, defaults, and UI behavior, see [Task Reminders](reminders.md).
+
+---
+
+# TaskNotes HTTP API
+
+Source: https://tasknotes.dev/obsidian/HTTP_API/
+
+The TaskNotes HTTP API provides local HTTP access to tasks, time tracking, pomodoro, calendars, webhooks, and NLP parsing.
+
+## Availability
+
+- Desktop only
+- Disabled by default
+- Started when Obsidian starts and TaskNotes API is enabled
+- Bound to loopback (`127.0.0.1`) only, not the local network
+- Browser CORS requests are allowed only from loopback origins such as
+  `localhost`, `127.0.0.1`, and `[::1]`
+- Not available on mobile
+
+Enable it in `Settings -> TaskNotes -> Integrations -> HTTP API`.
+
+## Base URL
+
+`http://localhost:{PORT}`
+
+Default port is `8080`.
+
+## Authentication
+
+Authentication is optional.
+
+- If `apiAuthToken` is empty, all API requests are accepted.
+- If `apiAuthToken` is set, send `Authorization: Bearer <token>`.
+- Set a token for any workflow where local browser pages, scripts, or other
+  desktop apps are not fully trusted.
+
+Example:
+
+```bash
+curl -H "Authorization: Bearer YOUR_TOKEN" http://localhost:8080/api/health
+```
+
+## Response Format
+
+Success:
+
+```json
+{
+  "success": true,
+  "data": {}
+}
+```
+
+Error:
+
+```json
+{
+  "success": false,
+  "error": "Error message"
+}
+```
+
+## Endpoint Index
+
+### System
+
+- `GET /api/health`
+- `GET /api/docs`
+- `GET /api/docs/ui`
+- `POST /api/nlp/parse`
+- `POST /api/nlp/create`
+
+### Tasks
+
+- `GET /api/tasks`
+- `POST /api/tasks`
+- `GET /api/tasks/:id`
+- `PUT /api/tasks/:id`
+- `DELETE /api/tasks/:id`
+- `POST /api/tasks/:id/toggle-status`
+- `POST /api/tasks/:id/archive`
+- `POST /api/tasks/:id/complete-instance`
+- `POST /api/tasks/:id/materialize-occurrence`
+- `POST /api/tasks/query`
+- `GET /api/filter-options`
+- `GET /api/stats`
+
+### Bases
+
+- `POST /api/bases/default-files/update`
+
+### Time Tracking
+
+- `POST /api/tasks/:id/time/start`
+- `POST /api/tasks/:id/time/start-with-description`
+- `POST /api/tasks/:id/time/stop`
+- `GET /api/tasks/:id/time`
+- `GET /api/time/active`
+- `GET /api/time/summary`
+
+### Pomodoro
+
+- `POST /api/pomodoro/start`
+- `POST /api/pomodoro/stop`
+- `POST /api/pomodoro/pause`
+- `POST /api/pomodoro/resume`
+- `GET /api/pomodoro/status`
+- `GET /api/pomodoro/sessions`
+- `GET /api/pomodoro/stats`
+
+### Calendars
+
+- `GET /api/calendars`
+- `GET /api/calendars/google`
+- `GET /api/calendars/microsoft`
+- `GET /api/calendars/subscriptions`
+- `GET /api/calendars/events`
+
+### Webhooks
+
+- `POST /api/webhooks`
+- `GET /api/webhooks`
+- `DELETE /api/webhooks/:id`
+- `GET /api/webhooks/deliveries`
+
+See `docs/webhooks.md` for event and transform details.
+
+## Route Details
+
+## Health
+
+### `GET /api/health`
+
+Returns service state plus vault metadata.
+
+```bash
+curl http://localhost:8080/api/health
+```
+
+## Tasks
+
+### `GET /api/tasks`
+
+Basic task listing with pagination only.
+
+Query params:
+
+- `limit` (default `50`, max `200`)
+- `offset` (default `0`)
+
+Important:
+
+- Filtering params such as `status`, `priority`, `tag`, `project`, `context`, `due_before`, `due_after`, `overdue`, `completed`, `archived`, and `sort` are rejected on this endpoint with HTTP `400`.
+- Use `POST /api/tasks/query` for filtering.
+
+Example:
+
+```bash
+curl "http://localhost:8080/api/tasks?limit=25&offset=0"
+```
+
+Response fields:
+
+- `data.tasks`
+- `data.pagination` with `total`, `offset`, `limit`, `hasMore`
+- `data.vault`
+- `data.note`
+- Task objects include configured TaskNotes user fields in `customProperties`, keyed by their frontmatter property key.
+
+### `POST /api/tasks`
+
+Create one task.
+
+Required:
+
+- `title`
+
+Common optional fields:
+
+- `details`, `status`, `priority`, `due`, `scheduled`
+- `tags`, `contexts`, `projects`
+- `recurrence`, `recurrence_anchor`, `timeEstimate`, `reminders`
+- `blockedBy`
+
+`blockedBy` accepts an array of dependency objects:
+
+- `uid`: link or identifier for the blocking task, such as `[[Project setup]]`
+- `reltype`: one of `FINISHTOSTART`, `FINISHTOFINISH`, `STARTTOSTART`, or `STARTTOFINISH`
+- `gap`: optional ISO 8601 duration, such as `P1D`
+
+`blocking` is a read-only reverse relationship in API responses. To make a task block existing tasks, update those existing tasks' `blockedBy` fields.
+
+```bash
+curl -X POST http://localhost:8080/api/tasks \
+  -H "Content-Type: application/json" \
+  -d '{"title":"Review docs","priority":"high","blockedBy":[{"uid":"[[Draft docs]]","reltype":"FINISHTOSTART"}]}'
+```
+
+Returns HTTP `201` with created task data.
+
+### `GET /api/tasks/:id`
+
+Get one task by path id.
+
+- `:id` must be URL-encoded task path.
+- Single-task reads include the task body in `details`.
+- Configured TaskNotes user fields are returned in `customProperties`, keyed by their frontmatter property key.
+
+```bash
+curl "http://localhost:8080/api/tasks/TaskNotes%2FTasks%2FReview%20docs.md"
+```
+
+### `PUT /api/tasks/:id`
+
+Update task with partial payload.
+
+Configured TaskNotes user fields can be updated either by their frontmatter property key or via `customProperties`.
+
+```bash
+curl -X PUT "http://localhost:8080/api/tasks/TaskNotes%2FTasks%2FReview%20docs.md" \
+  -H "Content-Type: application/json" \
+  -d '{"status":"in-progress"}'
+```
+
+### `DELETE /api/tasks/:id`
+
+Delete task file.
+
+### `POST /api/tasks/:id/toggle-status`
+
+Toggle task status via configured workflow.
+
+### `POST /api/tasks/:id/archive`
+
+Toggle archive state.
+
+### `POST /api/tasks/:id/complete-instance`
+
+Complete recurring instance.
+
+Request body:
+
+- Optional `date` (ISO string). If omitted, uses current date context.
+
+When the recurring parent uses materialized occurrence notes, this endpoint completes the matching occurrence note if one exists. If the parent is set to **Create next after completion** and no matching occurrence note exists yet, TaskNotes creates and completes that occurrence note instead of only recording a virtual `complete_instances` entry.
+
+### `POST /api/tasks/:id/materialize-occurrence`
+
+Create or return a materialized occurrence note for a recurring task date. This endpoint is idempotent for the same parent and date.
+
+Request body:
+
+- Required `date` (ISO date string, for example `2026-06-01`)
+
+### `POST /api/tasks/query`
+
+Advanced filtering.
+
+Request body is a `FilterQuery` object. `FilterQuery` is still the supported advanced query shape for the HTTP API.
+
+The root object is a group with:
+
+- `type: "group"`
+- `id`
+- `conjunction: "and" | "or"`
+- `children` (conditions or groups)
+
+Optional top-level query options:
+
+- `sortKey`, `sortDirection`
+- `groupKey`, `subgroupKey`
+
+Example:
+
+```json
+{
+  "type": "group",
+  "id": "root",
+  "conjunction": "and",
+  "children": [
+    {
+      "type": "condition",
+      "id": "c1",
+      "property": "status",
+      "operator": "is",
+      "value": "open"
+    }
+  ],
+  "sortKey": "due",
+  "sortDirection": "asc"
+}
+```
+
+Filter tasks by context:
+
+```json
+{
+  "type": "group",
+  "id": "root",
+  "conjunction": "and",
+  "children": [
+    {
+      "type": "condition",
+      "id": "context",
+      "property": "contexts",
+      "operator": "contains",
+      "value": "@office"
+    }
+  ],
+  "sortKey": "due",
+  "sortDirection": "asc"
+}
+```
+
+Filter active, unarchived tasks, similar to the default available-task view:
+
+```json
+{
+  "type": "group",
+  "id": "root",
+  "conjunction": "and",
+  "children": [
+    {
+      "type": "condition",
+      "id": "not-archived",
+      "property": "archived",
+      "operator": "is-not-checked"
+    },
+    {
+      "type": "condition",
+      "id": "not-completed",
+      "property": "status.isCompleted",
+      "operator": "is-not-checked"
+    }
+  ],
+  "sortKey": "due",
+  "sortDirection": "asc",
+  "groupKey": "none"
+}
+```
+
+Condition fields:
+
+- `type`: `"condition"`
+- `id`: any stable string for your client
+- `property`: a task property, such as `title`, `status`, `priority`, `tags`, `contexts`, `projects`, `blockedBy`, `blocking`, `due`, `scheduled`, `completedDate`, `dateCreated`, `dateModified`, `archived`, `hasSubtasks`, `dependencies.isBlocked`, `dependencies.isBlocking`, `timeEstimate`, `recurrence`, or `status.isCompleted`
+- `operator`: one of `is`, `is-not`, `contains`, `does-not-contain`, `is-before`, `is-after`, `is-on-or-before`, `is-on-or-after`, `is-empty`, `is-not-empty`, `is-checked`, `is-not-checked`, `is-greater-than`, `is-less-than`, `is-greater-than-or-equal`, or `is-less-than-or-equal`
+- `value`: required for comparison operators, omitted for empty/checked operators
+
+For user-defined fields, use `property: "user:<fieldId>"`.
+
+Response:
+
+- `data.tasks`
+- `data.total`
+- `data.filtered`
+- `data.vault`
+
+### `GET /api/filter-options`
+
+Returns filter options for UI builders.
+
+### `GET /api/stats`
+
+Returns summary counts:
+
+- `total`, `completed`, `active`, `overdue`, `archived`, `withTimeTracking`
+
+## Bases
+
+### `POST /api/bases/default-files/update`
+
+Overwrite the configured default TaskNotes `.base` files with templates generated from the current TaskNotes settings. This is the same write operation as **Settings -> TaskNotes -> Views & base files -> Update files** and replaces manual edits in those configured default files.
+
+```bash
+curl -X POST http://localhost:8080/api/bases/default-files/update
+```
+
+Response fields:
+
+- `data.created`: default files created because they were missing
+- `data.updated`: existing default files overwritten with current templates
+- `data.skipped`: configured default files skipped
+
+## Time Tracking
+
+### `POST /api/tasks/:id/time/start`
+
+Starts a new active time entry for that task.
+
+### `POST /api/tasks/:id/time/start-with-description`
+
+Starts time tracking and writes `description` on the new active entry.
+
+Request body:
+
+```json
+{
+  "description": "Implementation"
+}
+```
+
+### `POST /api/tasks/:id/time/stop`
+
+Stops active time entry for that task.
+
+### `GET /api/tasks/:id/time`
+
+Returns per-task time summary and entries.
+
+### `GET /api/time/active`
+
+Returns currently active sessions across tasks.
+
+Important:
+
+- Multiple active sessions can exist across different tasks.
+
+### `GET /api/time/summary`
+
+Returns aggregate time summary.
+
+Query params:
+
+- `period` (for example `today`, `week`, `month`, `all`)
+- `from` (ISO date)
+- `to` (ISO date)
+
+Example:
+
+```bash
+curl "http://localhost:8080/api/time/summary?period=week"
+```
+
+## Pomodoro
+
+### `POST /api/pomodoro/start`
+
+Starts a session.
+
+Optional request fields:
+
+- `taskId` (URL path of task)
+- `duration` (number)
+
+### `POST /api/pomodoro/stop`
+
+Stops and resets current session.
+
+### `POST /api/pomodoro/pause`
+
+Pauses running session.
+
+### `POST /api/pomodoro/resume`
+
+Resumes paused session.
+
+### `GET /api/pomodoro/status`
+
+Returns current state plus computed totals (`totalPomodoros`, `currentStreak`, `totalMinutesToday`).
+
+### `GET /api/pomodoro/sessions`
+
+Returns history.
+
+Query params:
+
+- `limit`
+- `date` (`YYYY-MM-DD`)
+
+### `GET /api/pomodoro/stats`
+
+Returns stats for today or provided date.
+
+Query params:
+
+- `date` (`YYYY-MM-DD`)
+
+## Calendars
+
+### `GET /api/calendars`
+
+Returns provider connectivity overview and subscription counts.
+
+### `GET /api/calendars/google`
+
+Returns Google provider details.
+
+- If disconnected, returns `{ "connected": false }`.
+
+### `GET /api/calendars/microsoft`
+
+Returns Microsoft provider details.
+
+- If disconnected, returns `{ "connected": false }`.
+
+### `GET /api/calendars/subscriptions`
+
+Returns ICS subscriptions with runtime fields such as `lastFetched` and `lastError`.
+
+### `GET /api/calendars/events`
+
+Returns merged event list from connected providers and ICS subscriptions.
+
+Query params:
+
+- `start` (ISO date/datetime)
+- `end` (ISO date/datetime)
+
+Response includes:
+
+- `events`
+- `total`
+- `sources` (counts by provider)
+
+## Webhooks
+
+### `POST /api/webhooks`
+
+Registers webhook.
+
+Required fields:
+
+- `url`
+- `events` (non-empty array)
+
+Optional fields:
+
+- `id`
+- `secret`
+- `active`
+- `transformFile`
+- `corsHeaders`
+
+### `GET /api/webhooks`
+
+Lists registered webhooks. Stored secrets are not returned.
+
+### `DELETE /api/webhooks/:id`
+
+Deletes webhook.
+
+### `GET /api/webhooks/deliveries`
+
+Returns last 100 delivery records.
+
+## OpenAPI Docs
+
+### `GET /api/docs`
+
+Returns OpenAPI JSON generated from registered controllers.
+
+### `GET /api/docs/ui`
+
+Returns Swagger UI.
+
+## Errors
+
+Common status codes:
+
+- `400` invalid request or invalid state
+- `401` missing/invalid bearer token (when auth token is configured)
+- `404` missing task/webhook/resource
+- `500` internal error
+
+## Security Notes
+
+Current behavior:
+
+- CORS allows all origins (`*`).
+- Transport is HTTP only (no TLS).
+- Node server is started with `server.listen(port)` and does not explicitly bind to `127.0.0.1`.
+
+Practical guidance:
+
+- Set an auth token.
+- Treat API port as sensitive and keep it firewalled.
+- If you expose this port outside localhost, route through a trusted reverse proxy and TLS.
+
+## Troubleshooting
+
+### API unavailable
+
+1. Confirm API is enabled in settings.
+2. Confirm Obsidian is running.
+3. Confirm selected port is free.
+4. Reload plugin or restart Obsidian after changing API enable/port.
+
+### `401 Authentication required`
+
+1. Check token value.
+2. Check `Bearer ` prefix.
+3. Remove whitespace around token.
+
+### Unexpected task list behavior
+
+If you pass filters to `GET /api/tasks`, the endpoint returns `400` by design. Use `POST /api/tasks/query`.
+
+---
+
+# Command reference
+
+Source: https://tasknotes.dev/obsidian/reference/commands/
+
+This page is generated from the commands registered by TaskNotes. Command IDs are stable integration identifiers; names are the English labels shown in Obsidian.
+
+| Command | ID | Available in |
+| --- | --- | --- |
+| Open mini calendar view | `open-calendar-view` | Global |
+| Open calendar view | `open-advanced-calendar-view` | Global |
+| Open tasks view | `open-tasks-view` | Global |
+| Open agenda view | `open-agenda-view` | Global |
+| Open Pomodoro timer | `open-pomodoro-view` | Global |
+| Open Kanban board | `open-kanban-view` | Global |
+| Update default base files | `update-default-base-files` | Global |
+| Open Pomodoro statistics | `open-pomodoro-stats` | Global |
+| Open task & project statistics | `open-statistics` | Global |
+| Create new task | `create-new-task` | Global |
+| Convert current note to task | `convert-current-note-to-task` | Global |
+| Convert checkbox task to TaskNote | `convert-to-tasknote` | Editor |
+| Convert all tasks in note | `batch-convert-all-tasks` | Editor |
+| Insert tasknote link | `insert-tasknote-link` | Editor |
+| Create new inline task | `create-inline-task` | Editor |
+| Quick actions for current task | `quick-actions-current-task` | Global |
+| Quick actions for task under cursor | `quick-actions-task-under-cursor` | Editor |
+| Edit current task | `edit-current-task` | Global |
+| Cycle current task status | `cycle-current-task-status` | Global |
+| Cycle current task priority | `cycle-current-task-priority` | Global |
+| Add project to current task | `add-project-to-current-task` | Global |
+| Add subtask to current note | `add-subtask-to-current-note` | Global |
+| Go to today's note | `go-to-today` | Global |
+| Start Pomodoro timer | `start-pomodoro` | Global |
+| Stop Pomodoro timer | `stop-pomodoro` | Global |
+| Pause/resume Pomodoro timer | `pause-pomodoro` | Global |
+| Refresh cache | `refresh-cache` | Global |
+| Export all tasks as ICS file | `export-all-tasks-ics` | Global |
+| Sync all tasks to Google Calendar | `sync-all-tasks-google-calendar` | Global |
+| Sync current task to Google Calendar | `sync-current-task-google-calendar` | Global |
+| View release notes | `view-release-notes` | Global |
+| Start time tracking (select task) | `start-time-tracking-with-selector` | Global |
+| Edit time entries (select task) | `edit-time-entries` | Global |
+| Create or open task | `create-or-open-task` | Global |
+| Create or open task and start time tracking | `create-or-open-task-with-time-tracking` | Global |
+| Postpone overdue scheduled tasks to today | `rollover-overdue-scheduled-tasks` | Global |
+
+_Generated from 36 registered commands._
+
+---
+
+# HTTP route index
+
+Source: https://tasknotes.dev/obsidian/reference/http-routes/
+
+This index is generated from controller route decorators. The build fails if an implemented route is absent from the narrative [HTTP API guide](/HTTP_API/) or [NLP API guide](/nlp-api/).
+
+| Method | Path | Controller |
+| --- | --- | --- |
+| `POST` | `/api/bases/default-files/update` | `BasesController` |
+| `GET` | `/api/calendars` | `CalendarsController` |
+| `GET` | `/api/calendars/events` | `CalendarsController` |
+| `GET` | `/api/calendars/google` | `CalendarsController` |
+| `GET` | `/api/calendars/microsoft` | `CalendarsController` |
+| `GET` | `/api/calendars/subscriptions` | `CalendarsController` |
+| `GET` | `/api/docs` | `SystemController` |
+| `GET` | `/api/docs/ui` | `SystemController` |
+| `GET` | `/api/filter-options` | `TasksController` |
+| `GET` | `/api/health` | `SystemController` |
+| `POST` | `/api/nlp/create` | `SystemController` |
+| `POST` | `/api/nlp/parse` | `SystemController` |
+| `POST` | `/api/pomodoro/pause` | `PomodoroController` |
+| `POST` | `/api/pomodoro/resume` | `PomodoroController` |
+| `GET` | `/api/pomodoro/sessions` | `PomodoroController` |
+| `POST` | `/api/pomodoro/start` | `PomodoroController` |
+| `GET` | `/api/pomodoro/stats` | `PomodoroController` |
+| `GET` | `/api/pomodoro/status` | `PomodoroController` |
+| `POST` | `/api/pomodoro/stop` | `PomodoroController` |
+| `GET` | `/api/stats` | `TasksController` |
+| `GET` | `/api/tasks` | `TasksController` |
+| `POST` | `/api/tasks` | `TasksController` |
+| `DELETE` | `/api/tasks/:id` | `TasksController` |
+| `GET` | `/api/tasks/:id` | `TasksController` |
+| `PUT` | `/api/tasks/:id` | `TasksController` |
+| `POST` | `/api/tasks/:id/archive` | `TasksController` |
+| `POST` | `/api/tasks/:id/complete-instance` | `TasksController` |
+| `POST` | `/api/tasks/:id/materialize-occurrence` | `TasksController` |
+| `GET` | `/api/tasks/:id/time` | `TimeTrackingController` |
+| `POST` | `/api/tasks/:id/time/start` | `TimeTrackingController` |
+| `POST` | `/api/tasks/:id/time/start-with-description` | `TimeTrackingController` |
+| `POST` | `/api/tasks/:id/time/stop` | `TimeTrackingController` |
+| `POST` | `/api/tasks/:id/toggle-status` | `TasksController` |
+| `POST` | `/api/tasks/query` | `TasksController` |
+| `GET` | `/api/time/active` | `TimeTrackingController` |
+| `GET` | `/api/time/summary` | `TimeTrackingController` |
+| `GET` | `/api/webhooks` | `WebhookController` |
+| `POST` | `/api/webhooks` | `WebhookController` |
+| `DELETE` | `/api/webhooks/:id` | `WebhookController` |
+| `GET` | `/api/webhooks/deliveries` | `WebhookController` |
+
+_Generated from 40 implemented routes._
+
+---
+
+# Settings source reference
+
+Source: https://tasknotes.dev/obsidian/reference/settings-source/
+
+TaskNotes currently exposes 6 settings tabs. This inventory is generated from the tab renderer and English translation source so additions cannot silently disappear from the documentation.
+
+## General
+
+Source: `src/settings/tabs/generalTab.ts`
+
+| Setting | Purpose |
+| --- | --- |
+| Default tasks folder | Default location for new tasks. Supports folder template variables like {{currentNotePath}}, {{currentNoteTitle}}, and {{projectFilePath}}, plus Daily Notes-style date tokens like YYYY/MM/DD. |
+| Folder for inline-created tasks | Folder where tasks created from inline commands or checkbox conversion will be created. Leave empty to use the default tasks folder. Use {{currentNotePath}} for the current note's folder, or {{currentNoteTitle}} for a subfolder named after the current note. |
+| Move archived tasks to folder | Automatically move archived tasks to an archive folder |
+| Archive folder | Folder to move tasks to when archived. Supports template variables like {{year}}, {{month}}, {{priority}}, etc. |
+| Identify tasks by | Choose whether to identify tasks by tag or by a frontmatter property |
+| Task tag | Tag that identifies notes as tasks (without #). Existing .base view filters keep their old tag when this changes; update default Base files or edit those filters. |
+| Hide identification tags in task cards | When enabled, tags matching the task identification tag (including hierarchical matches like 'task/project') will be hidden from task card displays |
+| Hidden tag scope | Choose whether hiding identification tags also hides nested tags. |
+| Task property name | The frontmatter property name (e.g., "category") |
+| Task property value | The value that identifies a note as a task (e.g., "task") |
+| Auto-create default files | Automatically create missing default base view files on startup. Disable to prevent deleted sample files from being recreated. |
+| Create default files | Create the default .base files in TaskNotes/Views/ directory. Existing files will not be overwritten. |
+| Update default files | Overwrite the configured default .base files with templates generated from your current TaskNotes settings. |
+| Export v3 saved views to Bases | Convert all your saved views from TaskNotes v3 into a single .base file with multiple views. This helps migrate your v3 filter configurations to the new Bases system. |
+| Excluded folders | Comma-separated list of folders to exclude from task indexing and project suggestions |
+| UI language | Select the language used for TaskNotes interface text |
+| Use Markdown links in frontmatter | Generate markdown links (`[text](path)`) instead of wikilinks ([[link]]) in frontmatter properties.  ⚠️ Requires the 'obsidian-frontmatter-markdown-links' plugin to work correctly. |
+| Show release notes after update | Automatically open release notes when TaskNotes is updated to a new version |
+| Check for new releases on startup | Check GitHub once when TaskNotes starts and show a notice when a newer compatible release is available |
+| View release notes | See what's new in the latest version of TaskNotes |
+
+## Task properties
+
+Source: `src/settings/tabs/taskPropertiesTab.ts`
+
+| Setting | Purpose |
+| --- | --- |
+| No static controls detected | This tab is assembled dynamically. |
+
+## Modal fields
+
+Source: `src/settings/tabs/modalFieldsTab.ts`
+
+| Setting | Purpose |
+| --- | --- |
+| No static controls detected | This tab is assembled dynamically. |
+
+## Appearance & UI
+
+Source: `src/settings/tabs/appearanceTab.ts`
+
+| Setting | Purpose |
+| --- | --- |
+| Default visible properties | Choose which properties appear on task cards by default. |
+| Time format | Display time in 12-hour or 24-hour format throughout the plugin |
+| Default view | The calendar view shown when opening the calendar tab |
+| Custom view day count | Number of days to show in custom multi-day view |
+| First day of week | Which day should be the first column in week views |
+| Show weekends | Display weekends in calendar views |
+| Show week numbers | Display week numbers in calendar views |
+| Show today highlight | Highlight the current day in calendar views |
+| Show current time indicator | Display a line showing the current time in timeline views |
+| Selection mirror | Show a visual preview while dragging to select time ranges |
+| Calendar locale | Calendar locale for date formatting and calendar system (e.g., "en", "fa" for Farsi/Persian, "de" for German). Leave empty to auto-detect from browser. |
+| Show scheduled tasks | Display tasks with scheduled dates by default |
+| Show due dates | Display task due dates by default |
+| Show due dates when scheduled | Display due dates even for tasks that already have scheduled dates |
+| Show time entries | Display completed time tracking entries by default |
+| Show recurring tasks | Display recurring task instances by default |
+| Show ICS events | Display events from ICS subscriptions by default |
+| Time slot duration | Duration of each time slot in timeline views |
+| Start time | Earliest time shown in timeline views (HH:MM format) |
+| End time | Latest time shown in timeline views (HH:MM format). Use values above 24:00 to show early next-day hours, such as 26:00 for 2 AM. |
+| Initial scroll time | Time to scroll to when opening timeline views (HH:MM format) |
+| Event minimum height | Minimum height for events in timeline views (pixels) |
+| Show tracked tasks in status bar | Display currently tracked tasks in Obsidian's status bar |
+| Show relationships widget | Display a widget showing all relationships for the current note (subtasks, projects, dependencies) |
+| Relationships position | Where to position the relationships widget |
+| Show task card in note | Display a task card widget at the top of task notes showing the task details and actions |
+| Strike through completed task titles | Draw a line through completed task card titles. Turn off to keep completed tasks easier to read |
+| Show expandable subtasks | Allow expanding/collapsing subtask sections in task cards |
+| Expand subtasks by default | Show project subtasks expanded when task cards are rendered |
+| Subtask chevron position | Position of expand/collapse chevrons in task cards |
+| Views button alignment | Alignment of the views/filters button in the task interface |
+| Single-click action | Action performed when single-clicking a task card |
+| Double-click action | Action performed when double-clicking a task card |
+
+## Features
+
+Source: `src/settings/tabs/featuresTab.ts`
+
+| Setting | Purpose |
+| --- | --- |
+| Task link overlay | Show interactive overlays when hovering over task links |
+| Disable overlay for aliased links | Do not show the task widget if the link contains an alias (e.g. [[Task\|Alias]]). |
+| Show convert button next to checkboxes | Display an inline button next to Markdown checkboxes that converts them to TaskNotes |
+| Keep checkbox when converting | Leave the original Markdown checkbox marker in place when converting a checkbox to a TaskNote link |
+| Enable natural language task input | Parse due dates, priorities, and contexts from natural language when creating tasks |
+| Default to scheduled | When NLP detects a date without context, treat it as scheduled rather than due |
+| NLP language | Language for natural language processing patterns and date parsing |
+| Open task after creation | Choose whether the task creation modal opens the new task note after saving. |
+| Use body template | Use a template file for task body content |
+| Body template file | Path to template file for task body content. Supports template variables like {{title}}, {{date}}, {{time}}, {{priority}}, {{status}}, etc. |
+| Use occurrence note template | Use a separate fallback template for materialized occurrence notes when the recurring task has no occurrence_template |
+| Occurrence note template file | Path to template file for materialized occurrence notes. A recurring task's occurrence_template field takes priority over this fallback. |
+| Template variables: | See the setting in Obsidian for contextual details. |
+| Use task defaults on instant convert | Apply default task settings when converting text to tasks instantly |
+| Work duration | Duration of work intervals in minutes |
+| Short break duration | Duration of short breaks in minutes |
+| Long break duration | Duration of long breaks in minutes |
+| Long break interval | Number of work sessions before a long break |
+| Auto-start breaks | Automatically start break timers after work sessions |
+| Auto-start work | Automatically start work sessions after breaks |
+| Pomodoro notifications | Show notifications when Pomodoro sessions end |
+| Show Pomodoro in status bar | Display the active Pomodoro countdown in Obsidian's status bar |
+| Sound enabled | Play sound when Pomodoro sessions end |
+| Sound volume | Volume for Pomodoro sounds (0-100) |
+| Pomodoro data storage | Configure where Pomodoro session data is stored and how it's managed. |
+| Mobile sidebar | Where to open the Pomodoro timer on mobile devices |
+| Enable notifications | Enable task reminder notifications |
+| Notification type | Type of notifications to show |
+| Send test reminder | Send a test reminder using the current notification type and sound settings. |
+| Notification sound | Play a sound when task reminders trigger |
+| Sound volume | Volume for task reminder sounds (0-100) |
+| Preview notification sound | Play the configured task reminder sound |
+| Hide completed tasks from overdue | Exclude completed tasks from overdue task calculations |
+| Disable note indexing | Disable automatic indexing of note content for better performance |
+| Suggestion debounce | Delay in milliseconds before showing suggestions |
+| Auto-stop time tracking | Automatically stop time tracking when a task is marked complete |
+| Time tracking stop notification | Show notification when time tracking is automatically stopped |
+| Maintain due date offset in recurring tasks | Keep the offset between due date and scheduled date when recurring tasks are completed |
+| Reset checkboxes on recurrence | Reset all Markdown checkboxes in the task body when a recurring task is completed and rescheduled |
+| Enable timeblocking | Enable timeblocking feature for lightweight scheduling in daily notes. When enabled, 'Timeblock' option appears in the calendar drag context menu. |
+| Show timeblocks | Display timeblocks from daily notes by default |
+| Default timeblock color | The default color used when creating new timeblocks |
+| Enable debug logging | Log detailed drag-and-drop and view diagnostics to the developer console. Useful for troubleshooting. |
+
+## Integrations
+
+Source: `src/settings/tabs/integrationsTab.ts`
+
+| Setting | Purpose |
+| --- | --- |
+| Generate mdbase type definitions | See the setting in Obsidian for contextual details. |
+| Disable calendar integrations on mobile | Skip Google, Microsoft, and ICS calendar loading on Obsidian mobile. Desktop calendar integrations are unchanged. |
+| Calendar integrations are disabled on this mobile device | See the setting in Obsidian for contextual details. |
+| Enable task export | When enabled, tasks with dates will be automatically synced to Google Calendar as events. |
+| Target calendar | See the setting in Obsidian for contextual details. |
+| Sync trigger | Which task date should trigger calendar event creation. |
+| Create as all-day events | When enabled, tasks are created as all-day events. When disabled, uses time estimate for duration. |
+| Default event duration | Duration in minutes for timed events (used when task has no time estimate). |
+| Event title template | Template for event titles. Available variables: {{title}}, {{status}}, {{priority}} |
+| Include task details in description | Add task metadata (priority, status, tags, etc.) to the event description. |
+| Include Obsidian link | Add a link back to the task in Obsidian in the event description. |
+| Default reminder | Add popup reminders to timed Google Calendar events. Enter minutes before the event, separated by commas. Leave empty to use calendar defaults. Common values: 15, 30, 60, 1440. |
+| Automatic sync behavior | See the setting in Obsidian for contextual details. |
+| Sync on task create | Automatically create calendar event when a new task is created. |
+| Sync on task update | Automatically update calendar event when a task is modified. |
+| Sync on task complete | Update calendar event when a task is completed (adds checkmark to title). |
+| Delete event on task delete | Remove calendar event when the corresponding task is deleted. |
+| Manual sync actions | See the setting in Obsidian for contextual details. |
+| Sync all tasks | Sync all existing tasks to Google Calendar. This will create events for tasks that haven't been synced yet. |
+| Unlink all tasks | Remove all task-event links without deleting calendar events. |
+| Default note template | Path to template file for notes created from ICS events |
+| Default note folder | Folder for notes created from ICS events |
+| ICS note filename format | How filenames are generated for notes created from ICS events |
+| Custom ICS filename template | Template for custom ICS event filenames |
+| Use ICS event end time as task due date | When enabled, tasks created from calendar events will have their due date set to the event's end time. For all-day events, the due date will be set to the event date. For timed events, the due date will include the end time. |
+| Recurring event related notes | Choose whether notes linked to one recurrence of an external calendar event appear across the loaded series or only on the selected instance. |
+| Add calendar subscription | Add a new calendar subscription from ICS/iCal URL or local file |
+| New calendar | See the setting in Obsidian for contextual details. |
+| Refresh all subscriptions | Manually refresh all enabled calendar subscriptions |
+| Enable automatic export | Automatically keep an ICS file updated with all your tasks |
+| Export file path | Path where the ICS file will be saved (relative to vault root) |
+| Update interval (between 5 and 1440 minutes) | How often to update the export file |
+| Use task duration for event length | When enabled, uses the task's time estimate (duration) instead of due date for the calendar event end time. This is useful for GTD workflows where scheduled + duration represents work planning, while due date represents deadlines. |
+| Exclude completed tasks | When enabled, completed tasks are omitted from ICS exports. Completed statuses are taken from your task statuses settings. |
+| Exclude archived tasks | When enabled, archived tasks are omitted from ICS exports. |
+| Require due date | When enabled, only tasks with a due date are included in ICS exports. |
+| Require scheduled date | When enabled, only tasks with a scheduled date are included in ICS exports. |
+| Export now | Manually trigger an immediate export |
+| Export status: | See the setting in Obsidian for contextual details. |
+| Enable HTTP API | Start local HTTP server for API access |
+| API port | Port number for the HTTP API server |
+| API authentication token | Token required for API authentication (leave empty for no auth) |
+| Enable MCP server | Expose TaskNotes tools via Model Context Protocol at /mcp endpoint. Requires HTTP API to be enabled. |
+| Add webhook | Register a new webhook endpoint |
+
+## Complete default settings snapshot
+
+The following JSON is generated from `DEFAULT_SETTINGS`. Empty strings and disabled flags are intentional defaults.
+
+```json
+{
+  "tasksFolder": "TaskNotes/Tasks",
+  "moveArchivedTasks": false,
+  "archiveFolder": "TaskNotes/Archive",
+  "taskTag": "task",
+  "taskIdentificationMethod": "tag",
+  "hideIdentifyingTagsInCards": false,
+  "hideIdentifyingTagsMode": "all",
+  "taskPropertyName": "",
+  "taskPropertyValue": "",
+  "excludedFolders": "",
+  "defaultTaskPriority": "normal",
+  "defaultTaskStatus": "open",
+  "taskOrgFiltersCollapsed": false,
+  "taskFilenameFormat": "zettel",
+  "storeTitleInFilename": true,
+  "customFilenameTemplate": "{{title}}",
+  "occurrenceFilenameTemplate": "",
+  "occurrenceFilenameTemplateProperty": "occurrenceFilenameTemplate",
+  "taskCreationDefaults": {
+    "defaultContexts": "",
+    "defaultTags": "",
+    "defaultProjects": "",
+    "useParentNoteForTaskCreation": false,
+    "useParentNoteAsProject": false,
+    "useParentHeaderAsProject": false,
+    "inheritParentTaskProperties": false,
+    "defaultTimeEstimate": 0,
+    "defaultRecurrence": "none",
+    "defaultDueDate": "none",
+    "defaultDueTime": "none",
+    "defaultScheduledDate": "today",
+    "defaultScheduledTime": "none",
+    "bodyTemplate": "",
+    "useBodyTemplate": false,
+    "occurrenceBodyTemplate": "",
+    "useOccurrenceBodyTemplate": false,
+    "defaultReminders": []
+  },
+  "openTaskAfterCreation": "none",
+  "calendarViewSettings": {
+    "defaultView": "dayGridMonth",
+    "customDayCount": 3,
+    "slotDuration": "00:30:00",
+    "slotMinTime": "00:00:00",
+    "slotMaxTime": "24:00:00",
+    "scrollTime": "08:00:00",
+    "firstDay": 1,
+    "timeFormat": "24",
+    "showWeekends": true,
+    "locale": "",
+    "defaultShowScheduled": true,
+    "defaultShowDue": true,
+    "defaultShowDueWhenScheduled": true,
+    "defaultShowScheduledToDueSpan": false,
+    "defaultShowTimeEntries": false,
+    "defaultShowRecurring": true,
+    "defaultShowICSEvents": true,
+    "enableTimeblocking": false,
+    "defaultShowTimeblocks": true,
+    "defaultTimeblockColor": "#6366f1",
+    "timeblockAttachmentSearchOrder": "name-asc",
+    "nowIndicator": true,
+    "selectMirror": true,
+    "weekNumbers": false,
+    "showTodayHighlight": true,
+    "eventMinHeight": 15,
+    "slotEventOverlap": true,
+    "eventMaxStack": null,
+    "dayMaxEvents": true,
+    "dayMaxEventRows": false
+  },
+  "pomodoroWorkDuration": 25,
+  "pomodoroShortBreakDuration": 5,
+  "pomodoroLongBreakDuration": 15,
+  "pomodoroLongBreakInterval": 4,
+  "pomodoroAutoStartBreaks": true,
+  "pomodoroAutoStartWork": false,
+  "pomodoroNotifications": true,
+  "pomodoroSoundEnabled": true,
+  "pomodoroSoundVolume": 50,
+  "pomodoroStorageLocation": "plugin",
+  "pomodoroMobileSidebar": "tab",
+  "showPomodoroInStatusBar": true,
+  "enableTaskLinkOverlay": true,
+  "disableOverlayOnAlias": false,
+  "enableInstantTaskConvert": true,
+  "useDefaultsOnInstantConvert": true,
+  "preserveCheckboxOnConvert": false,
+  "taskModalTabMovesFocus": true,
+  "enableNaturalLanguageInput": true,
+  "nlpDefaultToScheduled": true,
+  "nlpLanguage": "en",
+  "uiLanguage": "system",
+  "statusSuggestionTrigger": "*",
+  "nlpTriggers": {
+    "triggers": [
+      {
+        "propertyId": "tags",
+        "trigger": "#",
+        "enabled": true
+      },
+      {
+        "propertyId": "contexts",
+        "trigger": "@",
+        "enabled": true
+      },
+      {
+        "propertyId": "projects",
+        "trigger": "+",
+        "enabled": true
+      },
+      {
+        "propertyId": "status",
+        "trigger": "*",
+        "enabled": true
+      },
+      {
+        "propertyId": "priority",
+        "trigger": "!",
+        "enabled": false
+      }
+    ]
+  },
+  "singleClickAction": "edit",
+  "doubleClickAction": "openNote",
+  "projectAutosuggest": {
+    "enableFuzzy": false,
+    "rows": [
+      "{title|n(Title)}",
+      "{aliases|n(Aliases)}",
+      "{file.path|n(Path)}"
+    ],
+    "showAdvanced": false,
+    "requiredTags": [],
+    "includeFolders": [],
+    "propertyKey": "",
+    "propertyValue": ""
+  },
+  "inlineTaskConvertFolder": "{{currentNotePath}}",
+  "disableNoteIndexing": false,
+  "suggestionDebounceMs": 0,
+  "fieldMapping": {
+    "title": "title",
+    "status": "status",
+    "priority": "priority",
+    "due": "due",
+    "scheduled": "scheduled",
+    "contexts": "contexts",
+    "projects": "projects",
+    "timeEstimate": "timeEstimate",
+    "completedDate": "completedDate",
+    "dateCreated": "dateCreated",
+    "dateModified": "dateModified",
+    "recurrence": "recurrence",
+    "recurrenceAnchor": "recurrence_anchor",
+    "recurrenceParent": "recurrence_parent",
+    "occurrenceDate": "occurrence_date",
+    "occurrenceMaterialization": "occurrence_materialization",
+    "occurrenceNextTrigger": "occurrence_next_trigger",
+    "occurrenceTemplate": "occurrence_template",
+    "occurrencePastHorizon": "occurrence_past_horizon",
+    "occurrenceFutureHorizon": "occurrence_future_horizon",
+    "archiveTag": "archived",
+    "timeEntries": "timeEntries",
+    "completeInstances": "complete_instances",
+    "skippedInstances": "skipped_instances",
+    "blockedBy": "blockedBy",
+    "pomodoros": "pomodoros",
+    "icsEventId": "icsEventId",
+    "icsEventTag": "ics_event",
+    "googleCalendarEventId": "googleCalendarEventId",
+    "googleCalendarExceptionEventId": "googleCalendarExceptionEventId",
+    "googleCalendarExceptionOriginalScheduled": "googleCalendarExceptionOriginalScheduled",
+    "googleCalendarMovedOriginalDates": "googleCalendarMovedOriginalDates",
+    "reminders": "reminders",
+    "sortOrder": "tasknotes_manual_order"
+  },
+  "customStatuses": [
+    {
+      "id": "none",
+      "value": "none",
+      "label": "None",
+      "color": "#cccccc",
+      "isCompleted": false,
+      "excludeFromCycle": false,
+      "order": 0,
+      "autoArchive": false,
+      "autoArchiveDelay": 5
+    },
+    {
+      "id": "open",
+      "value": "open",
+      "label": "Open",
+      "color": "#808080",
+      "isCompleted": false,
+      "excludeFromCycle": false,
+      "order": 1,
+      "autoArchive": false,
+      "autoArchiveDelay": 5
+    },
+    {
+      "id": "in-progress",
+      "value": "in-progress",
+      "label": "In progress",
+      "color": "#0066cc",
+      "isCompleted": false,
+      "excludeFromCycle": false,
+      "order": 2,
+      "autoArchive": false,
+      "autoArchiveDelay": 5
+    },
+    {
+      "id": "done",
+      "value": "done",
+      "label": "Done",
+      "color": "#00aa00",
+      "isCompleted": true,
+      "excludeFromCycle": false,
+      "order": 3,
+      "autoArchive": false,
+      "autoArchiveDelay": 5
+    }
+  ],
+  "customPriorities": [
+    {
+      "id": "none",
+      "value": "none",
+      "label": "None",
+      "color": "#cccccc",
+      "weight": 0
+    },
+    {
+      "id": "low",
+      "value": "low",
+      "label": "Low",
+      "color": "#00aa00",
+      "weight": 1
+    },
+    {
+      "id": "normal",
+      "value": "normal",
+      "label": "Normal",
+      "color": "#ffaa00",
+      "weight": 2
+    },
+    {
+      "id": "high",
+      "value": "high",
+      "label": "High",
+      "color": "#ff0000",
+      "weight": 3
+    }
+  ],
+  "recurrenceMigrated": false,
+  "showReleaseNotesOnUpdate": true,
+  "checkForUpdatesOnStartup": true,
+  "starterNoteCreated": false,
+  "showTrackedTasksInStatusBar": false,
+  "autoStopTimeTrackingOnComplete": true,
+  "autoStopTimeTrackingNotification": false,
+  "showRelationships": true,
+  "relationshipsPosition": "bottom",
+  "showTaskCardInNote": true,
+  "showCompletedTaskStrikethrough": true,
+  "showExpandableSubtasks": true,
+  "expandSubtasksByDefault": false,
+  "subtaskChevronPosition": "right",
+  "viewsButtonAlignment": "right",
+  "hideCompletedFromOverdue": true,
+  "icsIntegration": {
+    "defaultNoteTemplate": "",
+    "defaultNoteFolder": "",
+    "icsNoteFilenameFormat": "title",
+    "customICSNoteFilenameTemplate": "{title}",
+    "enableAutoExport": false,
+    "autoExportPath": "tasknotes-calendar.ics",
+    "autoExportInterval": 60,
+    "useDurationForExport": false,
+    "excludeArchivedFromExport": false,
+    "excludeCompletedFromExport": false,
+    "requireDueDateForExport": false,
+    "requireScheduledDateForExport": false,
+    "useICSEndAsDue": false,
+    "recurringEventRelatedNotesMode": "series"
+  },
+  "savedViews": [],
+  "enableNotifications": true,
+  "notificationType": "system",
+  "notificationSoundEnabled": false,
+  "notificationSoundVolume": 50,
+  "enableAPI": false,
+  "apiPort": 8080,
+  "apiAuthToken": "",
+  "enableMCP": false,
+  "webhooks": [],
+  "userFields": [],
+  "enableModalSplitLayout": true,
+  "defaultVisibleProperties": [
+    "status",
+    "priority",
+    "due",
+    "scheduled",
+    "projects",
+    "contexts",
+    "tags",
+    "blocked",
+    "blocking"
+  ],
+  "inlineVisibleProperties": [
+    "status",
+    "priority",
+    "due",
+    "scheduled",
+    "recurrence"
+  ],
+  "enableBases": true,
+  "enableMdbaseSpec": false,
+  "autoCreateDefaultBasesFiles": true,
+  "commandFileMapping": {
+    "open-calendar-view": "TaskNotes/Views/mini-calendar-default.base",
+    "open-kanban-view": "TaskNotes/Views/kanban-default.base",
+    "open-tasks-view": "TaskNotes/Views/tasks-default.base",
+    "open-advanced-calendar-view": "TaskNotes/Views/calendar-default.base",
+    "open-agenda-view": "TaskNotes/Views/agenda-default.base",
+    "pomodoro-stats-base": "TaskNotes/Views/pomodoro-stats.base",
+    "relationships": "TaskNotes/Views/relationships.base"
+  },
+  "maintainDueDateOffsetInRecurring": false,
+  "resetCheckboxesOnRecurrence": false,
+  "useFrontmatterMarkdownLinks": false,
+  "enableGoogleCalendar": false,
+  "enableMicrosoftCalendar": false,
+  "disableCalendarOnMobile": false,
+  "enabledGoogleCalendars": [],
+  "googleCalendarSyncTokens": {},
+  "enabledMicrosoftCalendars": [],
+  "microsoftCalendarSyncTokens": {},
+  "googleCalendarExport": {
+    "enabled": false,
+    "targetCalendarId": "",
+    "syncOnTaskCreate": true,
+    "syncOnTaskUpdate": true,
+    "syncOnTaskComplete": true,
+    "syncOnTaskDelete": true,
+    "eventTitleTemplate": "{{title}}",
+    "includeDescription": true,
+    "eventColorId": null,
+    "syncTrigger": "scheduled",
+    "createAsAllDay": true,
+    "defaultEventDuration": 60,
+    "includeObsidianLink": true,
+    "defaultReminderMinutes": null
+  },
+  "enableDebugLogging": false
+}
+```
+
+---
+
+# Release Notes
+
+Source: https://tasknotes.dev/obsidian/releases/
+
+Welcome to the TaskNotes release notes. Here you can find detailed information about each version, including new features, bug fixes, and improvements.
+
+## Latest Releases
+
+### Version 4.x (Current)
+
+- [4.11.1](releases/4.11.1.md)
+- [4.11.0](releases/4.11.0.md)
+- [4.10.2](releases/4.10.2.md)
+- [4.10.1](releases/4.10.1.md)
+- [4.10.0](releases/4.10.0.md)
+- [4.9.2](releases/4.9.2.md)
+- [4.9.1](releases/4.9.1.md)
+- [4.9.0](releases/4.9.0.md)
+- [4.8.1](releases/4.8.1.md)
+- [4.8.0](releases/4.8.0.md)
+- [4.7.2](releases/4.7.2.md)
+- [4.7.1](releases/4.7.1.md)
+- [4.7.0](releases/4.7.0.md)
+- [4.6.0](releases/4.6.0.md)
+- [4.5.3](releases/4.5.3.md)
+- [4.5.2](releases/4.5.2.md)
+- [4.5.1](releases/4.5.1.md)
+- [4.5.0](releases/4.5.0.md)
+- [4.4.0](releases/4.4.0.md)
+- [4.3.3](releases/4.3.3.md)
+- [4.3.2](releases/4.3.2.md)
+- [4.3.1](releases/4.3.1.md)
+- [4.3.0](releases/4.3.0.md)
+- [4.2.1](releases/4.2.1.md)
+- [4.2.0](releases/4.2.0.md)
+- [4.1.3](releases/4.1.3.md)
+- [4.1.2](releases/4.1.2.md)
+- [4.1.1](releases/4.1.1.md)
+- [4.1.0](releases/4.1.0.md)
+- [4.0.5](releases/4.0.5.md)
+- [4.0.4](releases/4.0.4.md)
+- [4.0.3](releases/4.0.3.md)
+- [4.0.2](releases/4.0.2.md)
+- [4.0.1](releases/4.0.1.md)
+- [4.0.0-beta.3](releases/4.0.0-beta.3.md)
+- [4.0.0-beta.2](releases/4.0.0-beta.2.md)
+- [4.0.0-beta.1](releases/4.0.0-beta.1.md)
+- [4.0.0-beta.0](releases/4.0.0-beta.0.md)
+
+### Version 3.x
+
+- [3.25.6](releases/3.25.6.md)
+- [3.25.4](releases/3.25.4.md)
+- [3.25.3](releases/3.25.3.md)
+- [3.25.2](releases/3.25.2.md)
+- [3.25.1](releases/3.25.1.md)
+- [3.25.0](releases/3.25.0.md)
+- [3.24.6](releases/3.24.6.md)
+- [3.24.5](releases/3.24.5.md)
+- [3.24.4](releases/3.24.4.md)
+- [3.24.3](releases/3.24.3.md)
+- [3.24.2](releases/3.24.2.md)
+- [3.24.1](releases/3.24.1.md)
+- [3.24.0](releases/3.24.0.md)
+- [3.23.4](releases/3.23.4.md)
+- [3.23.3](releases/3.23.3.md)
+- [3.23.2](releases/3.23.2.md)
+- [3.23.1](releases/3.23.1.md)
+- [3.23.0](releases/3.23.0.md)
+- [3.22.1](releases/3.22.1.md)
+- [3.22.0](releases/3.22.0.md)
+- [3.21.0](releases/3.21.0.md)
+- [3.20.1](releases/3.20.1.md)
+- [3.20.0](releases/3.20.0.md)
+- [3.19.1](releases/3.19.1.md)
+- [3.19.0](releases/3.19.0.md)
+- [3.18.2](releases/3.18.2.md)
+- [3.18.1](releases/3.18.1.md)
+- [3.18.0](releases/3.18.0.md)
+- [3.17.1](releases/3.17.1.md)
+- [3.17.0](releases/3.17.0.md)
+- [3.16.4](releases/3.16.4.md)
+- [3.16.3](releases/3.16.3.md)
+- [3.16.2](releases/3.16.2.md)
+- [3.16.1](releases/3.16.1.md)
+- [3.16.0](releases/3.16.0.md)
+- [3.15.1](releases/3.15.1.md)
+- [3.15.0](releases/3.15.0.md)
+- [3.14.0](releases/3.14.0.md)
+- [3.13.4](releases/3.13.4.md)
+- [3.13.3](releases/3.13.3.md)
+- [3.13.2](releases/3.13.2.md)
+- [3.13.1](releases/3.13.1.md)
+- [3.13.0](releases/3.13.0.md)
+- [3.12.2](releases/3.12.2.md)
+- [3.12.1](releases/3.12.1.md)
+- [3.12.0](releases/3.12.0.md)
+- [3.11.2](releases/3.11.2.md)
+- [3.11.1](releases/3.11.1.md)
+- [3.11.0](releases/3.11.0.md)
+- [3.10.0](releases/3.10.0.md)
+- [3.9.1](releases/3.9.1.md)
+- [3.9.0](releases/3.9.0.md)
+- [3.8.7](releases/3.8.7.md)
+- [3.8.6](releases/3.8.6.md)
+- [3.8.5](releases/3.8.5.md)
+- [3.8.1](releases/3.8.1.md)
+- [3.7.1](releases/3.7.1.md)
+- [3.7.0](releases/3.7.0.md)
+- [3.6.0](releases/3.6.0.md)
+- [3.5.1](releases/3.5.1.md)
+- [3.4.2](releases/3.4.2.md)
+- [3.4.1](releases/3.4.1.md)
+- [3.4.0](releases/3.4.0.md)
+- [3.3.0](releases/3.3.0.md)
+- [3.1.1](releases/3.1.1.md)
+- [3.1.0](releases/3.1.0.md)
+- [3.0.1](releases/3.0.1.md)
+- [3.0.0](releases/3.0.0.md)
+
+### Version 2.x
+
+- [2.2.3](releases/2.2.3.md)
+- [2.2.2](releases/2.2.2.md)
+- [2.2.1](releases/2.2.1.md)
+- [2.2.0](releases/2.2.0.md)
+- [2.1.0](releases/2.1.0.md)
+- [2.0.4](releases/2.0.4.md)
+- [2.0.3](releases/2.0.3.md)
+- [2.0.2](releases/2.0.2.md)
+- [2.0.1](releases/2.0.1.md)
+- [2.0.0](releases/2.0.0.md)
+
+### Version 1.x
+
+- [1.2.0](releases/1.2.0.md)
+- [1.1.0](releases/1.1.0.md)
+- [1.0.0](releases/1.0.0.md)
+
+### Early Versions (0.x)
+
+- [0.8.0](releases/0.8.0.md)
+- [0.7.0](releases/0.7.0.md)
+- [0.6.3](releases/0.6.3.md)
+- [0.6.2](releases/0.6.2.md)
+- [0.6.1](releases/0.6.1.md)
+- [0.6.0](releases/0.6.0.md)
+- [0.4.2](releases/0.4.2.md)
+- [0.4.1](releases/0.4.1.md)
+- [0.4.0](releases/0.4.0.md)
+- [0.3.0](releases/0.3.0.md)
+- [0.2.4](releases/0.2.4.md)
+- [0.2.3](releases/0.2.3.md)
+- [0.2.2](releases/0.2.2.md)
+
+## Getting Updates
+
+To update TaskNotes:
+1. Open Obsidian
+2. Go to Settings → Community Plugins
+3. Find TaskNotes and click "Update"
+4. Restart Obsidian if prompted
+
+## Feedback
+
+Found a bug or have a feature request? Please:
+
+- Check existing [GitHub Issues](https://github.com/callumalpass/tasknotes/issues)
+- Create a new issue with details
+
+---
+
+# Settings
+
+Source: https://tasknotes.dev/obsidian/settings/
+
+TaskNotes settings are organized into tabs. Each tab controls a different part of plugin behavior.
+
+
+## General
+
+The General tab controls task identification, storage locations, and task-card click behavior. Use this tab when your vault already has conventions such as custom tags, property-based identification, or specific folder structures.
+
+For more information, see the [General Settings](settings/general.md) documentation.
+
+## Task Properties
+
+Task Properties defines the schema TaskNotes writes to frontmatter, including status, priority, dates, reminders, projects, and user fields. Each property card lets you remap key names and behavior so TaskNotes can match existing metadata rather than forcing a migration.
+
+For more detailed information, see the [Task Properties Settings](settings/task-properties.md) documentation.
+
+## Modal Fields
+
+Modal Fields controls the task create/edit experience by deciding which fields are visible and in what order. If your workflow depends on a handful of fields, you can surface only those and reduce form noise.
+
+For more information, see the [Modal Fields Settings](settings/modal-fields.md) documentation.
+
+## Appearance & UI
+
+Appearance & UI handles task card density, calendar defaults, time formatting, and visual toggles for supporting widgets. Use this tab to tune how much information is visible at a glance.
+
+For more detailed information, see the [Appearance & UI Settings](settings/appearance.md) documentation.
+
+## Features
+
+Features groups behavior toggles for inline tasks, natural language input, Pomodoro, reminders, and performance-related options. It is where you enable advanced workflow capabilities and then refine defaults.
+
+For more information, see the [Features Settings](settings/features.md) documentation.
+
+## Integrations
+
+Integrations covers external connectivity: Bases view wiring, Google/Microsoft OAuth calendar sync, ICS subscriptions, automatic ICS export, HTTP API settings, and webhook endpoints.
+
+For more detailed information, see the [Integrations Settings](settings/integrations.md) documentation.
+
+---
+
+# Troubleshooting
+
+Source: https://tasknotes.dev/obsidian/troubleshooting/
+
+Common issues and solutions for TaskNotes.
+
+When debugging, start with one affected task and one affected view. Record the TaskNotes version from the plugin list, the Obsidian version from **About**, the operating system, and whether the problem also occurs in a fresh default Base.
+
+## First checks
+
+1. Confirm Obsidian meets the current [version requirement](reference/compatibility.md) and **Bases** is enabled.
+2. Open the affected task as Markdown and validate the `---` frontmatter delimiters and indentation.
+3. Confirm the task matches **Settings → TaskNotes → General → Task identification** and is not in an excluded folder.
+4. Run **TaskNotes: Refresh cache** from the command palette.
+5. Close and reopen the affected `.base` file.
+6. Restart Obsidian only after the targeted checks above.
+
+If the issue remains, enable **Settings → TaskNotes → Features → Debug logging**, reproduce it once, and inspect the developer console with `Ctrl/Cmd + Shift + I`. Disable debug logging after collecting the relevant entries.
+
+## Bases and Views (v4)
+
+### Views Not Loading
+
+**Symptoms**: TaskNotes views show errors or don't display tasks
+
+First confirm Bases is enabled (`Settings -> Core Plugins -> Bases`), then restart Obsidian once. If views are still missing, verify `.base` files exist in `TaskNotes/Views/`. If needed, regenerate defaults from `Settings -> TaskNotes -> General -> Views & base files` (`Create files`).
+
+### Commands Open Wrong Files
+
+**Symptoms**: Ribbon icons or commands open unexpected files
+
+Check command mappings in `Settings -> TaskNotes -> General` (`View Commands`). Reset mappings that were changed unintentionally, then verify each referenced `.base` file exists at the configured path.
+
+## Common Issues
+
+### Tasks Not Appearing in Views
+
+**Symptoms**: Tasks you've created don't show up in TaskNotes views
+
+Follow this decision tree:
+
+1. **Does Quick actions for current task work on the note?**
+   - **No:** compare its tag or identification property with **General → Task identification**.
+   - **Yes:** task recognition works; continue to the Base filter.
+2. **Is the note inside an excluded folder?**
+   - **Yes:** move it or update **Excluded folders**.
+   - **No:** continue.
+3. **Does a newly generated default task Base show it?**
+   - **Yes:** the custom Base has a stale property name or filter.
+   - **No:** run **TaskNotes: Refresh cache** and validate the frontmatter.
+4. **Did identification or field mapping change recently?**
+   - **Yes:** update the default Base files or edit their filters and columns. Generated files do not update automatically when settings change.
+
+### Task Link Widgets Not Working
+
+**Symptoms**: Links to task files appear as normal wikilinks instead of interactive widgets
+
+Check that **Task link overlay** is enabled, then verify linked files are actually recognized as tasks (matching tag/property configuration). Links to normal notes will render as normal links by design.
+
+### Instant Conversion Buttons Missing
+
+**Symptoms**: Convert buttons don't appear next to checkbox tasks
+
+Instant convert buttons only appear when the feature is enabled, in edit mode, and with cursor proximity to list items. Enable the feature, switch from reading mode to edit mode, and place the cursor near the target checkbox.
+
+### Calendar View Performance Issues
+
+**Symptoms**: Calendar views are slow or unresponsive
+
+Reduce visible event layers first (scheduled/due/recurring/time entries), then increase ICS refresh intervals and shorten displayed date ranges. If slowness persists, apply the general performance guidance below.
+
+### Natural Language Parsing Not Working
+
+**Symptoms**: Natural language input doesn't extract expected task properties
+
+Enable NLP in `Settings -> TaskNotes -> Features`, then verify your trigger characters (`@`, `#`, `!` by default) and any custom status/priority mappings. If parsing still seems inconsistent, compare input against the syntax in [NLP API](nlp-api.md).
+
+### Time Tracking Issues
+
+**Symptoms**: Time tracking doesn't start/stop properly or data is lost
+
+Most tracking issues come from overlapping sessions, interrupted shutdowns, or save failures. Stop active sessions before starting new ones, confirm files are writable, and restart interrupted sessions. If needed, repair malformed time entries directly in frontmatter.
+
+## Data Issues
+
+### Corrupted Task Files
+
+**Symptoms**: Tasks appear broken or cause errors in views
+
+Open the task file directly and validate frontmatter syntax. Quote values that include special characters, validate YAML if necessary, and restore from backup for severe corruption.
+
+### Missing Task Properties
+
+**Symptoms**: Tasks missing expected properties or using default values unexpectedly
+
+Check field mappings first, then confirm Task Defaults. If properties are absent on older notes, add them manually or re-save through TaskNotes so current mapping rules are applied.
+
+### Date Format Issues
+
+**Symptoms**: Dates not displaying correctly or causing parse errors
+
+Use supported formats (`YYYY-MM-DD` or `YYYY-MM-DDTHH:MM:SS`), quote where needed, and re-enter problematic dates via TaskNotes date pickers to normalize formatting and timezone handling.
+
+## Performance Troubleshooting
+
+### Slow View Loading
+
+To improve loading times, reduce external calendar subscriptions, increase ICS refresh intervals, exclude large folders, and disable event types you do not use.
+
+## External Calendar Issues
+
+### OAuth Calendar Not Connecting
+
+**Symptoms**: Google Calendar or Microsoft Outlook won't connect
+
+Verify credentials and loopback redirect configuration (`127.0.0.1` with dynamic local port), ensure app publication/test-user access is correct, and retry after disconnecting. Also check popup blockers. For provider-specific setup details, use [Calendar Setup](calendar-setup.md).
+
+### OAuth Calendar Not Syncing
+
+**Symptoms**: Connected calendar shows old events or doesn't update
+
+Run manual refresh, check last-sync timestamps, reconnect if needed, and verify events exist in the source provider before debugging TaskNotes behavior.
+
+### ICS Subscriptions Not Loading
+
+**Symptoms**: ICS calendar events don't appear in calendar views
+
+Confirm the ICS URL/file is reachable, run manual refresh, validate the feed format, and inspect subscription status errors for provider-side failures.
+
+### Calendar Sync Problems
+
+**Symptoms**: External calendar changes not reflected in TaskNotes
+
+Check refresh intervals and force a manual refresh first. If source data is current but TaskNotes remains stale, remove and re-add the subscription to clear cached state.
+
+## Getting Help
+
+### Reporting Issues
+
+Report bugs on [GitHub Issues](https://github.com/callumalpass/tasknotes/issues). Include:
+
+- Exact TaskNotes and Obsidian versions
+- Operating system
+- The smallest affected task frontmatter with private values removed
+- The `.base` path and whether a regenerated default has the same problem
+- Steps to reproduce from a fresh Obsidian start
+- Relevant console errors and TaskNotes debug entries
+- Screenshots if relevant
+
+### Configuration Reset
+
+Use a reversible reset only after the checks above:
+
+1. Close Obsidian
+2. Navigate to `.obsidian/plugins/tasknotes/`
+3. Copy `data.json` to a backup outside the plugin directory
+4. Rename the original to `data.json.backup-YYYY-MM-DD`
+5. Restart Obsidian
+
+!!! warning
+    A reset affects settings, status and priority configurations, integration state, saved views, and plugin-stored Pomodoro history. Keep the backup until the problem is resolved. Restore it only while Obsidian is closed.
+
+For full restore and uninstall guidance, see [Backup, restore, and removal](guides/backup-recovery.md).
+
+---
+
+# Views
+
+Source: https://tasknotes.dev/obsidian/views/
+
+TaskNotes provides multiple views for managing tasks and tracking productivity. All task-focused views operate as `.base` files located in the `TaskNotes/Views/` directory and require Obsidian's Bases core plugin to be enabled.
+
+
+For details on Bases integration and how to enable it, see [Core Concepts](core-concepts.md#bases-integration). For view templates and configuration examples, see [Default Base Templates](views/default-base-templates.md).
+
+## Task-Focused Views
+
+Task-focused views are different entry points into the same underlying task notes. The [Task List View](views/task-list.md) is a common starting view for day-to-day planning because it exposes filters, sorting, and grouping in list format.
+
+When you want workflow by status, [Kanban View](views/kanban-view.md) organizes cards into columns and can optionally add swimlanes for an extra organizational layer. [Calendar Views](views/calendar-views.md) are useful when schedule and timing matter more than backlog shape, with month/week/day/year/list modes plus drag-and-drop scheduling and time-block support.
+
+[Agenda View](views/agenda-view.md) is a preconfigured list-oriented calendar layout designed for short-horizon planning, while [MiniCalendar View](views/calendar-views.md#mini-calendar-view) gives a compact month heatmap and fast keyboard navigation.
+
+![Task List view](assets/views-tasks-list.png)
+
+![Calendar week view](assets/views-calendar-week.png)
+
+## Productivity-Focused Views
+
+These views support time management and work tracking.
+
+[Pomodoro View](views/pomodoro-view.md) supports focused intervals directly inside Obsidian, and [Pomodoro Stats View](views/pomodoro-view.md#pomodoro-stats-view) summarizes completed sessions so you can see pace and consistency over time.
+
+![Pomodoro view](assets/feature-pomodoro-timer.png)
+
+Screenshots in this section are captured via the Playwright docs suite (`npm run e2e:docs`).
+
+---
+
+# TaskNotes privacy overview
+
+Source: https://tasknotes.dev/privacy/
+
+# TaskNotes privacy overview
+
+Last updated: August 6, 2026
+
+TaskNotes products are built around portable Markdown records. The storage and
+network boundaries depend on the client and collection you choose.
+
+## TaskNotes app
+
+- The TaskNotes app opens every collection through mdbase and requires a
+  connection to read or change it.
+- A hosted collection stores the authoritative Markdown with the hosted
+  provider.
+- A computer collection keeps the authoritative Markdown on that computer.
+  TaskNotes reaches it through an end-to-end encrypted relay that cannot read
+  record contents; the computer must remain reachable and run mdbase Connect.
+- TaskNotes keeps only a temporary in-memory session cache. It does not retain
+  a separate offline collection after the app or page closes.
+- Reminder notifications for mdbase collections require explicit permission
+  and use content-free event payloads. Task content is refreshed through the
+  authorized collection connection.
+
+## Obsidian plugin
+
+The plugin keeps task and note content in the local Obsidian vault. Plugin
+settings live in Obsidian's plugin configuration. Network access occurs only
+for enabled features that require it, including release checks, calendar
+providers, ICS subscriptions, webhooks, and remotely loaded API documentation
+assets.
+
+## Analytics
+
+TaskNotes does not include a product telemetry or analytics pipeline. Services
+you choose to connect may keep their own operational, account, security, or
+billing records under their respective policies.
+
+## Removal
+
+Removing a client does not necessarily remove its authoritative collection.
+Use the hosted provider's controls for a hosted collection, or manage the
+Markdown folder on the computer that owns a computer collection. Back up
+records before removing an authoritative copy.
+
+## Questions and source code
+
+Use the relevant TaskNotes GitHub repository to report a privacy problem or
+inspect the implementation:
+
+- [TaskNotes app](https://github.com/callumalpass/tasknotes-app)
+- [TaskNotes Obsidian plugin](https://github.com/callumalpass/tasknotes)

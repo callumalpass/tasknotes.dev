@@ -1,0 +1,36 @@
+# TaskNotes
+> Documentation for the TaskNotes app, Obsidian plugin, and portable task format.
+
+## Documentation
+
+- [TaskNotes documentation](https://tasknotes.dev/): Guides and reference material for the TaskNotes app, the Obsidian plugin, and the portable task format they share.
+- [TaskNotes app](https://tasknotes.dev/app/): Use TaskNotes on the web, Android, and iOS with portable Markdown through mdbase.
+- [Choose a collection](https://tasknotes.dev/app/collections/): Compare hosted mdbase with a collection connected from your own computer.
+- [Connection and availability](https://tasknotes.dev/app/connection/): Understand when TaskNotes can reach hosted and computer-connected mdbase collections.
+- [Get started with the TaskNotes app](https://tasknotes.dev/app/getting-started/): Open TaskNotes, connect an mdbase collection, create a task, and find your way around the app.
+- [mdbase and TaskNotes](https://tasknotes.dev/app/mdbase/): Understand how TaskNotes uses hosted mdbase or the encrypted relay to reach a collection on your computer.
+- [App integration manifest](https://tasknotes.dev/app/reference/manifest/): Generated reference for the TaskNotes app's mdbase integration requirements and capabilities.
+- [Reminders in the TaskNotes app](https://tasknotes.dev/app/reminders/): Understand reminder data, notification delivery, permissions, and collection requirements.
+- [Work with tasks](https://tasknotes.dev/app/tasks/): Capture, edit, organize, complete, archive, and search tasks in the TaskNotes app.
+- [Troubleshoot the TaskNotes app](https://tasknotes.dev/app/troubleshooting/): Diagnose mdbase connection, authorization, refresh, and notification problems in the app.
+- [Views and navigation](https://tasknotes.dev/app/views/): Use and arrange lists, boards, calendars, projects, and saved views in the TaskNotes app.
+- [Portable task records](https://tasknotes.dev/concepts/task-records/): The Markdown records, collection configuration, and task concepts shared by TaskNotes clients.
+- [0. Overview](https://tasknotes.dev/developers/specification/): TaskNotes is an Obsidian plugin that stores tasks as individual markdown files with YAML frontmatter in a user&#39;s vault. Each task is a first-class file: readable and editabl...
+- [TaskNotes for Obsidian](https://tasknotes.dev/obsidian/): Install TaskNotes, create a first task, and open the default Obsidian Base views.
+- [Companion Plugins](https://tasknotes.dev/obsidian/companion-plugins/): Companion plugins are optional Obsidian plugins that build on TaskNotes without adding every workflow to the core plugin. They run inside the same Obsidian app, use TaskNotes&#3...
+- [Core Concepts](https://tasknotes.dev/obsidian/core-concepts/): TaskNotes follows the "one note per task" principle, where each task lives as a separate Markdown note with structured metadata in YAML frontmatter.
+- [Recurring Tasks](https://tasknotes.dev/obsidian/features/recurring-tasks/): TaskNotes recurring tasks use RFC 5545 RRule strings with DTSTART support and dynamic next-occurrence scheduling. The model separates recurrence patterns from the next planned i...
+- [Task Management](https://tasknotes.dev/obsidian/features/task-management/): This page covers task creation, properties, projects, dependencies, recurring tasks, and reminders. For the underlying architecture, see Core Concepts.
+- [TaskNotes HTTP API](https://tasknotes.dev/obsidian/HTTP_API/): The TaskNotes HTTP API provides local HTTP access to tasks, time tracking, pomodoro, calendars, webhooks, and NLP parsing.
+- [Command reference](https://tasknotes.dev/obsidian/reference/commands/): Every TaskNotes command registered with Obsidian, generated from the plugin command definitions.
+- [HTTP route index](https://tasknotes.dev/obsidian/reference/http-routes/): Implemented TaskNotes HTTP API routes generated from controller decorators.
+- [Settings source reference](https://tasknotes.dev/obsidian/reference/settings-source/): The six TaskNotes settings tabs, their controls, and the complete default settings snapshot generated from source.
+- [Release Notes](https://tasknotes.dev/obsidian/releases/): Welcome to the TaskNotes release notes. Here you can find detailed information about each version, including new features, bug fixes, and improvements.
+- [Settings](https://tasknotes.dev/obsidian/settings/): TaskNotes settings are organized into tabs. Each tab controls a different part of plugin behavior.
+- [Troubleshooting](https://tasknotes.dev/obsidian/troubleshooting/): Common issues and solutions for TaskNotes.
+- [Views](https://tasknotes.dev/obsidian/views/): TaskNotes provides multiple views for managing tasks and tracking productivity. All task-focused views operate as .base files located in the TaskNotes/Views/ directory and requi...
+- [TaskNotes privacy overview](https://tasknotes.dev/privacy/): How the TaskNotes app and Obsidian plugin store data and when optional services are involved.
+
+## Full context
+
+- [Complete primary documentation](https://tasknotes.dev/llms-full.txt)
