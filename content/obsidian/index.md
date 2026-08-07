@@ -1,0 +1,88 @@
+---
+description: Install TaskNotes, create a first task, and open the default Obsidian Base views.
+hide:
+  - toc
+---
+
+# TaskNotes for Obsidian
+
+This guide covers the TaskNotes plugin for Obsidian. It follows the "one note per task" principle: each task is a Markdown file with structured metadata in YAML frontmatter.
+
+![Task List view](assets/views-tasks-list.png)
+
+## Requirements
+
+TaskNotes ${tasknotes.version} requires **Obsidian ${tasknotes.minAppVersion}** or later and depends on the **Bases** core plugin. Before you begin, open Obsidian Settings and confirm Bases is enabled under Core Plugins.
+
+## Getting Started
+
+### 1. Install and Enable
+
+Install TaskNotes from Community Plugins in Obsidian settings, then enable it. If Bases is still disabled, enable it right away so TaskNotes views can open correctly.
+
+### 2. Create Your First Task
+
+Press <kbd>Ctrl+P</kbd> (or <kbd>Cmd+P</kbd> on macOS), run **TaskNotes: Create new task**, fill in the modal, and save. If you prefer inline workflows, start with a checkbox like `- [ ] Buy groceries` and convert it using the inline task command.
+
+![Create task modal](assets/modal-task-create.png)
+
+### 3. Open the Task List
+
+Open your first view from the TaskNotes ribbon icon or by running **TaskNotes: Open tasks view** from the command palette. This opens the default Task List `.base` file inside `TaskNotes/Views`.
+
+### 4. Explore
+
+Use [Core Concepts](core-concepts.md) to understand the data model, [Features](features.md) for workflow capabilities, [Views](views.md) for interface behaviour, and [Settings](settings.md) to tune TaskNotes for your vault. If you already have task-like notes, start with [Adopt TaskNotes in an existing vault](getting-started/existing-vault.md).
+
+## Quick Links
+
+<div class="card-grid">
+  <a class="card" href="https://github.com/callumalpass/tasknotes" target="_blank" rel="noopener noreferrer">
+    <span class="card__title">GitHub Repository</span>
+    <span class="card__desc">Source code, issues, releases, and contribution discussions</span>
+  </a>
+  <a class="card" href="/features/task-management/">
+    <span class="card__title">Task Management</span>
+    <span class="card__desc">Status, priority, dates, reminders, and recurring tasks</span>
+  </a>
+  <a class="card" href="/features/inline-tasks/">
+    <span class="card__title">Inline Tasks</span>
+    <span class="card__desc">Widgets, natural language parsing, and checkbox conversion</span>
+  </a>
+  <a class="card" href="/features/calendar-integration/">
+    <span class="card__title">Calendar Integration</span>
+    <span class="card__desc">Google Calendar, Outlook, and ICS subscriptions</span>
+  </a>
+  <a class="card" href="/HTTP_API/">
+    <span class="card__title">HTTP API</span>
+    <span class="card__desc">REST API for automation and external integrations</span>
+  </a>
+  <a class="card" href="/javascript-api/">
+    <span class="card__title">JavaScript API</span>
+    <span class="card__desc">In-process API for companion plugins and in-vault scripts</span>
+  </a>
+  <a class="card" href="/companion-plugins/">
+    <span class="card__title">Companion Plugins</span>
+    <span class="card__desc">Optional plugins such as Canvas Bases and TaskNotes Workflows that build on TaskNotes</span>
+  </a>
+  <a class="card" href="/migration-v3-to-v4/">
+    <span class="card__title">Migration Guide</span>
+    <span class="card__desc">Upgrading from TaskNotes v3 to v4</span>
+  </a>
+  <a class="card" href="/troubleshooting/">
+    <span class="card__title">Troubleshooting</span>
+    <span class="card__desc">Common issues and how to resolve them</span>
+  </a>
+  <a class="card" href="/reference/commands/">
+    <span class="card__title">Command Reference</span>
+    <span class="card__desc">Every registered command, generated from the plugin source</span>
+  </a>
+  <a class="card" href="/guides/backup-recovery/">
+    <span class="card__title">Backup & Recovery</span>
+    <span class="card__desc">Protect task notes, Base files, settings, and integration data</span>
+  </a>
+  <a class="card" href="/spec/">
+    <span class="card__title">Specification</span>
+    <span class="card__desc">The formal spec behind TaskNotes: data model, operations, recurrence, and conformance</span>
+  </a>
+</div>
