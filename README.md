@@ -39,6 +39,9 @@ application remains a separate deployment at `https://app.tasknotes.dev`.
 
 ## Publication
 
-This repository owns the `tasknotes.dev` publication workflow. The product
-repositories retain their release notes, generated references, and internal
-documentation, but do not deploy the public documentation site.
+Pushes to `main` build, test, and deploy the static site to GitHub Pages through
+`.github/workflows/deploy.yml`. GitHub Pages serves that deployment at
+`tasknotes.dev`.
+
+The product repositories retain their release notes, generated references, and
+internal documentation, but do not deploy the public documentation site.
