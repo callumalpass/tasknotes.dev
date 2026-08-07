@@ -7,6 +7,7 @@
 - [TaskNotes app](https://tasknotes.dev/app/): Use TaskNotes on the web, Android, and iOS with portable Markdown through mdbase.
 - [Choose a collection](https://tasknotes.dev/app/collections/): Compare hosted mdbase with a collection connected from your own computer.
 - [Connection and availability](https://tasknotes.dev/app/connection/): Understand when TaskNotes can reach hosted and computer-connected mdbase collections.
+- [Interactive demo](https://tasknotes.dev/app/demo/): Explore the TaskNotes app with disposable sample tasks before connecting a collection.
 - [Get started with the TaskNotes app](https://tasknotes.dev/app/getting-started/): Open TaskNotes, connect an mdbase collection, create a task, and find your way around the app.
 - [mdbase and TaskNotes](https://tasknotes.dev/app/mdbase/): Understand how TaskNotes uses hosted mdbase or the encrypted relay to reach a collection on your computer.
 - [App integration manifest](https://tasknotes.dev/app/reference/manifest/): Generated reference for the TaskNotes app's mdbase integration requirements and capabilities.
