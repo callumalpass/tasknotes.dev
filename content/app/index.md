@@ -26,9 +26,16 @@ changes require a connection.
   <figcaption>The Today workspace in the desktop layout.</figcaption>
 </figure>
 
+<div class="demo-callout">
+  <span class="demo-callout__label">Disposable sample collection</span>
+  <strong>Try TaskNotes before connecting your own collection.</strong>
+  <span>Explore Today, Scratchpad, search, and saved views with sample tasks. Your changes disappear when the demo resets.</span>
+  <a href="/app/demo/">Open the interactive demo →</a>
+</div>
+
 ## Begin here
 
-1. [Open or install TaskNotes](/app/getting-started/).
+1. [Try TaskNotes with sample tasks](/app/demo/) or [open or install TaskNotes](/app/getting-started/).
 2. [Learn how mdbase supports TaskNotes](/app/mdbase/).
 3. [Choose where your collection lives](/app/collections/).
 4. Create a task and open **Today**.

@@ -14,6 +14,8 @@ navigation:
     items:
       - title: Get started
         route: /app/getting-started/
+      - title: Interactive demo
+        route: /app/demo/
       - title: Choose a collection
         route: /app/collections/
       - title: What is mdbase?
