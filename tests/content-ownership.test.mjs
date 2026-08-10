@@ -1,4 +1,5 @@
 import assert from "node:assert/strict";
+import { existsSync } from "node:fs";
 import { access, readFile, readdir } from "node:fs/promises";
 import path from "node:path";
 import test from "node:test";
@@ -108,14 +109,16 @@ test("generated snapshot retains source ownership", () => {
 
 test("every available source attribution resolves to its owning repository", async () => {
   const siteRoot = fileURLToPath(new URL("../", import.meta.url));
+  const productRoot = (environmentName, repository) => {
+    if (process.env[environmentName]) return process.env[environmentName];
+    const staged = path.join(siteRoot, ".sources", repository);
+    return existsSync(staged) ? staged : path.resolve(siteRoot, "..", repository);
+  };
   const roots = {
     "tasknotes.dev": siteRoot,
-    tasknotes:
-      process.env.TASKNOTES_PLUGIN_ROOT || path.resolve(siteRoot, "../tasknotes"),
-    "tasknotes-app":
-      process.env.TASKNOTES_APP_ROOT || path.resolve(siteRoot, "../tasknotes-app"),
-    "tasknotes-spec":
-      process.env.TASKNOTES_SPEC_ROOT || path.resolve(siteRoot, "../tasknotes-spec"),
+    tasknotes: productRoot("TASKNOTES_PLUGIN_ROOT", "tasknotes"),
+    "tasknotes-app": productRoot("TASKNOTES_APP_ROOT", "tasknotes-app"),
+    "tasknotes-spec": productRoot("TASKNOTES_SPEC_ROOT", "tasknotes-spec"),
   };
   const availableOwners = new Set(["tasknotes.dev"]);
   for (const [owner, directory] of Object.entries(roots)) {

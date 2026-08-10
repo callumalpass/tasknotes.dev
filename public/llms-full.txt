@@ -629,7 +629,7 @@ The tasknotes plugin is the primary reference for how this spec was derived, but
 
 ## 0.1 Status and authority
 
-This document is part of `tasknotes-spec` version `0.3.0-rc.1`.
+This document is part of `tasknotes-spec` version `0.3.0-rc.3`.
 
 This specification is normative for implementations that claim conformance.
 No single implementation is normative; implementations are expected to conform to the specification.
@@ -781,7 +781,7 @@ This guide covers the TaskNotes plugin for Obsidian. It follows the "one note pe
 
 ## Requirements
 
-TaskNotes 4.11.1 requires **Obsidian 1.12.2** or later and depends on the **Bases** core plugin. Before you begin, open Obsidian Settings and confirm Bases is enabled under Core Plugins.
+TaskNotes 4.12.3 requires **Obsidian 1.12.2** or later and depends on the **Bases** core plugin. Before you begin, open Obsidian Settings and confirm Bases is enabled under Core Plugins.
 
 ## Getting Started
 
@@ -2532,6 +2532,7 @@ The following JSON is generated from `DEFAULT_SETTINGS`. Empty strings and disab
     "scheduled": "scheduled",
     "contexts": "contexts",
     "projects": "projects",
+    "attachments": "attachments",
     "timeEstimate": "timeEstimate",
     "completedDate": "completedDate",
     "dateCreated": "dateCreated",
@@ -2752,6 +2753,10 @@ Welcome to the TaskNotes release notes. Here you can find detailed information a
 
 ### Version 4.x (Current)
 
+- [4.12.3](releases/4.12.3.md)
+- [4.12.2](releases/4.12.2.md)
+- [4.12.1](releases/4.12.1.md)
+- [4.12.0](releases/4.12.0.md)
 - [4.11.1](releases/4.11.1.md)
 - [4.11.0](releases/4.11.0.md)
 - [4.10.2](releases/4.10.2.md)
