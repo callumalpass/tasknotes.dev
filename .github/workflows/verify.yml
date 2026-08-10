@@ -15,6 +15,24 @@ jobs:
       - name: Check out documentation
         uses: actions/checkout@v4
 
+      - name: Check out TaskNotes plugin
+        uses: actions/checkout@v4
+        with:
+          repository: callumalpass/tasknotes
+          path: .sources/tasknotes
+
+      - name: Check out TaskNotes app
+        uses: actions/checkout@v4
+        with:
+          repository: callumalpass/tasknotes-app
+          path: .sources/tasknotes-app
+
+      - name: Check out TaskNotes specification
+        uses: actions/checkout@v4
+        with:
+          repository: callumalpass/tasknotes-spec
+          path: .sources/tasknotes-spec
+
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
@@ -23,6 +41,10 @@ jobs:
 
       - name: Install documentation dependencies
         run: npm ci
+
+      - name: Install plugin reference dependencies
+        run: npm ci --ignore-scripts
+        working-directory: .sources/tasknotes
 
       - name: Build and test
         run: npm test
