@@ -1,0 +1,79 @@
+WEBVTT
+
+00:00:00.000 --> 00:00:08.000
+This video shows how to connect mdbase collections to the TaskNotes app. We’ll start with a hosted collection, then connect an existing folder on your computer.
+
+00:00:08.000 --> 00:00:14.000
+Hosted by mdbase: available online, even when your computer is off. No desktop Connector needed for TaskNotes.
+
+00:00:14.000 --> 00:00:21.000
+Hosted collections can also be mirrored to your computer, so you can work with local Markdown files.
+
+00:00:21.000 --> 00:00:29.000
+On your computer: files stay in an existing folder. Keep mdbase Connect running and the computer reachable. The same TaskNotes app works with either.
+
+00:00:29.000 --> 00:00:37.600
+Start with hosted: open app.tasknotes.dev and choose a collection.
+
+00:00:37.600 --> 00:00:50.833
+Select a collection labelled Hosted by mdbase, then review access.
+
+00:00:50.833 --> 00:01:00.033
+Review the permissions, then approve access if you agree.
+
+00:01:00.033 --> 00:01:14.067
+Add a task. It is saved in your hosted collection; no local computer is needed.
+
+00:01:14.067 --> 00:01:22.067
+Already have an mdbase collection on your computer? Connect that folder to TaskNotes without moving its files.
+
+00:01:22.067 --> 00:01:35.933
+For a local folder, first get the desktop app at mdbase.dev/downloads.
+
+00:01:35.933 --> 00:01:39.933
+Install and open mdbase Connect.
+
+00:01:39.933 --> 00:01:49.467
+Name this computer, then choose Continue in browser.
+
+00:01:49.467 --> 00:02:00.400
+Sign in if asked, then approve this computer.
+
+00:02:00.400 --> 00:02:09.400
+In Collections, choose Add existing and select your collection folder.
+
+00:02:09.400 --> 00:02:15.133
+Choose the folder containing mdbase.yaml. Its files stay where they are.
+
+00:02:15.133 --> 00:02:21.933
+Back in TaskNotes, open the mdbase collection chooser.
+
+00:02:21.933 --> 00:02:35.333
+Select the collection listed under your connected computer.
+
+00:02:35.333 --> 00:02:44.566
+Review the requested access and setup changes, then approve if you agree.
+
+00:02:44.566 --> 00:02:59.300
+Add a task to the local collection.
+
+00:02:59.300 --> 00:03:06.300
+Each task is a Markdown file. Changes you make in TaskNotes are saved back to the collection.
+
+00:03:06.300 --> 00:03:11.500
+The task is now a Markdown file in your existing folder.
+
+00:03:11.500 --> 00:03:15.833
+Keep mdbase Connect running while other devices use this folder.
+
+00:03:15.833 --> 00:03:24.833
+Once both are connected, switch collections in Settings → Change collection.
+
+00:03:24.833 --> 00:03:37.066
+Choose a collection you have already approved.
+
+00:03:37.066 --> 00:03:46.066
+In the local collection, complete the task.
+
+00:03:46.066 --> 00:03:52.599
+The same Markdown file now says status: done.

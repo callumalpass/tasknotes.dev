@@ -967,6 +967,35 @@ video {
 	font: 400 0.72rem/1.5 var(--mono);
 }
 
+.app-walkthrough {
+	margin: 1.5rem 0;
+}
+
+.app-walkthrough video {
+	width: 100%;
+	max-height: none;
+	margin: 0;
+	aspect-ratio: 3 / 2;
+	background: var(--color-surface-subtle);
+}
+
+.app-walkthrough figcaption {
+	margin-top: 0.65rem;
+	color: var(--color-text-soft);
+	font-size: 0.875rem;
+	line-height: 1.5;
+}
+
+.walkthrough-transcript summary {
+	padding: 0.65rem 0;
+	font-weight: 700;
+	cursor: pointer;
+}
+
+.walkthrough-transcript[open] summary {
+	margin-bottom: 1rem;
+}
+
 .media-frame {
 	position: relative;
 	width: 100%;
