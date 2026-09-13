@@ -979,23 +979,6 @@ video {
 	background: var(--color-surface-subtle);
 }
 
-.app-walkthrough figcaption {
-	margin-top: 0.65rem;
-	color: var(--color-text-soft);
-	font-size: 0.875rem;
-	line-height: 1.5;
-}
-
-.walkthrough-transcript summary {
-	padding: 0.65rem 0;
-	font-weight: 700;
-	cursor: pointer;
-}
-
-.walkthrough-transcript[open] summary {
-	margin-bottom: 1rem;
-}
-
 .media-frame {
 	position: relative;
 	width: 100%;

@@ -54,7 +54,7 @@ saving changes require a connection.
 
 [Choose a collection](/app/collections/) compares the TaskNotes behavior of
 these options in more detail. [Connect TaskNotes to mdbase](/app/connect-mdbase/)
-shows both connection flows in a short video, with written steps and a transcript.
+shows both connection flows in a short video, with written steps.
 
 ## Use a collection on your computer
 

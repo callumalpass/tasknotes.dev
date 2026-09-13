@@ -28,7 +28,7 @@ computer. Read [What is mdbase?](/app/mdbase/) if this is new to you, then
 [Choose a collection](/app/collections/) to compare the two options.
 
 Follow [Connect TaskNotes to mdbase](/app/connect-mdbase/) for a short video,
-written steps, and a transcript covering hosted collections first, then
+written steps covering hosted collections first, then
 existing local folders.
 
 ## 3. Create a task
