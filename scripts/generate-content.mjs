@@ -441,6 +441,8 @@ function rewriteLinks(page) {
       )
         return full;
       const { pathPart, suffix } = splitHref(href);
+      // Public downloads are files, not documentation routes with trailing slashes.
+      if (pathPart.startsWith("/assets/")) return full;
       if (pathPart.startsWith("/"))
         return `${before}${canonicalRouteForAbsolute(pathPart)}${suffix}${after}`;
       if (/\.md$/i.test(pathPart)) {

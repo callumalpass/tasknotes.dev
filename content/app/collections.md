@@ -13,7 +13,8 @@ copy of your Markdown lives: hosted online or on your own computer.
 
 If mdbase is new to you, start with [mdbase and TaskNotes](/app/mdbase/) for a
 plain-language explanation of the format, Connect desktop app, and hosting
-choices.
+choices. For a video and written setup steps, follow
+[Connect TaskNotes to mdbase](/app/connect-mdbase/).
 
 ## Hosted mdbase
 
@@ -39,5 +40,5 @@ mdbase Connect background service whenever you use TaskNotes. See how to
 
 ## Change collections later
 
-Open **More** and choose **Change collection**. Opening another collection does
+Open **Settings** and choose **Change collection**. Opening another collection does
 not copy or move records from the collection you were using.

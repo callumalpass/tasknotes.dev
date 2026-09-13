@@ -37,7 +37,8 @@ changes require a connection.
 
 1. [Try TaskNotes with sample tasks](/app/demo/) or [open or install TaskNotes](/app/getting-started/).
 2. [Learn how mdbase supports TaskNotes](/app/mdbase/).
-3. [Choose where your collection lives](/app/collections/).
+3. [Choose where your collection lives](/app/collections/), then follow the
+   [connection walkthrough](/app/connect-mdbase/) with video and written steps.
 4. Create a task and open **Today**.
 5. Turn on reminders only if the collection and platform support delivery.
 

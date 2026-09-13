@@ -22,11 +22,14 @@ The web and native applications use the same task interface.
 
 ## 2. Choose a collection
 
-TaskNotes opens every collection through mdbase. Choose **Hosted mdbase** for a
-collection available anywhere with a network connection, or **Connect to a
-computer** to use a Markdown collection kept on your own computer through the
-encrypted relay. Read [What is mdbase?](/app/mdbase/) if this is new to you,
-then [Choose a collection](/app/collections/) to compare the two options.
+TaskNotes opens every collection through mdbase. In the collection chooser,
+select one labelled **Hosted by mdbase** or one listed under your connected
+computer. Read [What is mdbase?](/app/mdbase/) if this is new to you, then
+[Choose a collection](/app/collections/) to compare the two options.
+
+Follow [Connect TaskNotes to mdbase](/app/connect-mdbase/) for a short video,
+written steps, and a transcript covering hosted collections first, then
+existing local folders.
 
 ## 3. Create a task
 
@@ -41,5 +44,5 @@ Navigation belongs to the current collection and can be reordered from Views.
 
 ## 5. Check collection status
 
-Open **More** to see the collection location, connection state, last refresh,
+Open **Settings** to see the collection location, connection state, last refresh,
 notification access, task model settings, and appearance preference.

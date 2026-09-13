@@ -53,7 +53,8 @@ saving changes require a connection.
 | Connect to your computer | In a folder on your computer | Both devices must be online, and your computer must be running mdbase Connect |
 
 [Choose a collection](/app/collections/) compares the TaskNotes behavior of
-these options in more detail.
+these options in more detail. [Connect TaskNotes to mdbase](/app/connect-mdbase/)
+shows both connection flows in a short video, with written steps and a transcript.
 
 ## Use a collection on your computer
 

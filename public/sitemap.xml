@@ -3,6 +3,7 @@
   <url><loc>https://tasknotes.dev/</loc></url>
   <url><loc>https://tasknotes.dev/app/</loc></url>
   <url><loc>https://tasknotes.dev/app/collections/</loc></url>
+  <url><loc>https://tasknotes.dev/app/connect-mdbase/</loc></url>
   <url><loc>https://tasknotes.dev/app/connection/</loc></url>
   <url><loc>https://tasknotes.dev/app/demo/</loc></url>
   <url><loc>https://tasknotes.dev/app/getting-started/</loc></url>
@@ -176,6 +177,9 @@
   <url><loc>https://tasknotes.dev/obsidian/releases/4.12.1/</loc></url>
   <url><loc>https://tasknotes.dev/obsidian/releases/4.12.2/</loc></url>
   <url><loc>https://tasknotes.dev/obsidian/releases/4.12.3/</loc></url>
+  <url><loc>https://tasknotes.dev/obsidian/releases/4.12.4/</loc></url>
+  <url><loc>https://tasknotes.dev/obsidian/releases/4.12.5/</loc></url>
+  <url><loc>https://tasknotes.dev/obsidian/releases/4.13.0/</loc></url>
   <url><loc>https://tasknotes.dev/obsidian/releases/4.2.0/</loc></url>
   <url><loc>https://tasknotes.dev/obsidian/releases/4.2.1/</loc></url>
   <url><loc>https://tasknotes.dev/obsidian/releases/4.3.0/</loc></url>

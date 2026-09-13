@@ -6,6 +6,7 @@
 - [TaskNotes documentation](https://tasknotes.dev/): Guides and reference material for the TaskNotes app, the Obsidian plugin, and the portable task format they share.
 - [TaskNotes app](https://tasknotes.dev/app/): Use TaskNotes on the web, Android, and iOS with portable Markdown through mdbase.
 - [Choose a collection](https://tasknotes.dev/app/collections/): Compare hosted mdbase with a collection connected from your own computer.
+- [Connect TaskNotes to mdbase](https://tasknotes.dev/app/connect-mdbase/): Watch how to connect hosted mdbase collections and existing local folders to the TaskNotes app, with written steps and a transcript.
 - [Connection and availability](https://tasknotes.dev/app/connection/): Understand when TaskNotes can reach hosted and computer-connected mdbase collections.
 - [Interactive demo](https://tasknotes.dev/app/demo/): Explore the TaskNotes app with disposable sample tasks before connecting a collection.
 - [Get started with the TaskNotes app](https://tasknotes.dev/app/getting-started/): Open TaskNotes, connect an mdbase collection, create a task, and find your way around the app.
