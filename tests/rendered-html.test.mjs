@@ -58,7 +58,7 @@ test("renders the interactive app demo immediately with minimal chrome", async (
   assert.doesNotMatch(html, /aria-label="Documentation"/);
 });
 
-test("renders the connection walkthrough with an opt-in local video and transcript", async () => {
+test("renders the connection walkthrough with an opt-in local video and minimal copy", async () => {
   const response = await render("/app/connect-mdbase/");
   const html = await response.text();
   const video = html.match(/<video\b[^>]*>/)?.[0];
@@ -67,17 +67,16 @@ test("renders the connection walkthrough with an opt-in local video and transcri
   assert.match(video, /\bplaysinline\b/);
   assert.match(video, /preload="none"/);
   assert.match(video, /poster="\/assets\/app\/connect-mdbase\/poster\.png"/);
-  assert.match(video, /aria-describedby="walkthrough-description"/);
+  assert.match(video, /aria-label="Connect TaskNotes to mdbase/);
   assert.doesNotMatch(video, /\b(?:autoplay|loop)\b/);
   assert.match(html, /<source src="\/assets\/app\/connect-mdbase\/walkthrough\.mp4" type="video\/mp4"/);
   assert.match(html, /<track[^>]*kind="captions"[^>]*srclang="en"/);
-  assert.match(html, /href="\/assets\/app\/connect-mdbase\/walkthrough\.mp4" download/);
+  assert.match(html, /href="\/assets\/app\/connect-mdbase\/walkthrough\.mp4"/);
   assert.doesNotMatch(html, /walkthrough\.mp4\//);
-  assert.match(html, /<details class="walkthrough-transcript">/);
-  assert.match(html, /<strong>00:00<\/strong>/);
+  assert.doesNotMatch(html, /walkthrough-transcript|Read the transcript|3 minutes 53 seconds/);
   assert.match(html, /<h2 id="connect-a-hosted-collection"/);
   assert.match(html, /<h2 id="connect-an-existing-local-folder"/);
-  assert.match(html, /OS-specific installer dialogs are omitted/);
+  assert.doesNotMatch(html, /OS-specific installer dialogs are omitted|disposable demo data/);
   assert.doesNotMatch(html, /tasknotes-mdbase-video\.pages\.dev|<iframe/);
 });
 

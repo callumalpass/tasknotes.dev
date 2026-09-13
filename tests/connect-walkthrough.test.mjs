@@ -25,14 +25,13 @@ test("publishes the approved walkthrough and its assets without changing them", 
   }
 });
 
-test("the authored transcript includes every timed instruction", async () => {
+test("the walkthrough retains valid timed captions without a transcript", async () => {
   assert.equal(page?.source, "tasknotes.dev:content/app/connect-mdbase.md");
   assert.equal(page?.product, "app");
   const vtt = await readFile(new URL(`public/${media}captions.en.vtt`, root), "utf8");
   assert.ok(vtt.startsWith("WEBVTT\n"));
   const cues = vtt.trim().split(/\n\n+/).slice(1);
-  const transcript = page.raw.split("## Transcript")[1];
-  assert.ok(transcript);
+  assert.doesNotMatch(page.raw, /transcript|walkthrough-description|<figcaption/i);
   const seconds = (value) => {
     const [hours, minutes, seconds] = value.split(":").map(Number);
     return hours * 3600 + minutes * 60 + seconds;
@@ -45,14 +44,12 @@ test("the authored transcript includes every timed instruction", async () => {
     const start = seconds(match[1]);
     const end = seconds(match[2]);
     assert.ok(start >= previousEnd && end > start && end <= videoDuration + 0.01);
-    assert.ok(transcript.includes(lines.join(" ")), lines.join(" "));
-    const timestamp = match[1].slice(3, 8);
-    assert.ok(transcript.includes(`**${timestamp}**`), timestamp);
+    assert.ok(lines.join(" ").trim(), "each caption has text");
     previousEnd = end;
   }
   assert.equal(cues.length, 26);
   assert.match(page.raw, /Hosted collections can also be mirrored/);
-  assert.match(page.raw, /OS-specific installer dialogs are omitted/);
+  assert.doesNotMatch(page.raw, /disposable demo data|OS-specific installer dialogs|Download the video/);
 });
 
 test("the app entry points and navigation link to the walkthrough", () => {
