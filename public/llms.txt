@@ -23,11 +23,12 @@
 - [Recurring Tasks](https://tasknotes.dev/obsidian/features/recurring-tasks/): TaskNotes recurring tasks use RFC 5545 RRule strings with DTSTART support and dynamic next-occurrence scheduling. The model separates recurrence patterns from the next planned i...
 - [Task Management](https://tasknotes.dev/obsidian/features/task-management/): This page covers task creation, properties, projects, dependencies, recurring tasks, and reminders. For the underlying architecture, see Core Concepts.
 - [TaskNotes HTTP API](https://tasknotes.dev/obsidian/HTTP_API/): The TaskNotes HTTP API provides local HTTP access to tasks, time tracking, pomodoro, calendars, webhooks, and NLP parsing.
+- [Upgrading from v4 to v5](https://tasknotes.dev/obsidian/migration-v4-to-v5/): Upgrade from TaskNotes v4 to the v5 beta, with first-launch checks, synced-device guidance, and metadata recovery.
 - [Command reference](https://tasknotes.dev/obsidian/reference/commands/): Every TaskNotes command registered with Obsidian, generated from the plugin command definitions.
 - [HTTP route index](https://tasknotes.dev/obsidian/reference/http-routes/): Implemented TaskNotes HTTP API routes generated from controller decorators.
 - [Settings source reference](https://tasknotes.dev/obsidian/reference/settings-source/): The six TaskNotes settings tabs, their controls, and the complete default settings snapshot generated from source.
 - [Release Notes](https://tasknotes.dev/obsidian/releases/): Welcome to the TaskNotes release notes. Here you can find detailed information about each version, including new features, bug fixes, and improvements.
-- [Settings](https://tasknotes.dev/obsidian/settings/): TaskNotes settings are organized into tabs. Each tab controls a different part of plugin behavior.
+- [Settings](https://tasknotes.dev/obsidian/settings/): This page describes TaskNotes v4. Settings are organized into tabs, each controlling a different part of plugin behavior.
 - [Troubleshooting](https://tasknotes.dev/obsidian/troubleshooting/): Common issues and solutions for TaskNotes.
 - [Views](https://tasknotes.dev/obsidian/views/): TaskNotes provides multiple views for managing tasks and tracking productivity. All task-focused views operate as .base files located in the TaskNotes/Views/ directory and requi...
 - [TaskNotes privacy overview](https://tasknotes.dev/privacy/): How the TaskNotes app and Obsidian plugin store data and when optional services are involved.

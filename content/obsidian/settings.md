@@ -1,6 +1,8 @@
 # Settings
 
-TaskNotes settings are organized into tabs. Each tab controls a different part of plugin behavior.
+This page describes **TaskNotes v4**. Settings are organized into tabs, each controlling a different part of plugin behavior.
+
+For the **v5 beta**, settings use Obsidian's native navigation and search. See [Settings are reorganized](migration-v4-to-v5.md#settings-are-reorganized) for the v5 categories.
 
 
 ## General

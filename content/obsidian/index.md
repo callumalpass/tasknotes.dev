@@ -14,6 +14,8 @@ This guide covers the TaskNotes plugin for Obsidian. It follows the "one note pe
 
 TaskNotes ${tasknotes.version} requires **Obsidian ${tasknotes.minAppVersion}** or later and depends on the **Bases** core plugin. Before you begin, open Obsidian Settings and confirm Bases is enabled under Core Plugins.
 
+Trying the opt-in v5 beta? Read [Upgrading from v4 to v5](migration-v4-to-v5.md) before installing it. The guide covers backups, synced devices, and returning to v4. The installation and requirements below describe the stable release.
+
 ## Getting Started
 
 ### 1. Install and Enable

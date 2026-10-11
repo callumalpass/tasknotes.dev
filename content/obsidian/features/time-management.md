@@ -37,6 +37,8 @@ When a task is associated with a Pomodoro session, the time is automatically rec
 
 ## Productivity Analytics
 
+The statistics dashboards described below are available in **TaskNotes v4**. In **v5 beta.5**, the Statistics and Pomodoro statistics dashboards have been removed; the timer, time tracking, stored history, and existing Base files are retained. See [Upgrading from v4 to v5](../migration-v4-to-v5.md#interface-changes).
+
 The **Pomodoro Stats View** provides analytics and historical data about your Pomodoro sessions. This includes a history of completed sessions, as well as metrics like completion rates and total time spent on tasks. The data can be visualized to show productivity patterns over time.
 
 ![Task Statistics](../assets/feature-task-statistics.png)

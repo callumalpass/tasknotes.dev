@@ -35,6 +35,8 @@ navigation:
     items:
       - title: Get started
         route: /obsidian/
+      - title: Upgrade to v5 beta
+        route: /obsidian/migration-v4-to-v5/
       - title: Core concepts
         route: /obsidian/core-concepts/
       - title: Task management

@@ -14,9 +14,9 @@ TaskNotes keeps task content in your vault and configuration in the plugin data 
 | Base views | `TaskNotes/Views/` or custom paths | Filters, formulas, layout, and custom views |
 | Plugin settings | `.obsidian/plugins/tasknotes/data.json` | Field mapping, statuses, defaults, integrations, and view command paths |
 | Daily notes | Your daily-note folder | Pomodoro history when daily-note storage is enabled |
-| mdbase configuration | `tasknotes.yaml`, `mdbase.yaml`, or `.mdbase/` when configured | Shared collection and schema configuration |
+| mdbase configuration | `tasknotes.yaml`, `mdbase.yaml`, `.mdbase/`, configured type/contract folders, `_schemas/`, pack locks/provisions, and `.tasknotes/migrations/` when configured | Shared collection metadata, provenance, and migration recovery copies |
 
-Treat `data.json` as sensitive because integration configuration can include credentials or tokens. Store backups accordingly.
+Treat `data.json` as sensitive because integration configuration can include private URLs, legacy credentials, or tokens. In v4, the HTTP API token is stored there. In the v5 beta, the HTTP API token is kept in Obsidian Secret Storage on each device, alongside calendar credentials and account tokens. Secret Storage is not included in a vault backup or synced between devices; reconnect integrations and update API clients when restoring onto a new device. Store backups accordingly.
 
 ## Create a restorable backup
 
@@ -36,6 +36,27 @@ File-history sync is useful, but it is not a substitute for a separate tested ba
 5. Run **TaskNotes: Refresh cache** and open one default Base.
 
 If provider credentials have expired or were intentionally excluded from the backup, reconnect those integrations instead of restoring stale tokens.
+
+## Interrupted mdbase metadata updates
+
+!!! info "TaskNotes v5 beta"
+    This section describes metadata recovery in **5.0.0-beta.5**. Back up the complete vault and finish syncing before upgrading. Avoid simultaneous metadata updates on other devices, especially on mobile.
+
+TaskNotes journals v0.2 and beta metadata upgrades and automatically recovers interrupted writes on restart. Replacements on desktop and mobile move the actual revision into `.tasknotes/migrations/metadata-swaps/` before publishing the staged file to an empty path. Swap journals retain the expected original, intended bytes, stage and recovery paths. If a restart finds an empty active path with its moved original present, it restores that revision through the same verified publication path; the enclosing upgrade can then recover. Native filesystem publication refuses an occupied destination.
+
+If a file has changed externally, recovery stops and the notice lists the pending journal, backup folder, and blocked file:
+
+1. Keep the journal, staged files, and recovery copies. Close Obsidian on all syncing devices and back up the current vault.
+2. Compare the active files with the journal and backup manifest. Preserve external edits separately before restoring a coherent set of configuration, task type, and contract/schema resources with matching plugin settings.
+3. Do not delete a pending journal or restore only the contract file to bypass the conflict. Resolve permissions or the conflicting revision, then reload TaskNotes.
+
+Task notes are not rewritten by metadata migration.
+
+On storage without native Node filesystem access, migration uses the adapter's empty-destination move. TaskNotes moves a verified publication copy and compares the active bytes with the retained intended stage. The displaced original, stage and journal remain until read-back passes; divergence raises a conflict notice and retains those files for review.
+
+An iOS/Android adapter that implements its destination check separately from its rename still has a residual check-then-rename window. A concurrent arrival during that window can be overwritten, and matching final read-back cannot reveal that lost arrival. Read-back therefore does not make this path atomic. Finish syncing before migration, avoid metadata updates from other devices while it runs, and keep a separate full-vault backup and file history. If a revision is missing, preserve the current vault and recover it from your independent backup or sync history rather than assuming the migration journal captured it.
+
+See [Upgrading from v4 to v5](../migration-v4-to-v5.md#interrupted-updates-and-blocked-collections) for duplicate-provider and symlink checks.
 
 ## Reset configuration safely
 
@@ -58,6 +79,6 @@ To remove plugin settings as well, close Obsidian and remove `.obsidian/plugins/
 
 - Missing tasks: restore the note files, then verify task identification and excluded folders.
 - Missing settings: restore `data.json` with Obsidian closed.
-- Broken default views: regenerate them from **General → Views & base files**.
+- Broken default views: back up custom edits before regenerating the configured default Base files. In v4, use **General → Views & base files**; in v5, search settings for **Update default base files**.
 - Broken custom views: restore the individual `.base` files from history.
 - Lost Pomodoro history: restore the configured storage source, which may be plugin data or daily-note frontmatter.

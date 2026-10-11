@@ -238,11 +238,13 @@ function addPage({
     product: parsed.data.product || product,
     platforms: Array.isArray(parsed.data.platforms) ? parsed.data.platforms : [],
     version:
-      product === "app"
-        ? appManifest.version
-        : product === "obsidian"
-          ? pluginManifest.version
-          : null,
+      typeof parsed.data.version === "string"
+        ? parsed.data.version
+        : product === "app"
+          ? appManifest.version
+          : product === "obsidian"
+            ? pluginManifest.version
+            : null,
     generated: Boolean(parsed.data.generated || generated),
     noIndex: Boolean(parsed.data.noindex || parsed.data.draft || noIndex),
     hideToc: Boolean(parsed.data.hide_toc),

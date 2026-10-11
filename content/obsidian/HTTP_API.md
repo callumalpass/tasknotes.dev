@@ -12,7 +12,7 @@ The TaskNotes HTTP API provides local HTTP access to tasks, time tracking, pomod
   `localhost`, `127.0.0.1`, and `[::1]`
 - Not available on mobile
 
-Enable it in `Settings -> TaskNotes -> Integrations -> HTTP API`.
+Enable it under **Settings → TaskNotes → Integrations → HTTP API** in v4, or **Settings → TaskNotes → Advanced → HTTP API** in the v5 beta.
 
 ## Base URL
 
@@ -22,18 +22,57 @@ Default port is `8080`.
 
 ## Authentication
 
-Authentication is optional.
+Authentication is required for both HTTP API and MCP requests in **TaskNotes 4.13.0 and later**, including the v5 beta.
 
-- If `apiAuthToken` is empty, all API requests are accepted.
-- If `apiAuthToken` is set, send `Authorization: Bearer <token>`.
-- Set a token for any workflow where local browser pages, scripts, or other
-  desktop apps are not fully trusted.
+- Send `Authorization: Bearer <token>` using the TaskNotes token from the HTTP API settings page described above.
+- If `apiAuthToken` is empty at startup, TaskNotes generates and saves a token before starting the server.
+- Clearing the token does not enable unauthenticated access; requests are rejected until a token is configured or generated at the next server start.
+- Existing clients that omitted authentication must be updated to send the token. Keep it private.
+
+### Token storage in the v5 beta
+
+In v4, the HTTP API token is stored in `data.json`. In v5, it moves to Obsidian Secret Storage on each device. Syncing or committing `data.json` does not share the v5 token. A synced device that starts after the token has been removed from `data.json` generates its own token and shows a notice. Copy that device's token into its API and MCP clients. See [Synced devices](migration-v4-to-v5.md#synced-devices).
 
 Example:
 
 ```bash
 curl -H "Authorization: Bearer YOUR_TOKEN" http://localhost:8080/api/health
 ```
+
+## Connecting Claude Desktop with MCP
+
+Use a **TaskNotes API token**, not a Claude/Anthropic API key. The local MCP endpoint uses bearer authentication, not OAuth registration.
+
+1. Open **Settings → TaskNotes → Integrations** in v4, or **Advanced** in the v5 beta, and enable **HTTP API** and **MCP server**.
+2. If the TaskNotes token is empty, restart Obsidian to generate one. An existing token can be reused; do not clear it unless you intend to replace it in all clients.
+3. Return to the same settings page and copy the generated token. Keep it private.
+4. In Claude Desktop, open **Settings → Developer → Edit Config** and add this entry, preserving any other MCP servers:
+
+```json
+{
+  "mcpServers": {
+    "Tasknotes": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "mcp-remote",
+        "http://127.0.0.1:8080/mcp",
+        "--header",
+        "Authorization:${AUTH_HEADER}"
+      ],
+      "env": {
+        "AUTH_HEADER": "Bearer YOUR_TASKNOTES_API_TOKEN"
+      }
+    }
+  }
+}
+```
+
+Replace `YOUR_TASKNOTES_API_TOKEN` with the token from TaskNotes, keeping the `Bearer ` prefix. Change `8080` if you configured a different port. Node.js/npm must be installed so Claude can run `npx`.
+
+5. Fully quit and reopen Claude Desktop. Keep Obsidian running while using the tools.
+
+If Claude reports **Server Disconnected**, first check that the bearer header contains the current TaskNotes token. A missing or rejected token can cause the client to attempt OAuth registration, which this endpoint does not provide. After replacing a token, update every client and restart Claude. Do not disable authentication as a workaround.
 
 ## Response Format
 
