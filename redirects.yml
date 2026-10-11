@@ -1,4 +1,5 @@
 redirects:
+  /app/demo/: /app/
   /app/sync-and-conflicts/: /app/connection/
   /core-concepts/: /obsidian/core-concepts/
   /getting-started/existing-vault/: /obsidian/getting-started/existing-vault/

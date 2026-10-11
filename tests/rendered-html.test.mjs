@@ -46,16 +46,14 @@ test("renders app and Obsidian pages with explicit scope", async () => {
   assert.match(pluginHtml, /Core Concepts/);
 });
 
-test("renders the interactive app demo immediately with minimal chrome", async () => {
-  const response = await render("/app/demo/");
-  assert.equal(response.status, 200);
-  const html = await response.text();
-  assert.match(html, /Try TaskNotes/);
-  assert.match(html, /24 sample tasks/);
-  assert.match(html, /Open in a new tab/);
-  assert.match(html, /<iframe/);
-  assert.doesNotMatch(html, /Load the interactive demo/);
-  assert.doesNotMatch(html, /aria-label="Documentation"/);
+test("replaces the embedded demo with the existing static app screenshot and preserves its old URL", async () => {
+  const app = await render("/app/");
+  const html = await app.text();
+  assert.match(html, /src="\/assets\/app\/today-workspace\.webp"/);
+  assert.doesNotMatch(html, /<iframe|Interactive demo|Reset demo|\/embed/);
+  const legacy = await render("/app/demo/");
+  assert.equal(legacy.status, 200);
+  assert.match(await legacy.text(), /<link rel="canonical" href="https:\/\/tasknotes\.dev\/app\/"/);
 });
 
 test("renders the connection walkthrough with an opt-in local video and minimal copy", async () => {
