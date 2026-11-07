@@ -73,3 +73,5 @@ navigation:
     items:
       - title: Privacy
         route: /privacy/
+      - title: TaskNotes Calendar terms
+        route: /terms/

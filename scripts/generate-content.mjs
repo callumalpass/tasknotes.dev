@@ -355,6 +355,8 @@ const generatedModule = path.join(
   "src",
   "generated-pages.js",
 );
+// The plugin bundles Lingui macros, which look for their config in the working directory.
+process.env.LINGUI_CONFIG = path.join(pluginRoot, "lingui.config.mjs");
 const { buildGeneratedPages } = await import(pathToFileURL(generatedModule).href);
 const generatedReferences = await buildGeneratedPages(pluginManifest);
 for (const [relativePath, raw] of generatedReferences) {
