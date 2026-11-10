@@ -3,12 +3,12 @@ title: TaskNotes privacy overview
 description: How the TaskNotes app and Obsidian plugin store data and when optional services are involved.
 route: /privacy/
 product: shared
-last_updated: 2026-11-07
+last_updated: 2026-11-10
 ---
 
 # TaskNotes privacy overview
 
-Last updated: November 7, 2026
+Last updated: November 10, 2026
 
 TaskNotes products are built around portable Markdown records. The storage and
 network boundaries depend on the client and collection you choose.
@@ -63,6 +63,27 @@ them.
 **What we do not store.** Your calendar events pass through the service when
 you view or change them. They are not saved on our servers.
 
+**How we protect your data.**
+
+- All traffic between the TaskNotes apps, the service and Google is encrypted
+  in transit with HTTPS (TLS).
+- Your Google access and refresh tokens are encrypted with AES-256-GCM before
+  they are stored. Each connection has its own encryption key, which is itself
+  encrypted with a master key held in Cloudflare's secret storage, separate
+  from the database. Each encrypted credential is bound to your account and
+  connection, so it cannot be used for anyone else.
+- Google credentials never leave the service. They are not sent to the
+  TaskNotes apps, written to logs or placed in URLs.
+- We store only keyed digests (HMAC-SHA-256) of device session credentials,
+  never the credentials themselves. The web app's session cookie is `Secure`,
+  `HttpOnly` and `SameSite=Strict`.
+- Every request is checked against your signed-in account, and the service
+  only accesses the calendars of that account.
+- Access to the production service, its database and its keys is limited to
+  the operator. No person reads your calendar data, except with your
+  permission, to investigate abuse or a security problem, or where the law
+  requires it.
+
 **Logs.** Our logs record the route, method, status, duration and any error
 code of each request. They do not include your identity, IP address, calendar
 data or event content. Logs are kept for up to 7 days.
@@ -82,9 +103,8 @@ can also remove access from your Google Account's linked apps page. Deleting
 your account does not change your Google events or your tasks.
 
 **Google API Services.** TaskNotes' use and transfer to any other app of
-information received from Google APIs will adhere to the [Google API Services
-User Data Policy](https://developers.google.com/terms/api-services-user-data-
-policy), including the Limited Use requirements.
+information received from Google APIs will adhere to the [Google API Services User Data Policy](https://developers.google.com/terms/api-services-user-data-policy),
+including the Limited Use requirements.
 
 See the [TaskNotes Calendar terms](/terms/).
 
