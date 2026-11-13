@@ -3,12 +3,12 @@ title: TaskNotes privacy overview
 description: How the TaskNotes app and Obsidian plugin store data and when optional services are involved.
 route: /privacy/
 product: shared
-last_updated: 2026-11-10
+last_updated: 2026-11-13
 ---
 
 # TaskNotes privacy overview
 
-Last updated: November 10, 2026
+Last updated: November 13, 2026
 
 TaskNotes products are built around portable Markdown records. The storage and
 network boundaries depend on the client and collection you choose.
@@ -57,8 +57,7 @@ them.
   delete your account.
 - The details of your calendars, such as their names, until you disconnect or
   delete your account.
-- Digests of your device sessions, which expire after 30 days without use and
-  after 90 days at most.
+- Digests of your device sessions, which expire after 30 days without use.
 
 **What we do not store.** Your calendar events pass through the service when
 you view or change them. They are not saved on our servers.
@@ -85,8 +84,10 @@ you view or change them. They are not saved on our servers.
   requires it.
 
 **Logs.** Our logs record the route, method, status, duration and any error
-code of each request. They do not include your identity, IP address, calendar
-data or event content. Logs are kept for up to 7 days.
+code of each request, along with a short code for the cause of a failure and a
+count of calendars or events that could not be shown. They do not include your
+identity, IP address, calendar data or event content. Logs are kept for up to 7
+days.
 
 **Who processes this data.** The service runs on Cloudflare, which hosts it
 and its database. Calendar data is exchanged with Google. We do not sell your
