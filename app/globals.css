@@ -815,18 +815,6 @@ video {
 	font: 400 0.72rem/1.5 var(--mono);
 }
 
-.app-walkthrough {
-	margin: 1.5rem 0;
-}
-
-.app-walkthrough video {
-	width: 100%;
-	max-height: none;
-	margin: 0;
-	aspect-ratio: 3 / 2;
-	background: var(--color-surface-subtle);
-}
-
 .media-frame {
 	position: relative;
 	width: 100%;

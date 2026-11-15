@@ -16,8 +16,7 @@ by itself guarantee notification delivery.
 
 | Collection | Reminder data | Notification delivery |
 | --- | --- | --- |
-| Hosted mdbase | Saved in the collection | Available after opt-in |
-| Computer through the relay | Saved in the collection | Available while the computer and connector remain available |
+| mdbase collection | Saved in the collection | Available after opt-in |
 
 For mdbase collections, the authority schedules reminder events so delivery
 does not depend on one TaskNotes screen remaining open. Notification payloads

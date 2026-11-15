@@ -35,10 +35,13 @@ Back up your vault before you start. See [Backup, restore, and removal](backup-r
     - In 5.0.0-beta.9 and earlier: **Settings → TaskNotes → Calendars & integrations → Generate mdbase type definitions**.
 
     Vaults updated from TaskNotes 4 have this off until you turn it on.
-2. Install [mdbase Connect](https://mdbase.dev/downloads/) on the computer that has your vault, open it, and sign in or create an account.
+2. Install [mdbase Connect](https://mdbase.dev/downloads/) on the computer that has your vault and open it. Choose **Sign in with your browser**, sign in or create an account, then choose **Approve computer**.
 3. In mdbase Connect, choose **Add existing folder** and select your vault's folder: the folder that contains the hidden `.obsidian` folder. In releases after 5.0.0-beta.9, **Copy folder path** on the TaskNotes App settings page copies it.
-4. Choose **Turn on sync**. mdbase Connect uploads the files in the folder. The folder stays where it is.
-5. Open TaskNotes App on the web, iPhone or Android, sign in with the same account, and choose the collection. The first time, TaskNotes App asks you to set up the collection and allow access.
+4. Open **Collections**, open the vault's **…** menu and choose **Turn on sync**, then choose **Turn on sync** again. mdbase Connect uploads the files in the folder and keeps them in sync. The folder stays where it is.
+5. Open TaskNotes App on the web, iPhone or Android, sign in with the same account, choose the collection and choose **Open TaskNotes**.
+6. The first time, TaskNotes App asks to set up the collection. Choose **Set up**, or **Continue** if nothing needs to change.
+
+**Before step 6,** update TaskNotes to version 5 on every device that uses the vault. TaskNotes App's setup writes the task type whether or not type definitions are turned on in Obsidian, and a device still running TaskNotes 4 with **Generate mdbase type definitions** turned on can overwrite it.
 
 After step 3, the TaskNotes App settings page shows the vault as added to mdbase Connect.
 
