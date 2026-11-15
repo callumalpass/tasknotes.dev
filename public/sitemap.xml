@@ -48,6 +48,7 @@
   <url><loc>https://tasknotes.dev/obsidian/getting-started/mobile/</loc></url>
   <url><loc>https://tasknotes.dev/obsidian/guides/backup-recovery/</loc></url>
   <url><loc>https://tasknotes.dev/obsidian/guides/custom-bases/</loc></url>
+  <url><loc>https://tasknotes.dev/obsidian/guides/tasknotes-app/</loc></url>
   <url><loc>https://tasknotes.dev/obsidian/HTTP_API/</loc></url>
   <url><loc>https://tasknotes.dev/obsidian/javascript-api/</loc></url>
   <url><loc>https://tasknotes.dev/obsidian/mdbase-tasknotes-cli/</loc></url>
@@ -181,6 +182,7 @@
   <url><loc>https://tasknotes.dev/obsidian/releases/4.12.5/</loc></url>
   <url><loc>https://tasknotes.dev/obsidian/releases/4.13.0/</loc></url>
   <url><loc>https://tasknotes.dev/obsidian/releases/4.13.1/</loc></url>
+  <url><loc>https://tasknotes.dev/obsidian/releases/4.13.10/</loc></url>
   <url><loc>https://tasknotes.dev/obsidian/releases/4.13.2/</loc></url>
   <url><loc>https://tasknotes.dev/obsidian/releases/4.13.3/</loc></url>
   <url><loc>https://tasknotes.dev/obsidian/releases/4.13.4/</loc></url>
@@ -188,6 +190,16 @@
   <url><loc>https://tasknotes.dev/obsidian/releases/4.13.6/</loc></url>
   <url><loc>https://tasknotes.dev/obsidian/releases/4.13.7/</loc></url>
   <url><loc>https://tasknotes.dev/obsidian/releases/4.13.8/</loc></url>
+  <url><loc>https://tasknotes.dev/obsidian/releases/4.13.9/</loc></url>
+  <url><loc>https://tasknotes.dev/obsidian/releases/4.14.0/</loc></url>
+  <url><loc>https://tasknotes.dev/obsidian/releases/4.15.0/</loc></url>
+  <url><loc>https://tasknotes.dev/obsidian/releases/4.16.0/</loc></url>
+  <url><loc>https://tasknotes.dev/obsidian/releases/4.16.1/</loc></url>
+  <url><loc>https://tasknotes.dev/obsidian/releases/4.17.0/</loc></url>
+  <url><loc>https://tasknotes.dev/obsidian/releases/4.18.0/</loc></url>
+  <url><loc>https://tasknotes.dev/obsidian/releases/4.18.1/</loc></url>
+  <url><loc>https://tasknotes.dev/obsidian/releases/4.18.2/</loc></url>
+  <url><loc>https://tasknotes.dev/obsidian/releases/4.18.3/</loc></url>
   <url><loc>https://tasknotes.dev/obsidian/releases/4.2.0/</loc></url>
   <url><loc>https://tasknotes.dev/obsidian/releases/4.2.1/</loc></url>
   <url><loc>https://tasknotes.dev/obsidian/releases/4.3.0/</loc></url>
@@ -228,4 +240,5 @@
   <url><loc>https://tasknotes.dev/obsidian/webhooks/</loc></url>
   <url><loc>https://tasknotes.dev/obsidian/workflows/</loc></url>
   <url><loc>https://tasknotes.dev/privacy/</loc></url>
+  <url><loc>https://tasknotes.dev/terms/</loc></url>
 </urlset>

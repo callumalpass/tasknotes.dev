@@ -416,7 +416,7 @@ Source: https://tasknotes.dev/app/reference/manifest/
 
 # App integration manifest
 
-This page is generated from the integration manifest shipped by TaskNotes app 1.0.8.
+This page is generated from the integration manifest shipped by TaskNotes app 1.0.12.
 
 | Field | Value |
 | --- | --- |
@@ -427,7 +427,9 @@ This page is generated from the integration manifest shipped by TaskNotes app 1.
 
 ## Required contracts
 
-- `tasknotes.task` version `0.3.0-rc.5`
+- `tasknotes.task` version `0.3.0-rc.6`
+- `tasknotes.settings` version `1.1.0`
+- `mdbase.app-settings` version `2.0.0`
 - `obsidian.base` version `1.0.0`
 - `mdbase.view` version `1.0.0`
 
@@ -688,7 +690,7 @@ The tasknotes plugin is the primary reference for how this spec was derived, but
 
 ## 0.1 Status and authority
 
-This document is part of `tasknotes-spec` version `0.3.0-rc.3`.
+This document is part of `tasknotes-spec` version `0.3.0`.
 
 This specification is normative for implementations that claim conformance.
 No single implementation is normative; implementations are expected to conform to the specification.
@@ -840,7 +842,7 @@ This guide covers the TaskNotes plugin for Obsidian. It follows the "one note pe
 
 ## Requirements
 
-TaskNotes 4.13.8 requires **Obsidian 1.12.2** or later and depends on the **Bases** core plugin. Before you begin, open Obsidian Settings and confirm Bases is enabled under Core Plugins.
+TaskNotes 4.18.3 requires **Obsidian 1.12.2** or later and depends on the **Bases** core plugin. Before you begin, open Obsidian Settings and confirm Bases is enabled under Core Plugins.
 
 Trying the opt-in v5 beta? Read [Upgrading from v4 to v5](migration-v4-to-v5.md) before installing it. The guide covers backups, synced devices, and returning to v4. The installation and requirements below describe the stable release.
 
@@ -1546,6 +1548,75 @@ For full behavior, examples, and edge cases, see [Recurring Tasks](recurring-tas
 Task reminders support relative offsets from due/scheduled dates and absolute date-time reminders. You can add reminders from task modals, task cards, and context menus.
 
 For full setup, data format, defaults, and UI behavior, see [Task Reminders](reminders.md).
+
+---
+
+# Use TaskNotes App with your vault
+
+Source: https://tasknotes.dev/obsidian/guides/tasknotes-app/
+
+# Use TaskNotes App with your vault
+
+TaskNotes App is TaskNotes for the web, iPhone and Android. It works with the same Markdown task notes as the Obsidian plugin, so a task you edit in the app is the same note you see in Obsidian.
+
+- Web: [app.tasknotes.dev](https://app.tasknotes.dev/)
+- iPhone: [TaskNotes in the App Store](https://apps.apple.com/app/tasknotes/id6797168033)
+- Android: [TaskNotes on Google Play](https://play.google.com/store/apps/details?id=dev.tasknotes.app)
+
+In TaskNotes releases after 5.0.0-beta.9, **Settings → TaskNotes → TaskNotes App** in Obsidian has the same links, QR codes for the App Store and Google Play, and the setup steps below. The **TaskNotes: Set up TaskNotes App** command opens that page.
+
+## Try it first
+
+Open [app.tasknotes.dev](https://app.tasknotes.dev/) in a browser. Without an account, it opens an empty collection that is saved only in that browser, so you can try it straight away. It does not show the tasks in your vault until you sync the vault, as described below.
+
+## How TaskNotes App reaches your vault
+
+TaskNotes App cannot open files on your computer by itself. The mdbase Connect desktop app syncs your vault folder with your mdbase Connect account, and TaskNotes App signs in to the same account. The vault stays where it is, as ordinary Markdown files, and Obsidian keeps working with it as before.
+
+You need:
+
+- TaskNotes 5.0 beta or later in Obsidian, on every device that uses the vault. TaskNotes 4 can overwrite the task definitions that TaskNotes App uses.
+- The [mdbase Connect desktop app](https://mdbase.dev/downloads/) for macOS, Windows or Linux, on the computer that has your vault. mdbase Connect is in beta.
+- An mdbase Connect account. You can create one from the desktop app.
+
+Back up your vault before you start. See [Backup, restore, and removal](backup-recovery.md).
+
+## Set up
+
+1. In Obsidian, turn on the mdbase type definitions, so TaskNotes writes `mdbase.yaml` and the task type that TaskNotes App reads:
+    - After 5.0.0-beta.9: **Settings → TaskNotes → TaskNotes App → Turn on type definitions**.
+    - In 5.0.0-beta.9 and earlier: **Settings → TaskNotes → Calendars & integrations → Generate mdbase type definitions**.
+
+    Vaults updated from TaskNotes 4 have this off until you turn it on.
+2. Install [mdbase Connect](https://mdbase.dev/downloads/) on the computer that has your vault, open it, and sign in or create an account.
+3. In mdbase Connect, choose **Add existing folder** and select your vault's folder: the folder that contains the hidden `.obsidian` folder. In releases after 5.0.0-beta.9, **Copy folder path** on the TaskNotes App settings page copies it.
+4. Choose **Turn on sync**. mdbase Connect uploads the files in the folder. The folder stays where it is.
+5. Open TaskNotes App on the web, iPhone or Android, sign in with the same account, and choose the collection. The first time, TaskNotes App asks you to set up the collection and allow access.
+
+After step 3, the TaskNotes App settings page shows the vault as added to mdbase Connect.
+
+## Use one sync service per vault
+
+Once mdbase Connect syncs the vault, stop syncing it with any other service, such as Obsidian Sync, iCloud Drive, Dropbox, OneDrive, Google Drive or Syncthing. Two services syncing the same folder can create conflicting copies of your notes.
+
+- **Other computers:** install mdbase Connect on each computer where you use the vault in Obsidian, sync the collection to a folder there, and open that folder as a vault in Obsidian.
+- **Phones:** Obsidian on iPhone and Android cannot sync through mdbase Connect. On your phone, use TaskNotes App for your tasks.
+
+If you rely on another service to use the whole vault in Obsidian on your phone, keep using it, and don't sync the vault with mdbase Connect.
+
+## What changes in your vault
+
+- `mdbase.yaml` and the `_mdbase/` folder hold the task definitions and the TaskNotes settings record that the plugin and the app share. TaskNotes hides them in the file explorer by default. See [mdbase collections](../migration-v4-to-v5.md#mdbase-collections).
+- mdbase Connect keeps its sync state in the hidden `.mdbase/` folder. Don't edit or delete it.
+- Tasks created or changed in TaskNotes App are ordinary task notes, written in the same format as the plugin's.
+
+## Use your tasks from Claude
+
+The same setup lets AI apps such as Claude reach your tasks, even when Obsidian is closed. Add the [mdbase MCP server](https://mdbase.dev/apps/mcp/) to your AI app and approve the collection. TaskNotes' own [HTTP API](../HTTP_API.md) and MCP server work only while Obsidian is open on that computer.
+
+## Stop syncing
+
+In mdbase Connect, remove the collection. Apps stop using it, and the folder and its files stay where they are.
 
 ---
 
@@ -2348,6 +2419,7 @@ This page is generated from the commands registered by TaskNotes. Command IDs ar
 | Quick actions for current task | `quick-actions-current-task` | Global |
 | Quick actions for task under cursor | `quick-actions-task-under-cursor` | Editor |
 | Edit current task | `edit-current-task` | Global |
+| Repeat current task | `repeat-current-task` | Global |
 | Cycle current task status | `cycle-current-task-status` | Global |
 | Cycle current task priority | `cycle-current-task-priority` | Global |
 | Add project to current task | `add-project-to-current-task` | Global |
@@ -2370,7 +2442,7 @@ This page is generated from the commands registered by TaskNotes. Command IDs ar
 | Create or open task and start time tracking | `create-or-open-task-with-time-tracking` | Global |
 | Postpone overdue scheduled tasks to today | `rollover-overdue-scheduled-tasks` | Global |
 
-_Generated from 39 registered commands._
+_Generated from 40 registered commands._
 
 ---
 
@@ -2448,7 +2520,7 @@ Source: `src/settings/tabs/generalTab.ts`
 | Hide identification tags in task cards | When enabled, tags matching the task identification tag (including hierarchical matches like 'task/project') will be hidden from task card displays |
 | Hidden tag scope | Choose whether hiding identification tags also hides nested tags. |
 | Task property name | The frontmatter property name (e.g., "category") |
-| Task property value | The value that identifies a note as a task (e.g., "task") |
+| Task property value | The value that identifies a note as a task (e.g., "task"). Leave empty to treat every note that has this property as a task, whatever its value. |
 | Auto-create default files | Automatically create missing default base view files on startup. Disable to prevent deleted sample files from being recreated. |
 | Create default files | Create the default .base files in TaskNotes/Views/ directory. Existing files will not be overwritten. |
 | Update default files | Overwrite the configured default .base files with templates generated from your current TaskNotes settings. |
@@ -2474,7 +2546,10 @@ Source: `src/settings/tabs/modalFieldsTab.ts`
 
 | Setting | Purpose |
 | --- | --- |
-| No static controls detected | This tab is assembled dynamically. |
+| Split layout on wide screens | When enabled, the details editor appears in a right column on screens 900px or wider. When disabled, the modal uses a stacked layout. |
+| Tab moves focus in details editor | When enabled, Tab moves from the details editor to the next modal field and Shift+Tab moves to the previous field. When disabled, Tab and Shift+Tab use the markdown editor's indentation behavior. |
+| Sync user fields | Click to sync custom user fields from task properties settings into this configuration. |
+| Reset to defaults | Reset all field configurations to their default values. This will remove any custom configurations. |
 
 ## Appearance & UI
 
@@ -2501,6 +2576,7 @@ Source: `src/settings/tabs/appearanceTab.ts`
 | Show recurring tasks | Display recurring task instances by default |
 | Show ICS events | Display events from ICS subscriptions by default |
 | Time slot duration | Duration of each time slot in timeline views |
+| Time slot height | Height of each time slot in timeline views (pixels). Lower it to keep a long time range, or short slots such as 15 minutes, from needing a scrollbar. |
 | Start time | Earliest time shown in timeline views (HH:MM format) |
 | End time | Latest time shown in timeline views (HH:MM format). Use values above 24:00 to show early next-day hours, such as 26:00 for 2 AM. |
 | Initial scroll time | Time to scroll to when opening timeline views (HH:MM format) |
@@ -2525,10 +2601,12 @@ Source: `src/settings/tabs/featuresTab.ts`
 | --- | --- |
 | Task link overlay | Show interactive overlays when hovering over task links |
 | Disable overlay for aliased links | Do not show the task widget if the link contains an alias (e.g. [[Task\|Alias]]). |
+| Inline task card properties | Select which properties to show in inline task cards. |
 | Show convert button next to checkboxes | Display an inline button next to Markdown checkboxes that converts them to TaskNotes |
 | Keep checkbox when converting | Leave the original Markdown checkbox marker in place when converting a checkbox to a TaskNote link |
 | Enable natural language task input | Parse due dates, priorities, and contexts from natural language when creating tasks |
 | Default to scheduled | When NLP detects a date without context, treat it as scheduled rather than due |
+| Enter saves task | In the natural language input, press Enter to save the task. Shift+Enter inserts a newline, and Ctrl/Cmd+Enter still saves. |
 | NLP language | Language for natural language processing patterns and date parsing |
 | Open task after creation | Choose whether the task creation modal opens the new task note after saving. |
 | Use body template | Use a template file for task body content |
@@ -2562,7 +2640,9 @@ Source: `src/settings/tabs/featuresTab.ts`
 | Time tracking stop notification | Show notification when time tracking is automatically stopped |
 | Maintain due date offset in recurring tasks | Keep the offset between due date and scheduled date when recurring tasks are completed |
 | Reset checkboxes on recurrence | Reset all Markdown checkboxes in the task body when a recurring task is completed and rescheduled |
+| Reset status after each occurrence | When an occurrence is completed or skipped, move the task to the Next status of the first completed status. Turn off to keep the task's status. |
 | Enable timeblocking | Enable timeblocking feature for lightweight scheduling in daily notes. When enabled, 'Timeblock' option appears in the calendar drag context menu. |
+| Attachment search order | Controls how files are ordered in the Add Attachment search window for timeblocks. |
 | Show timeblocks | Display timeblocks from daily notes by default |
 | Default timeblock color | The default color used when creating new timeblocks |
 | Enable debug logging | Log detailed drag-and-drop and view diagnostics to the developer console. Useful for troubleshooting. |
@@ -2594,6 +2674,9 @@ Source: `src/settings/tabs/integrationsTab.ts`
 | Manual sync actions | See the setting in Obsidian for contextual details. |
 | Sync all tasks | Sync all existing tasks to Google Calendar. This will create events for tasks that haven't been synced yet. |
 | Unlink all tasks | Remove all task-event links without deleting calendar events. |
+| Sync timeblocks | Create, update and delete calendar events as you add, edit and remove timeblocks. Existing timeblocks are synced the next time you edit them. |
+| Timeblock calendar | See the setting in Obsidian for contextual details. |
+| Timeblock event title template | Template for timeblock event titles. Available variables: {{title}}, {{date}}, {{startTime}}, {{endTime}} |
 | Default note template | Path to template file for notes created from ICS events |
 | Default note folder | Folder for notes created from ICS events |
 | ICS note filename format | How filenames are generated for notes created from ICS events |
@@ -2601,7 +2684,6 @@ Source: `src/settings/tabs/integrationsTab.ts`
 | Use ICS event end time as task due date | When enabled, tasks created from calendar events will have their due date set to the event's end time. For all-day events, the due date will be set to the event date. For timed events, the due date will include the end time. |
 | Recurring event related notes | Choose whether notes linked to one recurrence of an external calendar event appear across the loaded series or only on the selected instance. |
 | Add calendar subscription | Add a new calendar subscription from ICS/iCal URL or local file |
-| New calendar | See the setting in Obsidian for contextual details. |
 | Refresh all subscriptions | Manually refresh all enabled calendar subscriptions |
 | Enable automatic export | Automatically keep an ICS file updated with all your tasks |
 | Export file path | Path where the ICS file will be saved (relative to vault root) |
@@ -2618,6 +2700,11 @@ Source: `src/settings/tabs/integrationsTab.ts`
 | API authentication token | TaskNotes token, not your AI provider's API key. To generate one, enable HTTP API, leave this field empty, and restart Obsidian. Then copy the generated token into your client's bearer authentication settings. Update clients whenever this token changes. |
 | Enable MCP server | Expose TaskNotes tools via Model Context Protocol at /mcp endpoint. Requires HTTP API to be enabled. |
 | Add webhook | Register a new webhook endpoint |
+| Transform file | Path to a .json template file in your vault that transforms webhook payloads |
+| Include custom headers | Include TaskNotes headers (event type, signature, delivery ID). Turn off for Discord, Slack, and other services with strict CORS policies. |
+| Webhook URL | The endpoint where webhook payloads will be sent |
+| Transform file | Path to a .json template file in your vault that transforms webhook payloads |
+| Include custom headers | Include TaskNotes headers (event type, signature, delivery ID). Turn off for Discord, Slack, and other services with strict CORS policies. |
 
 ## Complete default settings snapshot
 
@@ -2668,6 +2755,7 @@ The following JSON is generated from `DEFAULT_SETTINGS`. Empty strings and disab
     "defaultView": "dayGridMonth",
     "customDayCount": 3,
     "slotDuration": "00:30:00",
+    "slotHeight": 24,
     "slotMinTime": "00:00:00",
     "slotMaxTime": "24:00:00",
     "scrollTime": "08:00:00",
@@ -2716,6 +2804,7 @@ The following JSON is generated from `DEFAULT_SETTINGS`. Empty strings and disab
   "taskModalTabMovesFocus": true,
   "enableNaturalLanguageInput": true,
   "nlpDefaultToScheduled": true,
+  "nlpEnterToSubmit": false,
   "nlpLanguage": "en",
   "uiLanguage": "system",
   "statusSuggestionTrigger": "*",
@@ -2775,12 +2864,14 @@ The following JSON is generated from `DEFAULT_SETTINGS`. Empty strings and disab
     "contexts": "contexts",
     "projects": "projects",
     "attachments": "attachments",
+    "assignees": "assignees",
     "timeEstimate": "timeEstimate",
     "completedDate": "completedDate",
     "dateCreated": "dateCreated",
     "dateModified": "dateModified",
     "recurrence": "recurrence",
     "recurrenceAnchor": "recurrence_anchor",
+    "recurrenceOriginalDate": "recurrence_original_date",
     "recurrenceParent": "recurrence_parent",
     "occurrenceDate": "occurrence_date",
     "occurrenceMaterialization": "occurrence_materialization",
@@ -2844,6 +2935,7 @@ The following JSON is generated from `DEFAULT_SETTINGS`. Empty strings and disab
       "color": "#00aa00",
       "isCompleted": true,
       "excludeFromCycle": false,
+      "nextStatus": "open",
       "order": 3,
       "autoArchive": false,
       "autoArchiveDelay": 5
@@ -2956,6 +3048,7 @@ The following JSON is generated from `DEFAULT_SETTINGS`. Empty strings and disab
   },
   "maintainDueDateOffsetInRecurring": false,
   "resetCheckboxesOnRecurrence": false,
+  "resetRecurringStatusAfterOccurrence": true,
   "useFrontmatterMarkdownLinks": false,
   "enableGoogleCalendar": false,
   "enableMicrosoftCalendar": false,
@@ -2979,7 +3072,10 @@ The following JSON is generated from `DEFAULT_SETTINGS`. Empty strings and disab
     "showAllDayAsFree": false,
     "defaultEventDuration": 60,
     "includeObsidianLink": true,
-    "defaultReminderMinutes": null
+    "defaultReminderMinutes": null,
+    "syncTimeblocks": false,
+    "timeblockTargetCalendarId": "",
+    "timeblockEventTitleTemplate": "{{title}}"
   },
   "enableDebugLogging": false
 }
@@ -2997,6 +3093,17 @@ Welcome to the TaskNotes release notes. Here you can find detailed information a
 
 ### Version 4.x (Current)
 
+- [4.18.3](releases/4.18.3.md)
+- [4.18.2](releases/4.18.2.md)
+- [4.18.1](releases/4.18.1.md)
+- [4.18.0](releases/4.18.0.md)
+- [4.17.0](releases/4.17.0.md)
+- [4.16.1](releases/4.16.1.md)
+- [4.16.0](releases/4.16.0.md)
+- [4.15.0](releases/4.15.0.md)
+- [4.14.0](releases/4.14.0.md)
+- [4.13.10](releases/4.13.10.md)
+- [4.13.9](releases/4.13.9.md)
 - [4.13.8](releases/4.13.8.md)
 - [4.13.7](releases/4.13.7.md)
 - [4.13.6](releases/4.13.6.md)
@@ -3426,10 +3533,12 @@ Source: https://tasknotes.dev/privacy/
 
 # TaskNotes privacy overview
 
-Last updated: August 6, 2026
+Last updated: November 13, 2026
 
 TaskNotes products are built around portable Markdown records. The storage and
 network boundaries depend on the client and collection you choose.
+
+TaskNotes is run by Callum Alpass, in Melbourne, Australia.
 
 ## TaskNotes app
 
@@ -3454,9 +3563,81 @@ for enabled features that require it, including release checks, calendar
 providers, ICS subscriptions, webhooks, and remotely loaded API documentation
 assets.
 
+## TaskNotes Calendar (hosted service)
+
+TaskNotes Calendar is an optional service that shows your Google Calendar
+events in the TaskNotes web and mobile apps and lets you create, edit and
+delete them there. It is only used if you sign in to it.
+
+**What we receive from Google.** When you sign in, we receive your Google
+account identifier, email address and name. When you connect calendars, we
+receive access to the list of calendars you subscribe to and to the events on
+them.
+
+**What we store.**
+
+- Your Google account identifier, email address and name, until you delete
+  your account.
+- Google access credentials, encrypted, until you disconnect, reconnect or
+  delete your account.
+- The details of your calendars, such as their names, until you disconnect or
+  delete your account.
+- Digests of your device sessions, which expire after 30 days without use.
+
+**What we do not store.** Your calendar events pass through the service when
+you view or change them. They are not saved on our servers.
+
+**How we protect your data.**
+
+- All traffic between the TaskNotes apps, the service and Google is encrypted
+  in transit with HTTPS (TLS).
+- Your Google access and refresh tokens are encrypted with AES-256-GCM before
+  they are stored. Each connection has its own encryption key, which is itself
+  encrypted with a master key held in Cloudflare's secret storage, separate
+  from the database. Each encrypted credential is bound to your account and
+  connection, so it cannot be used for anyone else.
+- Google credentials never leave the service. They are not sent to the
+  TaskNotes apps, written to logs or placed in URLs.
+- We store only keyed digests (HMAC-SHA-256) of device session credentials,
+  never the credentials themselves. The web app's session cookie is `Secure`,
+  `HttpOnly` and `SameSite=Strict`.
+- Every request is checked against your signed-in account, and the service
+  only accesses the calendars of that account.
+- Access to the production service, its database and its keys is limited to
+  the operator. No person reads your calendar data, except with your
+  permission, to investigate abuse or a security problem, or where the law
+  requires it.
+
+**Logs.** Our logs record the route, method, status, duration and any error
+code of each request, along with a short code for the cause of a failure and a
+count of calendars or events that could not be shown. They do not include your
+identity, IP address, calendar data or event content. Logs are kept for up to 7
+days.
+
+**Who processes this data.** The service runs on Cloudflare, which hosts it
+and its database. Calendar data is exchanged with Google. We do not sell your
+data, use it for advertising, or share it with anyone else, except where the
+law requires it.
+
+**Your choices.** You can disconnect your calendars or delete your account in
+the app's settings at any time. Either one deletes our stored Google
+credential and asks Google to revoke our access. Deleting your account removes
+the data listed above, apart from a keyed digest of your identity, kept for
+about an hour so that sign-ins already in progress cannot recreate the
+account. Deleted data can remain in database backups for up to 30 days. You
+can also remove access from your Google Account's linked apps page. Deleting
+your account does not change your Google events or your tasks.
+
+**Google API Services.** TaskNotes' use and transfer to any other app of
+information received from Google APIs will adhere to the [Google API Services User Data Policy](https://developers.google.com/terms/api-services-user-data-policy),
+including the Limited Use requirements.
+
+See the [TaskNotes Calendar terms](/terms/).
+
 ## Analytics
 
-TaskNotes does not include a product telemetry or analytics pipeline. Services
+TaskNotes does not include a product telemetry or analytics pipeline. TaskNotes
+Calendar keeps the operational logs described above. Services
 you choose to connect may keep their own operational, account, security, or
 billing records under their respective policies.
 
@@ -3474,3 +3655,38 @@ inspect the implementation:
 
 - [TaskNotes app](https://github.com/callumalpass/tasknotes-app)
 - [TaskNotes Obsidian plugin](https://github.com/callumalpass/tasknotes)
+
+---
+
+# TaskNotes Calendar terms
+
+Source: https://tasknotes.dev/terms/
+
+# TaskNotes Calendar terms
+
+Last updated: November 7, 2026
+
+These terms cover the optional hosted TaskNotes Calendar service, run by Callum
+Alpass in Melbourne, Australia. By signing in, you agree to them.
+
+**The service.** It connects TaskNotes to your Google Calendar. It may change,
+be interrupted or be withdrawn. We will try to give notice before withdrawing
+it.
+
+**Your account.** You need a Google account, and you are responsible for the
+changes you make to your calendars through TaskNotes.
+
+**Acceptable use.** Do not attack, overload, reverse-engineer for abuse, or use
+the service to break the law or Google's terms.
+
+**No warranty.** The service is provided as is. To the extent the law allows, we
+are not liable for lost or incorrect calendar data or for indirect losses.
+
+**Ending use.** You can delete your account at any time in the app. We may
+suspend accounts that break these terms.
+
+**Changes and law.** We will publish changes on this page with a new date. These
+terms are governed by the law of Victoria, Australia.
+
+**Contact.** [Open an issue](https://github.com/callumalpass/tasknotes/issues).
+See also the [privacy overview](/privacy/).
