@@ -17,23 +17,22 @@ keep a separate offline collection or a queue of changes waiting to sync.
 | --- | --- |
 | Connected | TaskNotes can read and change the selected collection |
 | Connecting | TaskNotes is checking the collection connection |
-| Collection unavailable | The hosted service or connected computer cannot be reached |
+| Collection unavailable | TaskNotes cannot reach mdbase |
 
 Open **More** to see the current status and use **Refresh now** to read the
 latest collection state.
 
-## Hosted collections
+## What TaskNotes needs
 
-A hosted collection needs a network connection and an available hosted mdbase
-service. If either is unavailable, TaskNotes cannot open the collection or save
-changes. Reconnect the collection if its authorization has expired.
+TaskNotes needs a network connection and an available mdbase service. If
+either is unavailable, TaskNotes cannot open the collection or save changes.
+Reconnect the collection if its authorization has expired.
 
-## Collections on your computer
+## Folders on your computer
 
-A computer collection also needs the computer holding the Markdown to be
-awake, online, and running the mdbase Connect background service. TaskNotes
-reaches it through the end-to-end encrypted relay. If the computer becomes
-unavailable, access returns when the computer and connector return.
+When a collection is synced with a folder on your computer, TaskNotes uses the
+online copy, so the computer can be off. Changes reach the folder the next time
+mdbase Connect is running on that computer.
 
 ## During a connection problem
 
@@ -41,5 +40,5 @@ Tasks already visible in the current session may remain on screen during a
 short interruption, but TaskNotes cannot safely save new changes until mdbase
 is reachable. A failed action is not silently queued for later.
 
-If the problem continues, open **More** and choose **Change collection** to use
-another mdbase collection.
+If the problem continues, use the collection switcher in the sidebar, or
+**Settings → Collection**, to open another mdbase collection.

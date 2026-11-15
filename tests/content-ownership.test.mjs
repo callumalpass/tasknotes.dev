@@ -60,12 +60,12 @@ test("app documentation does not advertise device filesystem collections", async
   );
 });
 
-test("mdbase guide explains computer availability, encryption, and desktop setup", async () => {
+test("mdbase guide explains computer availability and desktop setup", async () => {
   const guide = generated.pages.find((page) => page.route === "/app/mdbase/");
   assert.equal(guide?.source, "tasknotes.dev:content/app/mdbase.md");
   assert.match(guide?.raw || "", /https:\/\/mdbase\.dev\/downloads\//);
-  assert.match(guide?.text || "", /awake, connected to the internet/i);
-  assert.match(guide?.text || "", /end-to-end encrypted relay/i);
+  assert.match(guide?.text || "", /keeps working while your computer is asleep or off/i);
+  assert.doesNotMatch(guide?.text || "", /relay|must be awake/i);
 });
 
 test("app documentation identifies its beta and collection compatibility", () => {

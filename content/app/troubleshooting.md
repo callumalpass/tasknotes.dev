@@ -14,15 +14,14 @@ problem.
 
 ## The collection is unavailable
 
-For a hosted collection, confirm that the device is online and try **Reconnect
-this collection**. For a computer collection, also confirm that the computer
-holding the Markdown is awake, online, and running mdbase Connect.
+Confirm that the device is online and try **Reconnect this collection**.
 
 ## An authorization error appears
 
 Use the reconnect action for the current collection and review the access that
-mdbase requests. If you no longer want to use that collection, open **More** and
-choose **Change collection**.
+mdbase requests. If you no longer want to use that collection, use the
+collection switcher in the sidebar, or **Settings → Collection**, to open
+another one.
 
 ## A change did not save
 
@@ -34,11 +33,12 @@ recoverable input visible when they can do so safely.
 
 Open **More** and choose **Refresh now**. If the record still does not appear,
 confirm that the other tool wrote to the same mdbase collection and that the
-record uses a compatible TaskNotes task definition.
+record uses a compatible TaskNotes task definition. For a change made in a
+folder on your computer, such as an Obsidian vault, check that mdbase Connect
+is running on that computer and sync is on for the folder.
 
 ## Notifications do not arrive
 
 Confirm that the current collection is an mdbase collection, reminders are
 enabled in **More**, the browser or operating system permission is granted, and
-the task contains a valid future reminder. For a computer collection, the
-computer and mdbase Connect must remain available.
+the task contains a valid future reminder.

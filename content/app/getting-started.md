@@ -16,20 +16,24 @@ specification.
 
 ## 1. Open TaskNotes
 
-Use [app.tasknotes.dev](https://app.tasknotes.dev/) in a supported browser or
-install the Android or iOS application when it is available through its store.
+Use [app.tasknotes.dev](https://app.tasknotes.dev/) in a supported browser, or
+install TaskNotes from the
+[App Store](https://apps.apple.com/app/tasknotes/id6797168033) or
+[Google Play](https://play.google.com/store/apps/details?id=dev.tasknotes.app).
 The web and native applications use the same task interface.
+
+On the web you can try TaskNotes without an account: it opens a collection
+saved only in that browser.
 
 ## 2. Choose a collection
 
-TaskNotes opens every collection through mdbase. In the collection chooser,
-select one labelled **Hosted by mdbase** or one listed under your connected
-computer. Read [What is mdbase?](/app/mdbase/) if this is new to you, then
-[Choose a collection](/app/collections/) to compare the two options.
+TaskNotes opens every collection through mdbase. Sign in, then create a new
+collection or choose one you already have. To use a folder on your computer,
+such as an Obsidian vault, sync it with the mdbase Connect desktop app first.
+Read [What is mdbase?](/app/mdbase/) if this is new to you, then
+[Choose a collection](/app/collections/) to compare the options.
 
-Follow [Connect TaskNotes to mdbase](/app/connect-mdbase/) for a short video,
-written steps covering hosted collections first, then
-existing local folders.
+Follow [Connect TaskNotes to mdbase](/app/connect-mdbase/) for the steps.
 
 ## 3. Create a task
 

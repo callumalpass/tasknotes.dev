@@ -37,7 +37,7 @@ test("renders app and Obsidian pages with explicit scope", async () => {
   const appHtml = await app.text();
   assert.match(appHtml, /Choose a collection/);
   assert.match(appHtml, /TaskNotes app/);
-  assert.match(appHtml, /Hosted mdbase/);
+  assert.match(appHtml, /A folder on your computer/);
 
   const plugin = await render("/obsidian/core-concepts/");
   assert.equal(plugin.status, 200);
@@ -56,26 +56,13 @@ test("replaces the embedded demo with the existing static app screenshot and pre
   assert.match(await legacy.text(), /<link rel="canonical" href="https:\/\/tasknotes\.dev\/app\/"/);
 });
 
-test("renders the connection walkthrough with an opt-in local video and minimal copy", async () => {
+test("renders the connection steps without the retired walkthrough video", async () => {
   const response = await render("/app/connect-mdbase/");
   const html = await response.text();
-  const video = html.match(/<video\b[^>]*>/)?.[0];
-  assert.ok(video, "the walkthrough has a native video player");
-  assert.match(video, /\bcontrols\b/);
-  assert.match(video, /\bplaysinline\b/);
-  assert.match(video, /preload="none"/);
-  assert.match(video, /poster="\/assets\/app\/connect-mdbase\/poster\.png"/);
-  assert.match(video, /aria-label="Connect TaskNotes to mdbase/);
-  assert.doesNotMatch(video, /\b(?:autoplay|loop)\b/);
-  assert.match(html, /<source src="\/assets\/app\/connect-mdbase\/walkthrough\.mp4" type="video\/mp4"/);
-  assert.match(html, /<track[^>]*kind="captions"[^>]*srclang="en"/);
-  assert.match(html, /href="\/assets\/app\/connect-mdbase\/walkthrough\.mp4"/);
-  assert.doesNotMatch(html, /walkthrough\.mp4\//);
-  assert.doesNotMatch(html, /walkthrough-transcript|Read the transcript|3 minutes 53 seconds/);
-  assert.match(html, /<h2 id="connect-a-hosted-collection"/);
-  assert.match(html, /<h2 id="connect-an-existing-local-folder"/);
-  assert.doesNotMatch(html, /OS-specific installer dialogs are omitted|disposable demo data/);
-  assert.doesNotMatch(html, /tasknotes-mdbase-video\.pages\.dev|<iframe/);
+  assert.doesNotMatch(html, /<video\b|walkthrough\.mp4/);
+  assert.match(html, /<h2 id="start-a-new-collection"/);
+  assert.match(html, /<h2 id="use-a-folder-on-your-computer"/);
+  assert.match(html, /<h2 id="first-time-setup"/);
 });
 
 test("renders legacy routes with canonical destinations", async () => {

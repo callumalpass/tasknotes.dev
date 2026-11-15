@@ -27,8 +27,7 @@ Where the authoritative copy lives depends on the client and connection:
 
 | Client and collection | Source of truth | Availability |
 | --- | --- | --- |
-| TaskNotes app · hosted mdbase | Hosted collection | Requires a network connection |
-| TaskNotes app · computer through relay | Collection on that computer | Requires the network, computer, and connector |
+| TaskNotes app · mdbase collection | The collection's online copy, synced with any folders on your computers | Requires a network connection |
 | Obsidian vault | Markdown files in the vault | Controlled by Obsidian and your sync choice |
 
 ## Portability and compatibility

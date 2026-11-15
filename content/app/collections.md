@@ -1,6 +1,6 @@
 ---
 title: Choose a collection
-description: Compare hosted mdbase with a collection connected from your own computer.
+description: Start a new mdbase collection, or sync a folder on your computer and use it in TaskNotes.
 route: /app/collections/
 product: app
 platforms: [web, android, ios]
@@ -8,37 +8,38 @@ platforms: [web, android, ios]
 
 # Choose a collection
 
-TaskNotes opens every collection through mdbase. The choice is where the main
-copy of your Markdown lives: hosted online or on your own computer.
+TaskNotes opens every collection through mdbase. mdbase keeps a copy of each
+collection online, so TaskNotes can reach it from the web, iPhone and Android.
+The choice is where the collection starts.
 
-If mdbase is new to you, start with [mdbase and TaskNotes](/app/mdbase/) for a
-plain-language explanation of the format, Connect desktop app, and hosting
-choices. For a video and written setup steps, follow
-[Connect TaskNotes to mdbase](/app/connect-mdbase/).
+If mdbase is new to you, start with [mdbase and TaskNotes](/app/mdbase/). For
+the setup steps, follow [Connect TaskNotes to mdbase](/app/connect-mdbase/).
 
-## Hosted mdbase
+## A new collection
 
-Hosted mdbase is the recommended choice for convenient access across the web,
-Android, and iOS. The provider keeps the main collection online, so it is
-available from any TaskNotes device with a network connection and can deliver
-reminders while TaskNotes is closed.
+Create a collection when you sign in to TaskNotes, or with **Add collection →
+New collection** in mdbase. It starts online, with no folder on your computer.
+You can add it to a computer later with the mdbase Connect desktop app.
 
-TaskNotes reads and writes the hosted collection directly. It does not keep a
-separate offline copy, so you need a network connection to open the collection
-or make changes.
+## A folder on your computer
 
-## Connect to a computer
+The mdbase Connect desktop app can sync an existing folder of Markdown notes,
+such as an Obsidian vault, with your mdbase account. The folder stays where it
+is, and mdbase keeps a copy online. TaskNotes uses that copy, so your computer
+does not need to stay on. Changes reach the folder whenever mdbase Connect is
+running on that computer.
 
-mdbase Connect can make a Markdown collection on your computer available to
-TaskNotes. Requests and responses travel through an end-to-end encrypted relay;
-the relay cannot read your task contents and you do not need to open a port on
-your router.
+For an Obsidian vault, follow
+[Use TaskNotes App with your vault](/obsidian/guides/tasknotes-app/).
 
-The computer holds the main copy, so it must be awake, online, and running the
-mdbase Connect background service whenever you use TaskNotes. See how to
-[install mdbase Connect and use a computer collection](/app/mdbase/#use-a-collection-on-your-computer).
+## Only in this browser
+
+Without an account, TaskNotes on the web opens a collection saved only in that
+browser. Use it to try TaskNotes. When you sign in, choose **Bring it in** to
+move that work into a collection.
 
 ## Change collections later
 
-Open **Settings** and choose **Change collection**. Opening another collection does
-not copy or move records from the collection you were using.
+Use the collection switcher in the sidebar, or **Settings → Collection**.
+Opening another collection does not copy or move records from the collection
+you were using.

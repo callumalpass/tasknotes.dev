@@ -16,10 +16,10 @@ The app is compatible with **TaskNotes v5 collections**, which use the
 **mdbase 0.3.0 specification**. The same collection can be used by other
 compatible TaskNotes and mdbase tools.
 
-Every TaskNotes session opens an mdbase collection. You can use a collection
-hosted online or connect to a Markdown collection on your computer through the
-encrypted mdbase relay. TaskNotes reads and writes that collection directly, so
-changes require a connection.
+Every TaskNotes session opens an mdbase collection. You can start a new
+collection online, or sync a folder of Markdown notes on your computer, such as
+an Obsidian vault, with the mdbase Connect desktop app. TaskNotes reads and
+writes the collection's online copy, so it works while your computer is off.
 
 <figure class="app-screenshot">
   <img src="/assets/app/today-workspace.webp" alt="TaskNotes Today workspace with desktop navigation, quick capture, and grouped task rows">
@@ -31,7 +31,7 @@ changes require a connection.
 1. [Open or install TaskNotes](/app/getting-started/).
 2. [Learn how mdbase supports TaskNotes](/app/mdbase/).
 3. [Choose where your collection lives](/app/collections/), then follow the
-   [connection walkthrough](/app/connect-mdbase/) with video and written steps.
+   [connection steps](/app/connect-mdbase/).
 4. Create a task and open **Today**.
 5. Turn on reminders only if the collection and platform support delivery.
 
@@ -41,7 +41,7 @@ changes require a connection.
 - Capture, editing, completion, archive, and search
 - Projects, contexts, tags, priorities, relationships, and custom fields
 - Recurrence, materialized occurrence notes, reminders, and time tracking
-- Hosted mdbase and end-to-end encrypted relay connections
+- New collections online, or folders on your computer synced with mdbase Connect
 - Browser, Android, and iOS packaging from the same application
 
 Plugin-only functionality such as inline Obsidian widgets, the command palette,
