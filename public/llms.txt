@@ -22,6 +22,7 @@
 - [Core Concepts](https://tasknotes.dev/obsidian/core-concepts/): TaskNotes follows the "one note per task" principle, where each task lives as a separate Markdown note with structured metadata in YAML frontmatter.
 - [Recurring Tasks](https://tasknotes.dev/obsidian/features/recurring-tasks/): TaskNotes recurring tasks use RFC 5545 RRule strings with DTSTART support and dynamic next-occurrence scheduling. The model separates recurrence patterns from the next planned i...
 - [Task Management](https://tasknotes.dev/obsidian/features/task-management/): This page covers task creation, properties, projects, dependencies, recurring tasks, and reminders. For the underlying architecture, see Core Concepts.
+- [Use TaskNotes App with your vault](https://tasknotes.dev/obsidian/guides/tasknotes-app/): Use the tasks in your Obsidian vault in TaskNotes App on the web, iPhone and Android by syncing the vault with mdbase Connect.
 - [TaskNotes HTTP API](https://tasknotes.dev/obsidian/HTTP_API/): The TaskNotes HTTP API provides local HTTP access to tasks, time tracking, pomodoro, calendars, webhooks, and NLP parsing.
 - [Upgrading from v4 to v5](https://tasknotes.dev/obsidian/migration-v4-to-v5/): Upgrade from TaskNotes v4 to the v5 beta, with first-launch checks, synced-device guidance, and metadata recovery.
 - [Command reference](https://tasknotes.dev/obsidian/reference/commands/): Every TaskNotes command registered with Obsidian, generated from the plugin command definitions.
@@ -32,6 +33,7 @@
 - [Troubleshooting](https://tasknotes.dev/obsidian/troubleshooting/): Common issues and solutions for TaskNotes.
 - [Views](https://tasknotes.dev/obsidian/views/): TaskNotes provides multiple views for managing tasks and tracking productivity. All task-focused views operate as .base files located in the TaskNotes/Views/ directory and requi...
 - [TaskNotes privacy overview](https://tasknotes.dev/privacy/): How the TaskNotes app and Obsidian plugin store data and when optional services are involved.
+- [TaskNotes Calendar terms](https://tasknotes.dev/terms/): Terms for the optional hosted TaskNotes Calendar service.
 
 ## Full context
 
