@@ -1,14 +1,14 @@
 ---
 title: TaskNotes privacy overview
-description: How the TaskNotes app and Obsidian plugin store data and when optional services are involved.
+description: How the TaskNotes app, Obsidian plugin and browser extension store data and when optional services are involved.
 route: /privacy/
 product: shared
-last_updated: 2026-11-13
+last_updated: 2026-11-15
 ---
 
 # TaskNotes privacy overview
 
-Last updated: November 13, 2026
+Last updated: November 15, 2026
 
 TaskNotes products are built around portable Markdown records. The storage and
 network boundaries depend on the client and collection you choose.
@@ -109,6 +109,33 @@ including the Limited Use requirements.
 
 See the [TaskNotes Calendar terms](/terms/).
 
+## Browser extension
+
+The TaskNotes browser extension creates tasks from web pages. It sends a task
+only to the destination you choose in its settings.
+
+- **What it reads.** The extension reads a page only when you open its popup,
+  use its right-click menu or type `task` in the address bar. It then reads the
+  tab's title, address and any selected text. It does not run on pages in the
+  background, and it does not read your browsing history.
+- **Obsidian.** Tasks go to the TaskNotes plugin's HTTP API on your own
+  computer (`localhost`). Nothing leaves the computer.
+- **mdbase.** Tasks go to the mdbase collection you sign in to and choose,
+  through mdbase Connect. The task's title, details and source page address,
+  and any text you selected, are stored there as a Markdown record. The
+  extension asks only to read the collection and to create records.
+- **What it stores.** Settings (the destination, the Obsidian port and API
+  token, default tags and link options) are kept in the browser's extension
+  storage, which the browser syncs between your devices if browser sync is on.
+  The chosen mdbase collection and the mdbase sign-in stay in the extension's
+  own storage on this device. Unsaved drafts are kept in session storage and are cleared
+  when the browser closes.
+- **No other services.** The extension has no analytics, advertising or
+  tracking, and sends nothing to TaskNotes or anyone else.
+
+Removing the extension deletes its stored settings and sign-in. Tasks already
+created stay in your vault or collection.
+
 ## Analytics
 
 TaskNotes does not include a product telemetry or analytics pipeline. TaskNotes
@@ -130,3 +157,4 @@ inspect the implementation:
 
 - [TaskNotes app](https://github.com/callumalpass/tasknotes-app)
 - [TaskNotes Obsidian plugin](https://github.com/callumalpass/tasknotes)
+- [TaskNotes browser extension](https://github.com/callumalpass/tasknotes-browser-extension)
