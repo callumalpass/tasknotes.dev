@@ -38,3 +38,5 @@ TaskNotes App is a separate app for the web, iPhone and Android that works with 
 ## If mobile stops loading tasks
 
 Wait for vault sync to finish, confirm Bases is enabled, and run **TaskNotes: Refresh cache**. Then reopen the affected Base. If the problem is isolated to calendar data, enable **Disable calendar integration on mobile** and restart Obsidian before investigating the provider connection on desktop.
+
+To open these same task notes in the standalone phone app, follow [Use your Obsidian tasks on iPhone and Android](/guides/obsidian-tasks-mobile/).

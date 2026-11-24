@@ -1222,3 +1222,70 @@ video {
 		padding: 0;
 	}
 }
+
+.task-sync-flow {
+	display: flex;
+	align-items: center;
+	justify-content: space-around;
+	gap: 0.35rem;
+	padding: 1rem 0.5rem;
+	margin: 1.5rem 0;
+	border-radius: var(--radius);
+	background: var(--color-surface-subtle);
+	text-align: center;
+}
+
+.task-sync-flow strong,
+.task-sync-flow div span {
+	display: block;
+}
+
+.task-sync-flow div span {
+	color: var(--color-text-soft);
+	font-size: 0.83rem;
+}
+
+.sync-link {
+	color: var(--color-accent);
+	font-size: 1.5rem;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+	.sync-link {
+		animation: sync-direction 2s ease-in-out 2;
+	}
+
+	.sync-link:nth-child(4) {
+		animation-delay: 0.3s;
+	}
+
+	@keyframes sync-direction {
+		0%, 100% { transform: translateX(-0.2em); }
+		50% { transform: translateX(0.2em); }
+	}
+}
+
+.guide-recording video {
+	display: block;
+	width: 100%;
+	max-height: none;
+	margin: 0;
+}
+
+.phone-recording {
+	max-width: 22rem;
+}
+
+.guide-recording .motion-still {
+	display: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.guide-recording video {
+		display: none;
+	}
+
+	.guide-recording .motion-still {
+		display: block;
+	}
+}

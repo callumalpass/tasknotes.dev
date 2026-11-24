@@ -10,6 +10,11 @@ navigation:
       - title: Shared concepts
         route: /concepts/task-records/
 
+  - label: Guides
+    items:
+      - title: Obsidian tasks on your phone
+        route: /guides/obsidian-tasks-mobile/
+
   - label: TaskNotes app
     items:
       - title: Get started
