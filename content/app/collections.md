@@ -43,3 +43,5 @@ move that work into a collection.
 Use the collection switcher in the sidebar, or **Settings → Collection**.
 Opening another collection does not copy or move records from the collection
 you were using.
+
+To work on the same tasks with someone else, [share a task list](/guides/share-task-list/).
