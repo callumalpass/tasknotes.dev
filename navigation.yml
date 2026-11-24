@@ -14,6 +14,8 @@ navigation:
     items:
       - title: Obsidian tasks on your phone
         route: /guides/obsidian-tasks-mobile/
+      - title: A Markdown to-do app
+        route: /guides/markdown-todo/
 
   - label: TaskNotes app
     items:
