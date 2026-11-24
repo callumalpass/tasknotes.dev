@@ -135,6 +135,8 @@ Use the collection switcher in the sidebar, or **Settings → Collection**.
 Opening another collection does not copy or move records from the collection
 you were using.
 
+To work on the same tasks with someone else, [share a task list](/guides/share-task-list/).
+
 ---
 
 # Connect TaskNotes to mdbase
@@ -295,6 +297,8 @@ Follow [Connect TaskNotes to mdbase](/app/connect-mdbase/) for the steps.
 
 Use **Add task**, enter a title, and save. Capture understands the collection's
 configured status, priority, project, context, and tag values.
+
+For a worked example, [create a task and find its Markdown file](/guides/markdown-todo/).
 
 ## 4. Review the starter views
 
@@ -804,6 +808,256 @@ Specification changes SHOULD be accompanied by:
 - precise normative edits,
 - migration notes when behavior changes,
 - updated examples.
+
+---
+
+# A to-do app that stores each task as a Markdown file
+
+Source: https://tasknotes.dev/guides/markdown-todo/
+
+# A to-do app that stores each task as a Markdown file
+
+You need a browser to try this. To keep the files in a folder you can open in a text editor, you also need an mdbase account and the mdbase Connect desktop app. You can do the whole setup without Obsidian.
+
+## 1. Start in the browser
+
+Open [TaskNotes](https://app.tasknotes.dev/). You can create a task straight away. If the workspace says **No views yet**, choose **Add starter views** to get **Today**, **Inbox** and the other lists.
+
+<figure class="app-screenshot">
+  <img src="/assets/guides/browser-workspace.webp" width="1400" height="658" alt="TaskNotes in a browser with New task in the sidebar and three scheduled tasks in Today">
+  <figcaption>“Saved only in this browser” tells you where the tasks are until you connect a collection.</figcaption>
+</figure>
+
+## 2. Write a task and find its file
+
+Choose **New task**. Try typing `Measure the kitchen window today`. TaskNotes puts “Measure the kitchen window” in the title and turns “today” into a scheduled date. Choose **Notes**, write a measurement instruction, then choose **Add**.
+
+<figure class="app-screenshot guide-recording">
+  <video controls muted playsinline preload="none" loading="lazy" width="1120" height="762" poster="/assets/guides/new-task.webp" aria-label="Create a scheduled task with a note and save it to Today">
+    <source src="/assets/guides/create-task.mp4" type="video/mp4">
+  </video>
+  <img class="motion-still" src="/assets/guides/new-task.webp" width="1280" height="870" alt="New task form with the parsed Scheduled Today field, the measurement instruction under Notes, and Add">
+  <figcaption>Watch the date move out of the title and into the schedule.</figcaption>
+</figure>
+
+Open the task from **Today**. Its file path appears at the bottom of the task details. **Copy path** copies the location relative to the collection folder.
+
+<figure class="app-screenshot">
+  <img src="/assets/guides/markdown-path.webp" width="806" height="246" alt="Task details show tasks/20261124174342.md above the Copy path button">
+  <figcaption>This collection uses a timestamp for the filename. The title lives inside the file.</figcaption>
+</figure>
+
+## 3. Keep the files on your computer
+
+So far the tasks belong to this browser profile. Clearing the site’s storage can erase them. To keep working with them as ordinary files, create a folder for the collection and bring your tasks into it.
+
+1. Install [mdbase Connect](https://mdbase.dev/downloads/) on your computer. Choose **Sign in with your browser**, sign in or create an account, and choose **Approve computer**.
+
+<figure class="app-screenshot">
+  <img loading="lazy" src="/assets/guides/approve-computer.webp" width="1346" height="511" alt="Browser approval explains what mdbase on this computer can access and offers Approve computer">
+  <figcaption>Approve the request you started from the desktop app.</figcaption>
+</figure>
+
+2. In the desktop app, open **Collections** and choose **Create**. Give it a name such as `Household`, choose where to create its folder, and confirm. In **Collections**, open its **…** menu, choose **Turn on sync**, and confirm the default cloud copy.
+
+<figure class="app-screenshot desktop-dialog">
+  <img loading="lazy" src="/assets/guides/create-folder.webp" width="460" height="465" alt="Create a collection with Household as the name and Choose a location for its folder">
+  <figcaption>Choose the parent folder. Connect makes a Household folder inside it.</figcaption>
+</figure>
+
+3. Back in the **same browser profile**, choose **Connect to sync your work**. Sign in with the same account, select **Household** under **Open in TaskNotes**, then choose **Open TaskNotes**. If asked, confirm setup of the task type and starter views.
+4. When TaskNotes offers to bring your work into Household, choose **Bring it in**. Review any file renames it proposes. With mdbase Connect running, open the Household folder on your computer and look for the path shown in the task details.
+
+## Read the Markdown
+
+Here is the file TaskNotes wrote for the window measurement. The block between the `---` lines is YAML frontmatter. The instruction beneath it is the Markdown body.
+
+```markdown
+---
+title: Measure the kitchen window
+status: open
+priority: normal
+scheduled: "2026-11-24"
+dateCreated: "2026-11-24T06:43:43.014Z"
+dateModified: "2026-11-24T06:43:43.014Z"
+tags: [task]
+id: e1173327-29b8-4404-b235-156a657d92d0
+mobileRevision: 1
+type: task
+---
+Measure inside the frame before ordering the blind.
+```
+
+Open the file in a text editor, add the width and height below the instruction, and save. Once the folder syncs, open the task in the browser to see the measurements under **Notes**. With the default cloud copy, your computer can be off while you use the web app. It needs to be running again for changes to reach the folder.
+
+For the relationship between a task file, its fields and its collection, see [Portable task records](/concepts/task-records/).
+
+---
+
+# Use your Obsidian tasks on iPhone and Android
+
+Source: https://tasknotes.dev/guides/obsidian-tasks-mobile/
+
+# Use your Obsidian tasks on iPhone and Android
+
+This works for tasks that have their own note in Obsidian. If your tasks are checkboxes in a daily note, [convert a checkbox to a task note](/obsidian/features/inline-tasks/) first.
+
+## Before you start
+
+Back up your vault and update the TaskNotes plugin to version 5 or later on **every device that opens it**. An older plugin can overwrite the task definition. You need an mdbase account and a computer with the vault folder for the desktop setup below.
+
+Sync reaches the whole collection. If you only want your task notes online, use a separate vault for them. Use one sync service for a given folder. If you already sync this vault, decide which service will own that job before you turn on mdbase sync.
+
+## 1. Prepare the vault in Obsidian
+
+Open **Settings → TaskNotes → TaskNotes App**. Under **Use it with this vault**, turn on **Turn on type definitions** if it is off. This writes the files that tell the app how to recognize your tasks, including the field names and statuses you use.
+
+<figure class="app-screenshot">
+  <img src="/assets/guides/type-definitions.webp" width="599" height="109" alt="TaskNotes settings in Obsidian with Turn on type definitions switched on">
+  <figcaption>You can leave this switch on as you change your TaskNotes settings.</figcaption>
+</figure>
+
+## 2. Sync the folder from your computer
+
+Choose **Desktop app** on that settings page, or [download mdbase Connect](https://mdbase.dev/downloads/). On this computer, use the desktop app or the mdbase sync plugin for Obsidian. Either can sync the vault.
+
+<figure class="app-screenshot">
+  <img src="/assets/guides/sync-options.webp" width="599" height="109" alt="The Desktop app and Obsidian plugin choices in TaskNotes settings">
+  <figcaption>Choose Desktop app to follow the steps below.</figcaption>
+</figure>
+
+1. Open mdbase Connect. Choose **Sign in with your browser** and then **Approve computer**.
+2. In **Collections**, choose **Add existing**. Select the folder that contains `.obsidian`. You can use **Copy folder path** in the TaskNotes App settings in Obsidian to find it.
+3. In **Collections**, open the folder’s **…** menu and choose **Turn on sync**. Leave the default cloud copy selected and confirm **Turn on sync**. That copy lets you use TaskNotes while the computer is off.
+
+<figure class="app-screenshot desktop-dialog">
+  <img loading="lazy" src="/assets/guides/enable-sync.webp" width="460" height="371" alt="Turn on sync for Workshop explains that mdbase keeps a cloud copy while the folder stays on the computer">
+  <figcaption>The confirmation names the folder you are about to sync.</figcaption>
+</figure>
+
+<figure class="task-sync-flow" aria-label="How your task note travels between devices">
+  <div><strong>Obsidian</strong><span>Markdown file</span></div>
+  <span class="sync-link" aria-hidden="true">⇄</span>
+  <div><strong>mdbase</strong><span>Cloud copy</span></div>
+  <span class="sync-link" aria-hidden="true">⇄</span>
+  <div><strong>TaskNotes</strong><span>Phone or web</span></div>
+</figure>
+
+## 3. Open the collection on your phone
+
+Install TaskNotes for [iPhone](https://apps.apple.com/app/tasknotes/id6797168033) or [Android](https://play.google.com/store/apps/details?id=dev.tasknotes.app), or open [TaskNotes on the web](https://app.tasknotes.dev/). Sign in to mdbase with the account you used on the computer. Under **Open in TaskNotes**, choose the collection with your vault’s name, then **Open TaskNotes**.
+
+If TaskNotes prompts you to set up the collection, review the task type and saved views it proposes, then confirm. Open a task you recognize. A task scheduled for today appears in **Today**.
+
+<figure class="app-screenshot guide-recording phone-recording">
+  <video controls muted playsinline preload="none" loading="lazy" width="536" height="1014" poster="/assets/guides/phone-task.webp" aria-label="Open Return the library books from Today in the phone-width web app">
+    <source src="/assets/guides/open-task.mp4" type="video/mp4">
+  </video>
+  <img class="motion-still" src="/assets/guides/phone-task.webp" width="603" height="1140" alt="The phone-width web app shows Return the library books, its scheduled date and the note about the return slot">
+  <figcaption>The web app at phone width, using a sample saved in this browser. Open a task from Today to read its notes.</figcaption>
+</figure>
+
+## Find the same note on disk
+
+Add a line to the task’s notes on your phone. Once mdbase Connect is running and online on your computer, open the task in Obsidian and look for that line. In this example vault, the plugin saved the library task at `TaskNotes/Tasks/Return the library books.md`.
+
+```markdown
+---
+status: open
+priority: normal
+scheduled: 2026-11-24
+dateCreated: 2026-11-24T17:37:27.736+11:00
+dateModified: 2026-11-24T17:37:27.736+11:00
+tags:
+  - task
+id: 94cf7626-32cd-490d-8bc4-4a67b6532863
+---
+
+Use the return slot on Elm Street.
+```
+
+In this collection the filename supplies the title. The properties between the two `---` lines hold its status and schedule. The text below them is the note you edit on your phone. If an edit doesn’t reach your computer, [check the collection connection](/app/troubleshooting/).
+
+---
+
+# Share a Markdown task list with someone
+
+Source: https://tasknotes.dev/guides/share-task-list/
+
+# Share a Markdown task list with someone
+
+Share the collection that holds the tasks. The other person gets access to **every file in it**, even if you only meant to share the list you see in Today. For a household list, put the household tasks in their own collection first.
+
+## Before you start
+
+You need a synced collection with a cloud copy and an mdbase account for each person. A list saved only in your browser is private to that browser. [Connect it to mdbase](/app/connect-mdbase/) before inviting anyone.
+
+Ask the other person for the email address they have already verified with mdbase. The owner needs an available member seat. For one shared collection, Free has room for one other person and Plus for up to five. [See mdbase pricing](https://mdbase.dev/pricing/).
+
+## 1. Open the collection’s access settings
+
+As the owner, open [mdbase Connect](https://connect.mdbase.dev/), choose the collection by name, then choose **Access** under that name. In this example the collection is called **Household**.
+
+<figure class="app-screenshot">
+  <img loading="lazy" src="/assets/guides/household-access.webp" width="1216" height="356" alt="Household in the Connect sidebar with Overview, Storage and Access">
+  <figcaption>Access belongs to the selected collection.</figcaption>
+</figure>
+
+## 2. Invite the other person as an editor
+
+Under **People &amp; sharing**, choose **Invite person**. Leave **Verified email** selected, enter their address and change **Viewer** to **Editor**. TaskNotes needs write access to create, change and complete tasks. An editor can also rename the collection and change its types.
+
+<figure class="app-screenshot guide-recording">
+  <video controls muted playsinline preload="none" loading="lazy" width="1184" height="320" poster="/assets/guides/invite-editor.webp" aria-label="Open the invitation form, enter the recipient’s email and choose Editor">
+    <source src="/assets/guides/invite-editor.mp4" type="video/mp4">
+  </video>
+  <img class="motion-still" src="/assets/guides/invite-editor.webp" width="1580" height="428" alt="Invitation form with Sam’s verified email address and Editor selected">
+  <figcaption>Check the role before you create the invitation.</figcaption>
+</figure>
+
+Choose **Create invitation**, copy the private link and send it directly to the other person. If they verified their email after you made the invitation, create a fresh one.
+
+## 3. Accept the invitation
+
+The other person opens the link and signs in with the account you invited. Under **A collection was shared with you**, they choose **Accept**. Household now appears in their collections.
+
+<figure class="app-screenshot">
+  <img loading="lazy" src="/assets/guides/accept-invite.webp" width="1580" height="266" alt="The recipient’s Connect account shows A collection was shared with you and an Accept button">
+  <figcaption>Opening the link gives the recipient a chance to review the invitation.</figcaption>
+</figure>
+
+## 4. Open the same list in TaskNotes
+
+On their device, the other person opens [TaskNotes](https://app.tasknotes.dev/) and signs in to mdbase. If they already use TaskNotes with another collection, they choose **Settings → Collection → Add a collection…**. Under **Open in TaskNotes**, they select **Household**, then **Open TaskNotes**.
+
+<figure class="app-screenshot">
+  <img loading="lazy" src="/assets/guides/shared-picker.webp" width="1332" height="314" alt="The TaskNotes collection picker shows Household selected, labelled Cloud copy and Shared with you">
+  <figcaption>“Shared with you” distinguishes Household from a collection they own.</figcaption>
+</figure>
+
+Create a task with a title you both recognize. Ask the other person to open it and add a line under **Notes**. Open the task again on your device to see their edit.
+
+## What you’ll see on disk
+
+If you sync the collection to a computer, both people’s edits reach the same Markdown file. For example, TaskNotes saved this household task at `tasks/20261124174342.md`. The text under the second `---` is where the other person’s measurements would appear.
+
+```markdown
+---
+title: Measure the kitchen window
+status: open
+priority: normal
+scheduled: "2026-11-24"
+dateCreated: "2026-11-24T06:43:43.014Z"
+dateModified: "2026-11-24T06:43:43.014Z"
+tags: [task]
+id: e1173327-29b8-4404-b235-156a657d92d0
+mobileRevision: 1
+type: task
+---
+Measure inside the frame before ordering the blind.
+```
+
+To stop sharing, open **Access → People & sharing** and remove the person. Future changes stop reaching them. They keep any files they have already downloaded. [More about collection sharing](https://mdbase.dev/apps/editor/sharing/).
 
 ---
 
@@ -3515,7 +3769,7 @@ Source: https://tasknotes.dev/privacy/
 
 # TaskNotes privacy overview
 
-Last updated: November 13, 2026
+Last updated: November 15, 2026
 
 TaskNotes products are built around portable Markdown records. The storage and
 network boundaries depend on the client and collection you choose.
@@ -3616,6 +3870,33 @@ including the Limited Use requirements.
 
 See the [TaskNotes Calendar terms](/terms/).
 
+## Browser extension
+
+The TaskNotes browser extension creates tasks from web pages. It sends a task
+only to the destination you choose in its settings.
+
+- **What it reads.** The extension reads a page only when you open its popup,
+  use its right-click menu or type `task` in the address bar. It then reads the
+  tab's title, address and any selected text. It does not run on pages in the
+  background, and it does not read your browsing history.
+- **Obsidian.** Tasks go to the TaskNotes plugin's HTTP API on your own
+  computer (`localhost`). Nothing leaves the computer.
+- **mdbase.** Tasks go to the mdbase collection you sign in to and choose,
+  through mdbase Connect. The task's title, details and source page address,
+  and any text you selected, are stored there as a Markdown record. The
+  extension asks only to read the collection and to create records.
+- **What it stores.** Settings (the destination, the Obsidian port and API
+  token, default tags and link options) are kept in the browser's extension
+  storage, which the browser syncs between your devices if browser sync is on.
+  The chosen mdbase collection and the mdbase sign-in stay in the extension's
+  own storage on this device. Unsaved drafts are kept in session storage and are cleared
+  when the browser closes.
+- **No other services.** The extension has no analytics, advertising or
+  tracking, and sends nothing to TaskNotes or anyone else.
+
+Removing the extension deletes its stored settings and sign-in. Tasks already
+created stay in your vault or collection.
+
 ## Analytics
 
 TaskNotes does not include a product telemetry or analytics pipeline. TaskNotes
@@ -3637,6 +3918,7 @@ inspect the implementation:
 
 - [TaskNotes app](https://github.com/callumalpass/tasknotes-app)
 - [TaskNotes Obsidian plugin](https://github.com/callumalpass/tasknotes)
+- [TaskNotes browser extension](https://github.com/callumalpass/tasknotes-browser-extension)
 
 ---
 

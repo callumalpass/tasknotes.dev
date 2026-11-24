@@ -10,6 +10,15 @@ navigation:
       - title: Shared concepts
         route: /concepts/task-records/
 
+  - label: Guides
+    items:
+      - title: Obsidian tasks on your phone
+        route: /guides/obsidian-tasks-mobile/
+      - title: A Markdown to-do app
+        route: /guides/markdown-todo/
+      - title: Share a task list
+        route: /guides/share-task-list/
+
   - label: TaskNotes app
     items:
       - title: Get started

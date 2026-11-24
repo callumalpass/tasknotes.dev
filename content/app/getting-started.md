@@ -40,6 +40,8 @@ Follow [Connect TaskNotes to mdbase](/app/connect-mdbase/) for the steps.
 Use **Add task**, enter a title, and save. Capture understands the collection's
 configured status, priority, project, context, and tag values.
 
+For a worked example, [create a task and find its Markdown file](/guides/markdown-todo/).
+
 ## 4. Review the starter views
 
 Open **Today** for current work, **Upcoming** for scheduled tasks, and **Views**
