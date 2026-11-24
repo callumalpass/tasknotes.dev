@@ -1272,6 +1272,10 @@ video {
 	margin: 0;
 }
 
+.desktop-dialog {
+	max-width: 28.75rem;
+}
+
 .phone-recording {
 	max-width: 22rem;
 }

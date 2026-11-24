@@ -34,8 +34,13 @@ Choose **Desktop app** on that settings page, or [download mdbase Connect](https
 </figure>
 
 1. Open mdbase Connect. Choose **Sign in with your browser** and then **Approve computer**.
-2. Choose **Add existing folder**. Select the folder that contains `.obsidian`. You can use **Copy folder path** in the TaskNotes App settings in Obsidian to find it.
+2. In **Collections**, choose **Add existing**. Select the folder that contains `.obsidian`. You can use **Copy folder path** in the TaskNotes App settings in Obsidian to find it.
 3. In **Collections**, open the folder’s **…** menu and choose **Turn on sync**. Leave the default cloud copy selected and confirm **Turn on sync**. That copy lets you use TaskNotes while the computer is off.
+
+<figure class="app-screenshot desktop-dialog">
+  <img loading="lazy" src="/assets/guides/enable-sync.webp" width="460" height="371" alt="Turn on sync for Workshop explains that mdbase keeps a cloud copy while the folder stays on the computer">
+  <figcaption>The confirmation names the folder you are about to sync.</figcaption>
+</figure>
 
 <figure class="task-sync-flow" aria-label="How your task note travels between devices">
   <div><strong>Obsidian</strong><span>Markdown file</span></div>

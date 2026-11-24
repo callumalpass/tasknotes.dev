@@ -852,7 +852,19 @@ Open the task from **Today**. Its file path appears at the bottom of the task de
 So far the tasks belong to this browser profile. Clearing the site’s storage can erase them. To keep working with them as ordinary files, create a folder for the collection and bring your tasks into it.
 
 1. Install [mdbase Connect](https://mdbase.dev/downloads/) on your computer. Choose **Sign in with your browser**, sign in or create an account, and choose **Approve computer**.
-2. In the desktop app, choose **Create collection**. Give it a name such as `Household`, choose where to create its folder, and confirm. In **Collections**, open its **…** menu, choose **Turn on sync**, and confirm the default cloud copy.
+
+<figure class="app-screenshot">
+  <img loading="lazy" src="/assets/guides/approve-computer.webp" width="1346" height="511" alt="Browser approval explains what mdbase on this computer can access and offers Approve computer">
+  <figcaption>Approve the request you started from the desktop app.</figcaption>
+</figure>
+
+2. In the desktop app, open **Collections** and choose **Create**. Give it a name such as `Household`, choose where to create its folder, and confirm. In **Collections**, open its **…** menu, choose **Turn on sync**, and confirm the default cloud copy.
+
+<figure class="app-screenshot desktop-dialog">
+  <img loading="lazy" src="/assets/guides/create-folder.webp" width="460" height="465" alt="Create a collection with Household as the name and Choose a location for its folder">
+  <figcaption>Choose the parent folder. Connect makes a Household folder inside it.</figcaption>
+</figure>
+
 3. Back in the **same browser profile**, choose **Connect to sync your work**. Sign in with the same account, select **Household** under **Open in TaskNotes**, then choose **Open TaskNotes**. If asked, confirm setup of the task type and starter views.
 4. When TaskNotes offers to bring your work into Household, choose **Bring it in**. Review any file renames it proposes. With mdbase Connect running, open the Household folder on your computer and look for the path shown in the task details.
 
@@ -915,8 +927,13 @@ Choose **Desktop app** on that settings page, or [download mdbase Connect](https
 </figure>
 
 1. Open mdbase Connect. Choose **Sign in with your browser** and then **Approve computer**.
-2. Choose **Add existing folder**. Select the folder that contains `.obsidian`. You can use **Copy folder path** in the TaskNotes App settings in Obsidian to find it.
+2. In **Collections**, choose **Add existing**. Select the folder that contains `.obsidian`. You can use **Copy folder path** in the TaskNotes App settings in Obsidian to find it.
 3. In **Collections**, open the folder’s **…** menu and choose **Turn on sync**. Leave the default cloud copy selected and confirm **Turn on sync**. That copy lets you use TaskNotes while the computer is off.
+
+<figure class="app-screenshot desktop-dialog">
+  <img loading="lazy" src="/assets/guides/enable-sync.webp" width="460" height="371" alt="Turn on sync for Workshop explains that mdbase keeps a cloud copy while the folder stays on the computer">
+  <figcaption>The confirmation names the folder you are about to sync.</figcaption>
+</figure>
 
 <figure class="task-sync-flow" aria-label="How your task note travels between devices">
   <div><strong>Obsidian</strong><span>Markdown file</span></div>

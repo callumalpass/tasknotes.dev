@@ -42,7 +42,19 @@ Open the task from **Today**. Its file path appears at the bottom of the task de
 So far the tasks belong to this browser profile. Clearing the site’s storage can erase them. To keep working with them as ordinary files, create a folder for the collection and bring your tasks into it.
 
 1. Install [mdbase Connect](https://mdbase.dev/downloads/) on your computer. Choose **Sign in with your browser**, sign in or create an account, and choose **Approve computer**.
-2. In the desktop app, choose **Create collection**. Give it a name such as `Household`, choose where to create its folder, and confirm. In **Collections**, open its **…** menu, choose **Turn on sync**, and confirm the default cloud copy.
+
+<figure class="app-screenshot">
+  <img loading="lazy" src="/assets/guides/approve-computer.webp" width="1346" height="511" alt="Browser approval explains what mdbase on this computer can access and offers Approve computer">
+  <figcaption>Approve the request you started from the desktop app.</figcaption>
+</figure>
+
+2. In the desktop app, open **Collections** and choose **Create**. Give it a name such as `Household`, choose where to create its folder, and confirm. In **Collections**, open its **…** menu, choose **Turn on sync**, and confirm the default cloud copy.
+
+<figure class="app-screenshot desktop-dialog">
+  <img loading="lazy" src="/assets/guides/create-folder.webp" width="460" height="465" alt="Create a collection with Household as the name and Choose a location for its folder">
+  <figcaption>Choose the parent folder. Connect makes a Household folder inside it.</figcaption>
+</figure>
+
 3. Back in the **same browser profile**, choose **Connect to sync your work**. Sign in with the same account, select **Household** under **Open in TaskNotes**, then choose **Open TaskNotes**. If asked, confirm setup of the task type and starter views.
 4. When TaskNotes offers to bring your work into Household, choose **Bring it in**. Review any file renames it proposes. With mdbase Connect running, open the Household folder on your computer and look for the path shown in the task details.
 
